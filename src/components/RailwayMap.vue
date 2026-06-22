@@ -55,6 +55,8 @@
             :cx="station.cx" :cy="station.cy"
             :r="transferStationIds.has(station.id) ? 7 : 5"
             fill="#1f77b4" stroke="#fff" stroke-width="2"
+            style="cursor: pointer"
+            @click.stop="onStationClick(station.id)"
           />
         </g>
 
@@ -124,6 +126,10 @@ import { useLabelPlacement } from '../composables/useLabelPlacement'
 import LineLegend from './LineLegend.vue'
 import ZoomControls from './ZoomControls.vue'
 
+const emit = defineEmits<{
+  (e: 'station-click', stationId: string): void
+}>()
+
 const mouseCoord = ref<string | null>(null)
 
 const cx0 = (0 - minX) * BLOCK_SIZE
@@ -155,6 +161,10 @@ function onSvgMouseMove(e: MouseEvent) {
 function onSvgMouseLeave() {
   onMouseUp()
   mouseCoord.value = null
+}
+
+function onStationClick(stationId: string) {
+  emit('station-click', stationId)
 }
 </script>
 

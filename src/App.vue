@@ -1,6 +1,11 @@
 <template>
   <TitleBar @open="showDialog = true" />
-  <RailwayMap />
+  <div class="app-body">
+    <div class="map-area">
+      <RailwayMap @station-click="onStationClick" />
+    </div>
+    <RoutePanel ref="panel" />
+  </div>
   <InfoDialog :visible="showDialog" @close="onClose" />
 </template>
 
@@ -8,10 +13,16 @@
 import { ref, onMounted } from 'vue'
 import RailwayMap from './components/RailwayMap.vue'
 import TitleBar from './components/TitleBar.vue'
+import RoutePanel from './components/RoutePanel.vue'
 import InfoDialog from './components/InfoDialog.vue'
 
 const STORAGE_KEY = 'teyvat-railways-visited'
 const showDialog = ref(false)
+const panel = ref<InstanceType<typeof RoutePanel> | null>(null)
+
+function onStationClick(stationId: string) {
+  panel.value?.onStationClick(stationId)
+}
 
 function onClose() {
   showDialog.value = false
@@ -24,3 +35,18 @@ onMounted(() => {
   }
 })
 </script>
+
+<style scoped>
+.app-body {
+  display: flex;
+  height: calc(100vh - 40px);
+}
+.map-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+:deep(.title-bar) {
+  position: relative;
+}
+</style>
