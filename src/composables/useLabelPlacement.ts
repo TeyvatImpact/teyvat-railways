@@ -1,4 +1,4 @@
-import { computed, type Ref } from 'vue'
+import { ref, computed, type Ref } from 'vue'
 import { prepareWithSegments, measureNaturalWidth } from '@chenglou/pretext'
 import type { PreparedTextWithSegments } from '@chenglou/pretext'
 import { pad, fsCN, fsEN, fsCNSmall, fsENSmall, gap, textGap, stationR, gridStep } from '../config/render.config'
@@ -7,6 +7,8 @@ import {
   transferStationIds as allTransferIds,
   stationMap, lines as allLines,
 } from './useMapData'
+
+export const FONT_EN = 'Barlow'
 
 export interface Box {
   id: string
@@ -21,6 +23,7 @@ export interface Box {
   name: string
   nameEn: string
   fontFamily: string
+  fontFamilyEn: string
   fCN: number
   fEN: number
 }
@@ -40,6 +43,7 @@ export interface LineLabelBox {
   nameEn: string
   color: string
   fontFamily: string
+  fontFamilyEn: string
   fCN: number
   fEN: number
 }
@@ -77,7 +81,7 @@ function computeAllBoxes(fsCN_: number, fsEN_: number): Box[] {
   return allStations.map((s) => {
     const ff = s.fontFamily
     const wCN = textWidth(s.name, fsCN_, true, ff)
-    const wEN = textWidth(s.nameEn, fsEN_, true, ff)
+    const wEN = textWidth(s.nameEn, fsEN_, true, FONT_EN)
     const w = Math.max(wCN, wEN) + pad * 2
     const h = fsCN_ * 1.2 + textGap + fsEN_ * 1.2
     const dir = s.labelDir || 'R'
@@ -91,15 +95,11 @@ function computeAllBoxes(fsCN_: number, fsEN_: number): Box[] {
       enX: textAreaStart + (textAreaWidth - wEN) / 2,
       name: s.name, nameEn: s.nameEn,
       fontFamily: ff,
+      fontFamilyEn: FONT_EN,
       fCN: fsCN_, fEN: fsEN_,
     }
   })
 }
-
-const largeBoxes = computeAllBoxes(fsCN, fsEN)
-const smallBoxes = computeAllBoxes(fsCNSmall, fsENSmall)
-const boxMapLarge = new Map(largeBoxes.map(b => [b.id, b]))
-const boxMapSmall = new Map(smallBoxes.map(b => [b.id, b]))
 
 // ---- line label boxes ----
 
@@ -115,19 +115,17 @@ function computeLineLabels(): LineLabelBox[] {
       if (!st) continue
       const ff = line.fontFamily || 'sans-serif'
       const wCN = textWidth(line.name, fCN, true, ff)
-      const wEN = textWidth(line.nameEn, fEN, true, ff)
+      const wEN = textWidth(line.nameEn, fEN, true, FONT_EN)
       const w = Math.max(wCN, wEN) + pad * 2 + 6
       const h = fCN * 1.2 + textGap + fEN * 1.2
       const { left, top } = getLabelPosition(st.cx, st.cy, w, h, dir || 'R')
       const textAreaStart = left + pad + 6
       const textAreaWidth = Math.max(wCN, wEN)
-      boxes.push({ id: `line-label-${line.id}-${sid}`, lineId: line.id, w, h, cx: st.cx, cy: st.cy, left, top, cnX: textAreaStart + (textAreaWidth - wCN) / 2, enX: textAreaStart + (textAreaWidth - wEN) / 2, name: line.name, nameEn: line.nameEn, color: line.color, fontFamily: ff, fCN, fEN })
+      boxes.push({ id: `line-label-${line.id}-${sid}`, lineId: line.id, w, h, cx: st.cx, cy: st.cy, left, top, cnX: textAreaStart + (textAreaWidth - wCN) / 2, enX: textAreaStart + (textAreaWidth - wEN) / 2, name: line.name, nameEn: line.nameEn, color: line.color, fontFamily: ff, fontFamilyEn: FONT_EN, fCN, fEN })
     }
   }
   return boxes
 }
-
-const allLineLabels = computeLineLabels()
 
 // ---- grid ----
 
@@ -143,16 +141,43 @@ const gridY = computed(() => {
 })
 
 export function useLabelPlacement(showAll: Ref<boolean>) {
+  const revision = ref(0)
+
+  if (typeof document !== 'undefined' && document.fonts) {
+    document.fonts.ready.then(() => {
+      prepCache.clear()
+      revision.value++
+    })
+  }
+
+  const largeBoxes = computed(() => {
+    void revision.value
+    return computeAllBoxes(fsCN, fsEN)
+  })
+  const smallBoxes = computed(() => {
+    void revision.value
+    return computeAllBoxes(fsCNSmall, fsENSmall)
+  })
+  const allLineLabels = computed(() => {
+    void revision.value
+    return computeLineLabels()
+  })
+
+  const boxMapLarge = computed(() => new Map(largeBoxes.value.map(b => [b.id, b])))
+  const boxMapSmall = computed(() => new Map(smallBoxes.value.map(b => [b.id, b])))
+
   const visibleStations = allStations
 
-  const labelBoxes = computed(() =>
-    allStations.map(s => {
+  const labelBoxes = computed(() => {
+    const large = boxMapLarge.value
+    const small = boxMapSmall.value
+    return allStations.map(s => {
       if (showAll.value || !allTransferIds.has(s.id)) {
-        return boxMapSmall.get(s.id)
+        return small.get(s.id)
       }
-      return boxMapLarge.get(s.id)
-    }).filter((b): b is Box => !!b),
-  )
+      return large.get(s.id)
+    }).filter((b): b is Box => !!b)
+  })
 
   const leaderLines = computed(() =>
     labelBoxes.value.map(b => {
@@ -167,7 +192,7 @@ export function useLabelPlacement(showAll: Ref<boolean>) {
     }),
   )
 
-  const lineLabels = computed(() => allLineLabels)
+  const lineLabels = computed(() => allLineLabels.value)
 
   const lineLeaderLines = computed(() =>
     lineLabels.value.map(b => {

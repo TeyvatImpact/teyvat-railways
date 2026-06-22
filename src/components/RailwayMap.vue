@@ -77,7 +77,7 @@
             <text
               :x="lb.enX" :y="lb.top + lb.h - pad"
               fill="#555" font-weight="bold" :font-size="lb.fEN"
-              :font-family="lb.fontFamily"
+              :font-family="lb.fontFamilyEn"
             >{{ lb.nameEn }}</text>
           </g>
 
@@ -100,7 +100,7 @@
             <text
               :x="lb.enX" :y="lb.top + lb.h - pad"
               fill="#555" font-weight="bold" :font-size="lb.fEN"
-              :font-family="lb.fontFamily"
+              :font-family="lb.fontFamilyEn"
             >{{ lb.nameEn }}</text>
           </g>
 

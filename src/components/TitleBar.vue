@@ -1,12 +1,15 @@
 <template>
   <div class="title-bar">
     <span class="title">提瓦特铁路网</span>
-    <button class="info-btn" @click="$emit('open')">关于</button>
+    <div class="btn-group">
+      <button class="info-btn" @click="$emit('open')">关于</button>
+      <button class="info-btn" @click="$emit('open-ai')">AI 提示词</button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineEmits<{ open: [] }>()
+defineEmits<{ open: []; 'open-ai': [] }>()
 </script>
 
 <style scoped>
@@ -42,5 +45,9 @@ defineEmits<{ open: [] }>()
 }
 .info-btn:hover {
   background: #f0f0f0;
+}
+.btn-group {
+  display: flex;
+  gap: 6px;
 }
 </style>

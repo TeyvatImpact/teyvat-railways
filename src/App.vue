@@ -1,5 +1,5 @@
 <template>
-  <TitleBar @open="showDialog = true" />
+  <TitleBar @open="showDialog = true" @open-ai="showAiDialog = true" />
   <div class="app-body">
     <div class="map-area">
       <RailwayMap :route-result="routeResult" @station-click="onStationClick" />
@@ -7,6 +7,7 @@
     <RoutePanel ref="panel" @result-change="onResultChange" />
   </div>
   <InfoDialog :visible="showDialog" @close="onClose" />
+  <AiPromptDialog :visible="showAiDialog" @close="showAiDialog = false" />
 </template>
 
 <script setup lang="ts">
@@ -15,10 +16,12 @@ import RailwayMap from './components/RailwayMap.vue'
 import TitleBar from './components/TitleBar.vue'
 import RoutePanel from './components/RoutePanel.vue'
 import InfoDialog from './components/InfoDialog.vue'
+import AiPromptDialog from './components/AiPromptDialog.vue'
 import type { RouteResult } from './composables/useRouting'
 
 const STORAGE_KEY = 'teyvat-railways-visited'
 const showDialog = ref(false)
+const showAiDialog = ref(false)
 const routeResult = ref<RouteResult | null>(null)
 const panel = ref<InstanceType<typeof RoutePanel> | null>(null)
 
