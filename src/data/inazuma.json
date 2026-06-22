@@ -1,0 +1,295 @@
+{
+  "config": { "x": 11, "y": 7, "name": "Inazuma", "fontFamily": "Noto Serif JP" },
+  "stations": [
+    { "id": "RTP", "nameCn": "離島港", "nameEn": "Ritou Port", "x": 0, "y": 0, "labelDir": "LB" },
+    { "id": "RTU", "nameCn": "離島", "nameEn": "Ritou", "x": 1, "y": 0, "labelDir": "T" },
+    { "id": "KDV", "nameCn": "紺田村", "nameEn": "Konda Village", "x": 3, "y": 1, "labelDir": "L" },
+    {
+      "id": "BKP",
+      "nameCn": "白狐の野",
+      "nameEn": "Byakko Plain",
+      "x": 4,
+      "y": 2,
+      "labelDir": "L"
+    },
+    { "id": "HMZ", "nameCn": "花見坂", "nameEn": "Hanamizaka", "x": 5, "y": 3, "labelDir": "RT" },
+    { "id": "IZC", "nameCn": "稲妻城", "nameEn": "Inazuma City", "x": 6, "y": 4, "labelDir": "RT" },
+    {
+      "id": "NIT",
+      "nameCn": "鳴神島・天守",
+      "nameEn": "Narukami Island: Tenshukaku",
+      "x": 7,
+      "y": 5,
+      "labelDir": "RT"
+    },
+    { "id": "AUM", "nameCn": "荒海", "nameEn": "Araumi", "x": 4, "y": -2, "labelDir": "RB" },
+    {
+      "id": "YGN",
+      "nameCn": "影向山北",
+      "nameEn": "Mt. Yougou North",
+      "x": 6,
+      "y": -2,
+      "labelDir": "RT"
+    },
+    { "id": "KSE", "nameCn": "神里屋敷", "nameEn": "Kamisato Estate", "x": 7, "y": 0 },
+    {
+      "id": "CJF",
+      "nameCn": "鎮守の森",
+      "nameEn": "Chinju Forest",
+      "x": 6,
+      "y": 1,
+      "labelDir": "RB"
+    },
+    {
+      "id": "GNS",
+      "nameCn": "鳴神大社",
+      "nameEn": "Grand Narukami Shrine",
+      "x": 5,
+      "y": 0,
+      "labelDir": "T"
+    },
+    {
+      "id": "AKI",
+      "nameCn": "甘金島",
+      "nameEn": "Amakane Island",
+      "x": 3,
+      "y": 3,
+      "labelDir": "RB"
+    },
+    {
+      "id": "KJE",
+      "nameCn": "九条陣屋",
+      "nameEn": "Kujou Encampment",
+      "x": 0,
+      "y": 4,
+      "labelDir": "RB"
+    },
+    { "id": "KNZ", "nameCn": "神無塚", "nameEn": "Kannazuka", "x": -2, "y": 5, "labelDir": "RB" },
+    {
+      "id": "NCB",
+      "nameCn": "名椎の浜",
+      "nameEn": "Nazuchi Beach",
+      "x": -4,
+      "y": 5,
+      "labelDir": "T"
+    },
+    {
+      "id": "MSG",
+      "nameCn": "無想刃狭間",
+      "nameEn": "Musoujin Gorge",
+      "x": -6,
+      "y": 5,
+      "labelDir": "T"
+    },
+    { "id": "HGV", "nameCn": "緋木村", "nameEn": "Higi Village", "x": -8, "y": 6, "labelDir": "L" },
+    {
+      "id": "FFT",
+      "nameCn": "藤兜砦",
+      "nameEn": "Fort Fujitou",
+      "x": -9,
+      "y": 5,
+      "labelDir": "RT"
+    },
+    {
+      "id": "SPH",
+      "nameCn": "蛇神の首",
+      "nameEn": "Serpent's Head",
+      "x": -7,
+      "y": 7,
+      "labelDir": "RT"
+    },
+    {
+      "id": "JTM",
+      "nameCn": "蛇骨鉱坑",
+      "nameEn": "Jakotsu Mine",
+      "x": -6,
+      "y": 8,
+      "labelDir": "RT"
+    },
+    {
+      "id": "WTE",
+      "nameCn": "海祇東",
+      "nameEn": "Watatsumi East",
+      "x": -10,
+      "y": 7,
+      "labelDir": "RT"
+    },
+    {
+      "id": "BRV",
+      "nameCn": "望瀧村",
+      "nameEn": "Bourou Village",
+      "x": -11,
+      "y": 6,
+      "labelDir": "T"
+    },
+    { "id": "SGM", "nameCn": "珊瑚宮", "nameEn": "Sangonomiya", "x": -13, "y": 6, "labelDir": "B" },
+    {
+      "id": "MUS",
+      "nameCn": "曚雲神社",
+      "nameEn": "Mouun Shrine",
+      "x": -14,
+      "y": 6,
+      "labelDir": "T"
+    },
+    {
+      "id": "SKP",
+      "nameCn": "シリコロ山",
+      "nameEn": "Shirikoro Peak",
+      "x": -4,
+      "y": 11,
+      "labelDir": "RT"
+    },
+    {
+      "id": "ONB",
+      "nameCn": "オイナ海岸",
+      "nameEn": "Oina Beach",
+      "x": -3,
+      "y": 12,
+      "labelDir": "RT"
+    },
+    {
+      "id": "CRS",
+      "nameCn": "チライ社殿",
+      "nameEn": "Chirai Shrine",
+      "x": -1,
+      "y": 12,
+      "labelDir": "RT"
+    },
+    {
+      "id": "MCS",
+      "nameCn": "モシリ祭場",
+      "nameEn": "Moshiri Ceremonial Site",
+      "x": -1,
+      "y": 13,
+      "labelDir": "RB"
+    },
+    {
+      "id": "WKS",
+      "nameCn": "ワクカウ浜",
+      "nameEn": "Wakukau Shoal",
+      "x": -2,
+      "y": 14,
+      "labelDir": "RB"
+    },
+    { "id": "TMP", "nameCn": "鶴観港", "nameEn": "Tsurumi Port", "x": 1, "y": 12, "labelDir": "B" },
+    {
+      "id": "MKN",
+      "nameCn": "カンナ山",
+      "nameEn": "Mt. Kanna",
+      "x": -3,
+      "y": 13,
+      "labelDir": "LB"
+    },
+    {
+      "id": "ATP",
+      "nameCn": "アウタケ平原",
+      "nameEn": "Autake Plains",
+      "x": -5,
+      "y": 13,
+      "labelDir": "T"
+    }
+  ],
+  "lines": [
+    {
+      "id": "NK",
+      "name": "IR 東稲妻·鳴神島線",
+      "nameEn": "IR East Narukami Line",
+      "lineLabels": [
+        ["RTP", "LT"],
+        ["NIT", "LB"]
+      ],
+      "stations": [
+        ["RTP", false],
+        ["RTU", false],
+        ["KDV", false],
+        ["BKP", false],
+        ["HMZ", false],
+        ["IZC", false],
+        ["NIT", false]
+      ]
+    },
+    {
+      "id": "YG",
+      "name": "IR 東稲妻·影向山環状線",
+      "nameEn": "IR East Mt. Yougou Loop Line",
+      "lineLabels": [["AUM", "T"]],
+      "stations": [
+        ["BKP", false],
+        ["KDV", false],
+        ["AUM", false],
+        ["YGN", true],
+        ["KSE", false],
+        ["CJF", true],
+        ["BKP", false]
+      ]
+    },
+    {
+      "id": "NW",
+      "name": "IR 東稲妻·鳴海線",
+      "nameEn": "IR East Inazuma-Watatsumi Line",
+      "lineLabels": [
+        ["AKI", "LT"],
+        ["NCB", "B"]
+      ],
+      "stations": [
+        ["GNS", false],
+        ["BKP", false],
+        ["AKI", true],
+        ["KJE", false],
+        ["KNZ", false],
+        ["NCB", false],
+        ["MSG", false],
+        ["HGV", false]
+      ]
+    },
+    {
+      "id": "YO",
+      "name": "IR 東稲妻·ヤシオリ島線",
+      "nameEn": "IR East Yashiori Island Line",
+      "lineLabels": [["SPH", "LB"]],
+      "stations": [
+        ["FFT", false],
+        ["HGV", false],
+        ["SPH", false],
+        ["JTM", false]
+      ]
+    },
+    {
+      "id": "WT",
+      "name": "IR 珊瑚宮·海祇島線",
+      "nameEn": "IR Sangonomiya Watatsumi Island Line",
+      "lineLabels": [["WTE", "LB"]],
+      "stations": [
+        ["WTE", false],
+        ["BRV", false],
+        ["SGM", false],
+        ["MUS", false]
+      ]
+    },
+    {
+      "id": "TA",
+      "name": "IR 鶴観·一番線",
+      "nameEn": "IR Tsurumi Line 1",
+      "lineLabels": [["SKP", "LB"]],
+      "stations": [
+        ["SKP", false],
+        ["ONB", false],
+        ["CRS", false],
+        ["MCS", false],
+        ["WKS", false]
+      ]
+    },
+    {
+      "id": "TB",
+      "name": "IR 鶴観·二番線",
+      "nameEn": "IR Tsurumi Line 12",
+      "lineLabels": [["TMP", "RT"]],
+      "stations": [
+        ["TMP", false],
+        ["MCS", false],
+        ["MKN", false],
+        ["ATP", false]
+      ]
+    }
+  ]
+}

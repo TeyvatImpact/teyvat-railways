@@ -1,0 +1,176 @@
+{
+  "config": { "x": 15, "y": -7, "name": "Liyue", "fontFamily": "Noto Sans SC" },
+  "stations": [
+    {
+      "id": "LYG",
+      "nameCn": "璃月港站",
+      "nameEn": "Liyue Harbor Station",
+      "x": 0,
+      "y": 0,
+      "labelDir": "L"
+    },
+    { "id": "HET", "nameCn": "荷塘", "nameEn": "Lotus Pond", "x": 2, "y": 2, "labelDir": "RT" },
+    { "id": "FYP", "nameCn": "绯云坡", "nameEn": "Feiyun Slope", "x": 2, "y": 4, "labelDir": "T" },
+    {
+      "id": "LYN",
+      "nameCn": "璃月港南站",
+      "nameEn": "Feiyun Harbor South Station",
+      "x": 2,
+      "y": 6,
+      "labelDir": "T"
+    },
+    {
+      "id": "PSC",
+      "nameCn": "喷水池",
+      "nameEn": "The Fountain",
+      "x": 3,
+      "y": 7,
+      "labelDir": "LB"
+    },
+    { "id": "CHY", "nameCn": "吃虎岩", "nameEn": "Chihu Rock", "x": 4, "y": 8, "labelDir": "B" },
+    { "id": "HYG", "nameCn": "货运港", "nameEn": "Cargo Port", "x": 6, "y": 8, "labelDir": "B" },
+    {
+      "id": "HYC",
+      "nameCn": "黑岩厂",
+      "nameEn": "Blackcliff Forge",
+      "x": 0,
+      "y": 8,
+      "labelDir": "B"
+    },
+    {
+      "id": "NCM",
+      "nameCn": "南城门",
+      "nameEn": "South Gate",
+      "x": 1,
+      "y": 7,
+      "labelDir": "RT"
+    },
+    { "id": "KYN", "nameCn": "客运港南", "nameEn": "Passenger Port South", "x": 4, "y": 6 },
+    { "id": "KYB", "nameCn": "客运港北", "nameEn": "Passenger Port North", "x": 4, "y": 4 },
+    { "id": "BCM", "nameCn": "北城门", "nameEn": "North Gate", "x": 4, "y": 2, "labelDir": "RB" },
+    {
+      "id": "YLQ",
+      "nameCn": "云来新区",
+      "nameEn": "Yunlai New District",
+      "x": 4,
+      "y": 0,
+      "labelDir": "L"
+    },
+    {
+      "id": "LYB",
+      "nameCn": "璃月港北站",
+      "nameEn": "Liyue Harbor North Station",
+      "x": 4,
+      "y": -2,
+      "labelDir": "T"
+    },
+    { "id": "HJW", "nameCn": "黄金屋", "nameEn": "Golden House", "x": 2, "y": 8, "labelDir": "B" },
+    {
+      "id": "YJT",
+      "nameCn": "玉京台",
+      "nameEn": "Yujing Terrace",
+      "x": 0,
+      "y": 6,
+      "labelDir": "L"
+    },
+    {
+      "id": "YHT",
+      "nameCn": "月海亭",
+      "nameEn": "Yuehai Pavilion",
+      "x": 0,
+      "y": 4,
+      "labelDir": "LT"
+    },
+    { "id": "YLY", "nameCn": "云来崖", "nameEn": "Yunlai Cliff", "x": 6, "y": -2, "labelDir": "T" },
+    { "id": "LHC", "nameCn": "渌华池", "nameEn": "Luhua Pool", "x": 2, "y": -3, "labelDir": "RT" },
+    {
+      "id": "GYX",
+      "nameCn": "孤云阁西",
+      "nameEn": "Guyun Stone Forest West",
+      "x": 8,
+      "y": -2,
+      "labelDir": "T"
+    },
+    {
+      "id": "GYG",
+      "nameCn": "孤云阁",
+      "nameEn": "Guyun Stone Forest",
+      "x": 10,
+      "y": -2,
+      "labelDir": "T"
+    }
+  ],
+  "lines": [
+    {
+      "id": "LHM-1",
+      "name": "璃月港地铁·1号线",
+      "nameEn": "Lyue Harbor Line 1",
+      "lineLabels": [
+        ["LYG", "RT"],
+        ["HYG", "T"]
+      ],
+      "stations": [
+        ["LYG", false],
+        ["HET", false],
+        ["FYP", false],
+        ["LYN", false],
+        ["PSC", false],
+        ["CHY", false],
+        ["HYG", false]
+      ]
+    },
+    {
+      "id": "LHM-2",
+      "name": "璃月港地铁·2号线",
+      "nameEn": "Lyue Harbor Line 2",
+      "lineLabels": [
+        ["HYC", "LT"],
+        ["LYB", "LB"]
+      ],
+      "stations": [
+        ["HYC", false],
+        ["NCM", false],
+        ["PSC", false],
+        ["KYN", false],
+        ["KYB", false],
+        ["BCM", false],
+        ["YLQ", false],
+        ["LYB", false]
+      ]
+    },
+    {
+      "id": "LHM-3",
+      "name": "璃月港地铁·3号线",
+      "nameEn": "Lyue Harbor Line 3",
+      "lineLabels": [
+        ["YHT", "LB"],
+        ["YLY", "B"]
+      ],
+      "stations": [
+        ["HJW", false],
+        ["NCM", false],
+        ["YJT", false],
+        ["YHT", false],
+        ["HET", false],
+        ["BCM", true],
+        ["YLY", false]
+      ]
+    },
+    {
+      "id": "LHM-S1",
+      "name": "璃月港地铁·S1号线",
+      "nameEn": "Lyue Harbor Line S1",
+      "lineLabels": [
+        ["LHC", "LT"],
+        ["GYG", "B"]
+      ],
+      "stations": [
+        ["LHC", true],
+        ["LYB", false],
+        ["YLY", false],
+        ["GYX", false],
+        ["GYG", false]
+      ]
+    }
+  ]
+}

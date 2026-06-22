@@ -1,0 +1,194 @@
+import { computed, type Ref } from 'vue'
+import { prepareWithSegments, measureNaturalWidth } from '@chenglou/pretext'
+import type { PreparedTextWithSegments } from '@chenglou/pretext'
+import { pad, fsCN, fsEN, fsCNSmall, fsENSmall, gap, textGap, stationR, gridStep } from '../config/render.config'
+import {
+  svgWidth, svgHeight, stations as allStations,
+  transferStationIds as allTransferIds,
+  stationMap, lines as allLines,
+} from './useMapData'
+
+export interface Box {
+  id: string
+  w: number
+  h: number
+  cx: number
+  cy: number
+  left: number
+  top: number
+  cnX: number
+  enX: number
+  name: string
+  nameEn: string
+  fontFamily: string
+  fCN: number
+  fEN: number
+}
+
+export interface LineLabelBox {
+  id: string
+  lineId: string
+  w: number
+  h: number
+  cx: number
+  cy: number
+  left: number
+  top: number
+  cnX: number
+  enX: number
+  name: string
+  nameEn: string
+  color: string
+  fontFamily: string
+  fCN: number
+  fEN: number
+}
+
+const prepCache = new Map<string, PreparedTextWithSegments>()
+
+function textWidth(text: string, fontSize: number, bold: boolean, fontFamily = 'sans-serif'): number {
+  const font = `${bold ? 'bold ' : ''}${fontSize}px ${fontFamily}`
+  const key = `${text}|${font}`
+  if (!prepCache.has(key)) prepCache.set(key, prepareWithSegments(text, font))
+  return measureNaturalWidth(prepCache.get(key)!)
+}
+
+const dirMap: Record<string, { dx: number; dy: number }> = {
+  R: { dx: 1, dy: 0 },
+  RT: { dx: 1, dy: -1 },
+  T: { dx: 0, dy: -1 },
+  LT: { dx: -1, dy: -1 },
+  L: { dx: -1, dy: 0 },
+  LB: { dx: -1, dy: 1 },
+  B: { dx: 0, dy: 1 },
+  RB: { dx: 1, dy: 1 },
+}
+
+function getLabelPosition(cx: number, cy: number, w: number, h: number, dir: string) {
+  const d = dirMap[dir] || dirMap.R
+  const left = cx + d.dx * (stationR + gap) - (d.dx === 0 ? w / 2 : d.dx > 0 ? 0 : w)
+  const top = cy + d.dy * (stationR + gap) - (d.dy === 0 ? h / 2 : d.dy > 0 ? 0 : h)
+  return { left, top }
+}
+
+// ---- station label boxes ----
+
+function computeAllBoxes(fsCN_: number, fsEN_: number): Box[] {
+  return allStations.map((s) => {
+    const ff = s.fontFamily
+    const wCN = textWidth(s.name, fsCN_, true, ff)
+    const wEN = textWidth(s.nameEn, fsEN_, true, ff)
+    const w = Math.max(wCN, wEN) + pad * 2
+    const h = fsCN_ * 1.2 + textGap + fsEN_ * 1.2
+    const dir = s.labelDir || 'R'
+    const { left, top } = getLabelPosition(s.cx, s.cy, w, h, dir)
+    const textAreaStart = left + pad
+    const textAreaWidth = Math.max(wCN, wEN)
+    return {
+      id: s.id, w, h, cx: s.cx, cy: s.cy,
+      left, top,
+      cnX: textAreaStart + (textAreaWidth - wCN) / 2,
+      enX: textAreaStart + (textAreaWidth - wEN) / 2,
+      name: s.name, nameEn: s.nameEn,
+      fontFamily: ff,
+      fCN: fsCN_, fEN: fsEN_,
+    }
+  })
+}
+
+const largeBoxes = computeAllBoxes(fsCN, fsEN)
+const smallBoxes = computeAllBoxes(fsCNSmall, fsENSmall)
+const boxMapLarge = new Map(largeBoxes.map(b => [b.id, b]))
+const boxMapSmall = new Map(smallBoxes.map(b => [b.id, b]))
+
+// ---- line label boxes ----
+
+function computeLineLabels(): LineLabelBox[] {
+  const boxes: LineLabelBox[] = []
+  const fCN = fsCNSmall
+  const fEN = fsENSmall
+
+  for (const line of allLines) {
+    if (!line.lineLabels) continue
+    for (const [sid, dir] of line.lineLabels) {
+      const st = stationMap.get(sid)
+      if (!st) continue
+      const ff = line.fontFamily || 'sans-serif'
+      const wCN = textWidth(line.name, fCN, true, ff)
+      const wEN = textWidth(line.nameEn, fEN, true, ff)
+      const w = Math.max(wCN, wEN) + pad * 2 + 6
+      const h = fCN * 1.2 + textGap + fEN * 1.2
+      const { left, top } = getLabelPosition(st.cx, st.cy, w, h, dir || 'R')
+      const textAreaStart = left + pad + 6
+      const textAreaWidth = Math.max(wCN, wEN)
+      boxes.push({ id: `line-label-${line.id}-${sid}`, lineId: line.id, w, h, cx: st.cx, cy: st.cy, left, top, cnX: textAreaStart + (textAreaWidth - wCN) / 2, enX: textAreaStart + (textAreaWidth - wEN) / 2, name: line.name, nameEn: line.nameEn, color: line.color, fontFamily: ff, fCN, fEN })
+    }
+  }
+  return boxes
+}
+
+const allLineLabels = computeLineLabels()
+
+// ---- grid ----
+
+const gridX = computed(() => {
+  const a: number[] = []
+  for (let x = 0; x <= svgWidth; x += gridStep) a.push(x)
+  return a
+})
+const gridY = computed(() => {
+  const a: number[] = []
+  for (let y = 0; y <= svgHeight; y += gridStep) a.push(y)
+  return a
+})
+
+export function useLabelPlacement(showAll: Ref<boolean>) {
+  const visibleStations = allStations
+
+  const labelBoxes = computed(() =>
+    allStations.map(s => {
+      if (showAll.value || !allTransferIds.has(s.id)) {
+        return boxMapSmall.get(s.id)
+      }
+      return boxMapLarge.get(s.id)
+    }).filter((b): b is Box => !!b),
+  )
+
+  const leaderLines = computed(() =>
+    labelBoxes.value.map(b => {
+      const cx = b.left + b.w / 2
+      const cy = b.top + b.h / 2
+      const dx = b.cx - cx; const dy = b.cy - cy
+      if (dx === 0 && dy === 0) return { id: b.id, x1: b.cx, y1: b.cy, x2: b.cx, y2: b.cy }
+      const sx = dx === 0 ? Infinity : (b.w / 2) / Math.abs(dx)
+      const sy = dy === 0 ? Infinity : (b.h / 2) / Math.abs(dy)
+      const s = Math.min(sx, sy)
+      return { id: b.id, x1: b.cx, y1: b.cy, x2: cx + dx * s, y2: cy + dy * s }
+    }),
+  )
+
+  const lineLabels = computed(() => allLineLabels)
+
+  const lineLeaderLines = computed(() =>
+    lineLabels.value.map(b => {
+      const cx = b.left + b.w / 2
+      const cy = b.top + b.h / 2
+      const dx = b.cx - cx; const dy = b.cy - cy
+      if (dx === 0 && dy === 0) return { id: b.id, x1: b.cx, y1: b.cy, x2: b.cx, y2: b.cy }
+      const sx = dx === 0 ? Infinity : (b.w / 2) / Math.abs(dx)
+      const sy = dy === 0 ? Infinity : (b.h / 2) / Math.abs(dy)
+      const s = Math.min(sx, sy)
+      return { id: b.id, x1: b.cx, y1: b.cy, x2: cx + dx * s, y2: cy + dy * s }
+    }),
+  )
+
+  return {
+    visibleStations,
+    labelBoxes,
+    leaderLines,
+    lineLabels,
+    lineLeaderLines,
+    gridX,
+    gridY,
+  }
+}
