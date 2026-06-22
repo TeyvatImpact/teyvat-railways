@@ -214,7 +214,7 @@ export function useRouting() {
           lineName: info.lineName,
           lineNameEn: info.lineNameEn,
           isFerry: info.lineId.startsWith('ferry-'),
-          nodes: [info],
+          nodes: currentSeg.nodes,
         })
       } else {
         currentSeg.nodes.push(info)

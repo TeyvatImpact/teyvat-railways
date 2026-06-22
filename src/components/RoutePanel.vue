@@ -76,10 +76,10 @@
       @click="calculate"
     >计算路线</button>
 
-    <div v-if="routeError" class="result error">{{ routeError }}</div>
+    <div v-if="routeError" class="result error px-4 py-4">{{ routeError }}</div>
 
     <div v-if="routeResult" class="result">
-      <pre class="route-json">{{ routeJson }}</pre>
+      <RouteTimeline :result="routeResult" @close="clearResult" />
     </div>
   </div>
 </template>
@@ -87,6 +87,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouting, type StationSuggestion, type RouteResult } from '../composables/useRouting'
+import RouteTimeline from './RouteTimeline.vue'
+
+const emit = defineEmits<{
+  (e: 'result-change', v: RouteResult | null): void
+}>()
 
 const {
   selectTarget,
@@ -103,7 +108,6 @@ const endSuggestions = ref<StationSuggestion[]>([])
 const startSelected = ref<StationSuggestion | null>(null)
 const endSelected = ref<StationSuggestion | null>(null)
 const routeResult = ref<RouteResult | null>(null)
-const routeJson = ref('')
 const routeError = ref('')
 
 let startTimer: ReturnType<typeof setTimeout> | null = null
@@ -138,8 +142,7 @@ function selectStart(s: StationSuggestion) {
   startSelected.value = s
   startSuggestions.value = []
   startFocused.value = false
-  routeResult.value = null
-  routeJson.value = ''
+  clearResult()
   routeError.value = ''
 }
 
@@ -148,8 +151,7 @@ function selectEnd(s: StationSuggestion) {
   endSelected.value = s
   endSuggestions.value = []
   endFocused.value = false
-  routeResult.value = null
-  routeJson.value = ''
+  clearResult()
   routeError.value = ''
 }
 
@@ -164,8 +166,7 @@ function onEndBlur() {
 function calculate() {
   if (!startSelected.value || !endSelected.value) return
   routeError.value = ''
-  routeResult.value = null
-  routeJson.value = ''
+  clearResult()
 
   const result = findRoute(startSelected.value.id, endSelected.value.id)
 
@@ -175,7 +176,12 @@ function calculate() {
   }
 
   routeResult.value = result
-  routeJson.value = JSON.stringify(result, null, 2)
+  emit('result-change', result)
+}
+
+function clearResult() {
+  routeResult.value = null
+  emit('result-change', null)
 }
 
 function onStationClick(stationId: string) {
@@ -340,20 +346,10 @@ defineExpose({ onStationClick })
 .result {
   flex: 1;
   overflow-y: auto;
-  padding: 0 16px 16px;
-  font-size: 13px;
 }
 
 .result.error {
   color: #d32f2f;
 }
 
-.route-json {
-  white-space: pre;
-  font-family: 'Consolas', 'Courier New', monospace;
-  font-size: 11px;
-  line-height: 1.4;
-  color: #333;
-  margin: 0;
-}
 </style>

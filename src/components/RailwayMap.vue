@@ -30,9 +30,10 @@
           :key="`${seg.lineId}-${seg.id}`"
           :x1="seg.x1" :y1="seg.y1"
           :x2="seg.x2" :y2="seg.y2"
-          :stroke="seg.color"
+          :stroke="segStroke(seg)"
           :stroke-width="seg.width"
           :stroke-dasharray="seg.dasharray ?? undefined"
+          :opacity="segOpacity(seg)"
           stroke-linecap="round"
         />
 
@@ -50,7 +51,9 @@
           stroke="#999" stroke-width="1" stroke-dasharray="4,3"
         />
 
-        <g v-for="station in visibleStations" :key="station.id">
+        <g v-for="station in visibleStations" :key="station.id"
+          :opacity="routeStationIds.size && !routeStationIds.has(station.id) ? DIM_OPACITY : 1"
+        >
           <circle
             :cx="station.cx" :cy="station.cy"
             :r="transferStationIds.has(station.id) ? 7 : 5"
@@ -60,7 +63,7 @@
           />
         </g>
 
-          <g v-for="lb in labelBoxes" :key="lb.id">
+          <g v-for="lb in labelBoxes" :key="lb.id" :opacity="stationOpacity(lb.id)">
             <rect
               :x="lb.left" :y="lb.top"
               :width="lb.w" :height="lb.h"
@@ -78,7 +81,7 @@
             >{{ lb.nameEn }}</text>
           </g>
 
-          <g v-for="lb in lineLabels" :key="lb.id">
+          <g v-for="lb in lineLabels" :key="lb.id" :opacity="lineLabelOpacity(lb.id)">
             <rect
               :x="lb.left" :y="lb.top"
               :width="lb.w" :height="lb.h"
@@ -118,17 +121,121 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { BLOCK_SIZE, pad, LABEL_BG } from '../config/render.config'
-import { svgWidth, svgHeight, lines, transferStationIds, renderSegments, markerPaths, markerTexts, minX, minY } from '../composables/useMapData'
+import { ref, computed } from 'vue'
+import { BLOCK_SIZE, pad, LABEL_BG, FERRY_COLOR_HIGHLIGHT } from '../config/render.config'
+import { svgWidth, svgHeight, stations, stationMap, transferStationIds, renderSegments, markerPaths, markerTexts, minX, minY } from '../composables/useMapData'
 import { useMapInteraction } from '../composables/useMapInteraction'
 import { useLabelPlacement } from '../composables/useLabelPlacement'
 import LineLegend from './LineLegend.vue'
 import ZoomControls from './ZoomControls.vue'
+import type { RouteResult } from '../composables/useRouting'
+
+const props = defineProps<{
+  routeResult: RouteResult | null
+}>()
 
 const emit = defineEmits<{
   (e: 'station-click', stationId: string): void
 }>()
+
+const routeStationIds = computed(() => {
+  if (!props.routeResult) return new Set<string>()
+  const ids = new Set<string>()
+  for (const seg of props.routeResult.segments) {
+    for (const node of seg.nodes) {
+      ids.add(node.stationId)
+    }
+  }
+  return ids
+})
+
+function normPathId(x1: number, y1: number, x2: number, y2: number): string {
+  if (x1 < x2 || (x1 === x2 && y1 < y2)) {
+    return `${x1},${y1}|${x2},${y2}`
+  }
+  return `${x2},${y2}|${x1},${y1}`
+}
+
+function addSubSegs(ids: Set<string>, ax: number, ay: number, bx: number, by: number) {
+  ids.add(normPathId(ax, ay, bx, by))
+  const dx = bx - ax, dy = by - ay
+  if (dx === 0 || dy === 0 || Math.abs(dx) === Math.abs(dy)) return
+  const sx = Math.sign(dx), sy = Math.sign(dy)
+  const adx = Math.abs(dx), ady = Math.abs(dy)
+  // diagFirst=true waypoint
+  const cx1 = adx > ady ? ax + sx * ady : bx
+  const cy1 = adx > ady ? by : ay + sy * adx
+  ids.add(normPathId(ax, ay, cx1, cy1))
+  ids.add(normPathId(cx1, cy1, bx, by))
+  // diagFirst=false waypoint
+  const cx2 = adx > ady ? bx - sx * ady : ax
+  const cy2 = adx > ady ? ay : by - sy * adx
+  ids.add(normPathId(ax, ay, cx2, cy2))
+  ids.add(normPathId(cx2, cy2, bx, by))
+}
+
+const routeLineIds = computed(() => {
+  if (!props.routeResult) return new Set<string>()
+  return new Set(props.routeResult.segments.map(s => s.lineId))
+})
+
+const traveledSegIds = computed(() => {
+  const ids = new Set<string>()
+  if (!props.routeResult) return ids
+  for (const seg of props.routeResult.segments) {
+    for (let i = 0; i < seg.nodes.length - 1; i++) {
+      const a = stationMap.get(seg.nodes[i].stationId)
+      const b = stationMap.get(seg.nodes[i + 1].stationId)
+      if (!a || !b) continue
+      addSubSegs(ids, a.cx, a.cy, b.cx, b.cy)
+    }
+  }
+  return ids
+})
+
+const sameStationSegIds = computed(() => {
+  const ids = new Set<string>()
+  if (!props.routeResult) return ids
+  const c2s = new Map<string, string>()
+  for (const st of stations) {
+    c2s.set(`${st.cx},${st.cy}`, st.id)
+  }
+  for (const seg of renderSegments) {
+    if (!seg.lineId.startsWith('same-')) continue
+    const sa = c2s.get(`${seg.x1},${seg.y1}`)
+    const sb = c2s.get(`${seg.x2},${seg.y2}`)
+    if (sa && sb && routeStationIds.value.has(sa) && routeStationIds.value.has(sb)) {
+      ids.add(seg.id)
+    }
+  }
+  return ids
+})
+
+function segOpacity(seg: { id: string; lineId: string }): number {
+  if (!props.routeResult) return 1
+  return traveledSegIds.value.has(seg.id) || sameStationSegIds.value.has(seg.id) ? 1 : DIM_OPACITY
+}
+
+function segStroke(seg: { id: string; lineId: string; color: string }): string {
+  if (!props.routeResult) return seg.color
+  const isTraveled = traveledSegIds.value.has(seg.id) || sameStationSegIds.value.has(seg.id)
+  if (isTraveled && seg.lineId.startsWith('ferry-')) {
+    return FERRY_COLOR_HIGHLIGHT
+  }
+  return seg.color
+}
+
+const DIM_OPACITY = 0.12
+
+function stationOpacity(id: string): number {
+  return !routeStationIds.value.size || routeStationIds.value.has(id) ? 1 : DIM_OPACITY
+}
+
+function lineLabelOpacity(id: string): number {
+  if (!routeLineIds.value.size) return 1
+  const m = id.match(/^line-label-(.+?)-/)
+  return m && routeLineIds.value.has(m[1]) ? 1 : DIM_OPACITY
+}
 
 const mouseCoord = ref<string | null>(null)
 

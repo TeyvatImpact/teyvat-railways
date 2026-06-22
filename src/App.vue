@@ -2,9 +2,9 @@
   <TitleBar @open="showDialog = true" />
   <div class="app-body">
     <div class="map-area">
-      <RailwayMap @station-click="onStationClick" />
+      <RailwayMap :route-result="routeResult" @station-click="onStationClick" />
     </div>
-    <RoutePanel ref="panel" />
+    <RoutePanel ref="panel" @result-change="onResultChange" />
   </div>
   <InfoDialog :visible="showDialog" @close="onClose" />
 </template>
@@ -15,10 +15,16 @@ import RailwayMap from './components/RailwayMap.vue'
 import TitleBar from './components/TitleBar.vue'
 import RoutePanel from './components/RoutePanel.vue'
 import InfoDialog from './components/InfoDialog.vue'
+import type { RouteResult } from './composables/useRouting'
 
 const STORAGE_KEY = 'teyvat-railways-visited'
 const showDialog = ref(false)
+const routeResult = ref<RouteResult | null>(null)
 const panel = ref<InstanceType<typeof RoutePanel> | null>(null)
+
+function onResultChange(v: RouteResult | null) {
+  routeResult.value = v
+}
 
 function onStationClick(stationId: string) {
   panel.value?.onStationClick(stationId)
