@@ -1,8 +1,5 @@
 // ===== 标签配置 =====
 
-/** 标签背景色 */
-export const LABEL_BG = 'var(--color-surface-container-low)';
-
 /** 标签内边距（px），文字与标签框边缘之间的距离 */
 export const pad = 2;
 

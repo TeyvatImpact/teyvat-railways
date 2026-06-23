@@ -100,7 +100,6 @@
         </g>
 
         <g v-for="lb in labelBoxes" :key="lb.id" :opacity="stationOpacity(lb.id)">
-          <rect :x="lb.left" :y="lb.top" :width="lb.w" :height="lb.h" :fill="LABEL_BG" rx="4" />
           <text
             :x="lb.cnX"
             :y="lb.top + lb.fCN * 1.1"
@@ -132,7 +131,6 @@
         </g>
 
         <g v-for="lb in lineLabels" :key="lb.id" :opacity="lineLabelOpacity(lb.id)">
-          <rect :x="lb.left" :y="lb.top" :width="lb.w" :height="lb.h" :fill="LABEL_BG" rx="4" />
           <rect :x="lb.left" :y="lb.top" :width="4" :height="lb.h" :fill="lb.color" rx="2" />
           <text
             :x="lb.cnX"
@@ -190,7 +188,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { BLOCK_SIZE, pad, textGap, LABEL_BG, FERRY_COLOR_HIGHLIGHT } from '../config/render.config';
+import { BLOCK_SIZE, pad, textGap, FERRY_COLOR_HIGHLIGHT } from '../config/render.config';
 import {
   svgWidth,
   svgHeight,
