@@ -314,13 +314,13 @@
         ["NIT", "LB"]
       ],
       "stations": [
-        ["RTP", false, 500, 10, 10],
-        ["RTU", false, 500, 10, 10],
-        ["KDV", false, 500, 10, 10],
-        ["BKP", false, 500, 10, 10],
-        ["HMZ", false, 500, 10, 10],
+        ["NIT", false, 500, 10, 10],
         ["IZC", false, 500, 10, 10],
-        ["NIT", false, 500, 10, 10]
+        ["HMZ", false, 500, 10, 10],
+        ["BKP", false, 500, 10, 10],
+        ["KDV", true, 500, 10, 10],
+        ["RTU", false, 500, 10, 10],
+        ["RTP", false, 500, 10, 10]
       ]
     },
     {
@@ -349,14 +349,28 @@
         ["NCB", "B"]
       ],
       "stations": [
-        ["GNS", false, 500, 10, 10],
-        ["BKP", false, 500, 10, 10],
+        ["IZC", false, 500, 10, 10],
+        ["HMZ", false, 500, 10, 10],
         ["AKI", true, 500, 10, 10],
         ["KJE", false, 500, 10, 10],
         ["KNZ", false, 500, 10, 10],
         ["NCB", false, 500, 10, 10],
         ["MSG", false, 500, 10, 10],
         ["HGV", false, 500, 10, 10]
+      ]
+    },
+    {
+      "id": "NS",
+      "name": "IR 東稲妻·鳴神大社線",
+      "nameZh": "IR 东稻妻·鸣神大社线",
+      "nameEn": "IR East Shrine Line",
+      "lineLabels": [["IZC", "LB"]],
+      "stations": [
+        ["NIT", false, 500, 10, 10],
+        ["IZC", false, 500, 10, 10],
+        ["HMZ", false, 500, 10, 10],
+        ["BKP", false, 500, 10, 10],
+        ["GNS", false, 500, 10, 10]
       ]
     },
     {
