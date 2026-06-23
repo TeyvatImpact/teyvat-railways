@@ -939,7 +939,7 @@
   "lines": [
     {
       "id": "A",
-      "name": "原初线",
+      "name": "跨局·原初线",
       "nameEn": "Original Line",
       "lineLabels": [
         ["SAA", "LB"],
@@ -978,7 +978,7 @@
     },
     {
       "id": "B",
-      "name": "风岩草线",
+      "name": "跨局·风岩草线",
       "nameEn": "Anemo-Geo-Dendro Line",
       "lineLabels": [
         ["STL", "LB"],

@@ -70,7 +70,7 @@ export const MARKER_FILL = 'none';
 export const MARKER_FONT_SIZE = 32;
 
 /** 标注文字颜色 */
-export const MARKER_TEXT_FILL = '#ff000077';
+export const MARKER_TEXT_FILL = '#777';
 
 /** 标注文字字体 */
 export const MARKER_FONT_FAMILY = 'sans-serif';

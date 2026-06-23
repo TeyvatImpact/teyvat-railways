@@ -1,126 +1,107 @@
 {
-  "paths": [
-    {
-      "d": "M -26 10 L -26 -3 L -27 -4 L -27 -28"
-    },
-    {
-      "d": "M -46 -9 L -41 -4 L -27 -4 L -25 -6 L -14 -6 L -5 -15 L -5 -19"
-    },
-    {
-      "d": "M -11 -9 L -7 -5 L -7 2 L -1.5 7.5"
-    },
-    {
-      "d": "M -9 15 L 3 3 L 12 3"
-    },
-    {
-      "d": "M -1 -19 L -1 -13 L 7 -5 L 12 -5"
-    },
-    {
-      "d": "M -1 7 L 7 15 L 7 17",
-      "stroke": "#ff00003f"
-    },
-    {
-      "d": "M -4 23 L 2 17 L 26 17",
-      "stroke": "#ff00003f"
-    },
-    {
-      "d": "M 12 -19 L 12 3",
-      "stroke": "#0000007f"
-    },
-    {
-      "d": "M 12 3 L 20 3",
-      "stroke": "#0000007f"
-    }
-  ],
+  "paths": [],
   "texts": [
     {
       "content": "蒙德局 Mondstadt",
-      "x": 6.5,
-      "y": -6
+      "x": 10,
+      "y": -9
     },
     {
       "content": "璃月局 Liyue",
       "x": -4,
-      "y": 4
-    },
-    {
-      "content": "稲妻旅客鉄道株式会社 Inazuma Railways",
-      "x": 3,
-      "y": 4,
-      "fontFamily": "Noto Serif JP"
-    },
-    {
-      "content": "IR 東稲妻 IR East",
-      "x": 8,
-      "y": 16,
-      "fontSize": 24,
-      "fontFamily": "Noto Serif JP"
-    },
-    {
-      "content": "(稲妻幕府)",
-      "x": 8,
-      "y": 16.5,
-      "fontSize": 18,
-      "fontFamily": "Noto Serif JP"
-    },
-    {
-      "content": "IR 珊瑚宮 IR Sangonomiya",
-      "x": 0,
-      "y": 16,
-      "fontSize": 24,
-      "fontFamily": "Noto Serif JP"
-    },
-    {
-      "content": "(稲妻国海祇島珊瑚宮自治政府)",
-      "x": 0,
-      "y": 16.5,
-      "fontSize": 18,
-      "fontFamily": "Noto Serif JP"
-    },
-    {
-      "content": "IR 鶴観 IR Tsurumi",
-      "x": 2,
-      "y": 18,
-      "fontSize": 24,
-      "fontFamily": "Noto Serif JP"
-    },
-    {
-      "content": "(稲妻幕府)",
-      "x": 2,
-      "y": 18.5,
-      "fontSize": 18,
-      "fontFamily": "Noto Serif JP"
-    },
-    {
-      "content": "须弥局 Sumeru / सुमेरु",
-      "x": -25,
-      "y": 8
-    },
-    {
-      "content": "枫丹局 Fontaine",
-      "x": -26,
-      "y": -7
-    },
-    {
-      "content": "纳塔局 Natlan",
-      "x": -32,
-      "y": -2
-    },
-    {
-      "content": "挪德卡莱局 Nod-Krai / Нод-Край",
-      "x": -38,
-      "y": -4.5
+      "y": -8
     },
     {
       "content": "璃月港地铁",
-      "x": 13,
-      "y": -9
+      "x": 11,
+      "y": 2
     },
     {
       "content": "Liyue Harbor Metro",
+      "x": 11,
+      "y": 2.5,
+      "fontSize": 18
+    },
+    {
+      "content": "稲妻旅客鉄道株式会社",
+      "x": 8,
+      "y": 13,
+      "fontFamily": "Noto Sans JP"
+    },
+    {
+      "content": "Inazuma Railways",
+      "x": 8,
+      "y": 13.5,
+      "fontSize": 18,
+      "fontFamily": "Noto Sans JP"
+    },
+    {
+      "content": "IR 東稲妻 IR East",
+      "x": 15,
+      "y": 17,
+      "fontSize": 24,
+      "fontFamily": "Noto Sans JP"
+    },
+    {
+      "content": "(稲妻幕府)",
+      "x": 15,
+      "y": 17.5,
+      "fontSize": 18,
+      "fontFamily": "Noto Sans JP"
+    },
+    {
+      "content": "IR 珊瑚宮 IR Sangonomiya",
+      "x": 4,
+      "y": 20,
+      "fontSize": 24,
+      "fontFamily": "Noto Sans JP"
+    },
+    {
+      "content": "(稲妻国海祇島珊瑚宮自治政府)",
+      "x": 4,
+      "y": 20.5,
+      "fontSize": 18,
+      "fontFamily": "Noto Sans JP"
+    },
+    {
+      "content": "IR 鶴観 IR Tsurumi",
       "x": 13,
+      "y": 21,
+      "fontSize": 24,
+      "fontFamily": "Noto Sans JP"
+    },
+    {
+      "content": "(稲妻幕府)",
+      "x": 13,
+      "y": 21.5,
+      "fontSize": 18,
+      "fontFamily": "Noto Sans JP"
+    },
+    {
+      "content": "须弥局 Sumeru / सुमेरु",
+      "x": -22,
+      "y": 3
+    },
+    {
+      "content": "枫丹巡轨船",
+      "x": -16,
+      "y": -9
+    },
+    {
+      "content": "Fontaine Aquabus",
+      "x": -16,
       "y": -8.5,
       "fontSize": 18
+    },
+    {
+      "content": "纳塔局 Natlan",
+      "x": -34,
+      "y": 1
+    },
+    {
+      "content": "挪德卡莱局 Nod-Krai / Нод-Край",
+      "x": -34,
+      "y": -7
     }
   ]
 }
