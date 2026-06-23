@@ -8,7 +8,8 @@
       "stations": [
         ["Liyue-KYB", false],
         ["Inazuma-RTP", false]
-      ]
+      ],
+      "costPreset": "ferry"
     },
     {
       "id": "ferry-kyn-mus",
@@ -18,7 +19,8 @@
       "stations": [
         ["Liyue-KYN", false],
         ["Inazuma-MUS", false]
-      ]
+      ],
+      "costPreset": "ferry"
     },
     {
       "id": "ferry-pom-mus",
@@ -28,7 +30,8 @@
       "stations": [
         ["Teyvat-POM", false],
         ["Inazuma-MUS", false]
-      ]
+      ],
+      "costPreset": "ferry"
     },
     {
       "id": "ferry-bdh-rrh",
@@ -38,7 +41,8 @@
       "stations": [
         ["Teyvat-BDH", false],
         ["Teyvat-RRH", false]
-      ]
+      ],
+      "costPreset": "ferry"
     },
     {
       "id": "ferry-vko-rrh",
@@ -48,7 +52,8 @@
       "stations": [
         ["Teyvat-VKO", false],
         ["Teyvat-RRH", false]
-      ]
+      ],
+      "costPreset": "ferry"
     },
     {
       "id": "ferry-rrh-nsp",
@@ -58,7 +63,8 @@
       "stations": [
         ["Teyvat-RRH", false],
         ["Teyvat-NSP", false]
-      ]
+      ],
+      "costPreset": "ferry"
     },
     {
       "id": "ferry-ffc-nsp",
@@ -68,7 +74,8 @@
       "stations": [
         ["Teyvat-FFC", false],
         ["Teyvat-NSP", false]
-      ]
+      ],
+      "costPreset": "ferry"
     },
     {
       "id": "ferry-ffc-ebp",
@@ -78,7 +85,8 @@
       "stations": [
         ["Teyvat-FFC", false],
         ["Teyvat-EBP", false]
-      ]
+      ],
+      "costPreset": "ferry"
     },
     {
       "id": "ferry-ylw-ldh",
@@ -88,54 +96,55 @@
       "stations": [
         ["Teyvat-YLW", false],
         ["Teyvat-LDH", false]
-      ]
+      ],
+      "costPreset": "ferry"
     }
   ],
   "stationDistances": [
     {
       "from": "Inazuma-MUS",
       "to": "Liyue-KYN",
-      "distance": 1000
+      "distance": 140
     },
     {
       "from": "Inazuma-MUS",
       "to": "Teyvat-POM",
-      "distance": 1000
+      "distance": 120
     },
     {
       "from": "Inazuma-RTP",
       "to": "Liyue-KYB",
-      "distance": 1000
+      "distance": 150
     },
     {
       "from": "Teyvat-BDH",
       "to": "Teyvat-RRH",
-      "distance": 1000
+      "distance": 70
     },
     {
       "from": "Teyvat-EBP",
       "to": "Teyvat-FFC",
-      "distance": 1000
+      "distance": 14
     },
     {
       "from": "Teyvat-FFC",
       "to": "Teyvat-NSP",
-      "distance": 1000
+      "distance": 90
     },
     {
       "from": "Teyvat-LDH",
       "to": "Teyvat-YLW",
-      "distance": 1000
+      "distance": 20
     },
     {
       "from": "Teyvat-NSP",
       "to": "Teyvat-RRH",
-      "distance": 1000
+      "distance": 140
     },
     {
       "from": "Teyvat-RRH",
       "to": "Teyvat-VKO",
-      "distance": 1000
+      "distance": 40
     }
   ]
 }

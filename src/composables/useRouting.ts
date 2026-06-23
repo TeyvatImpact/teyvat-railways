@@ -1,5 +1,5 @@
 import { ref, type Ref } from 'vue';
-import { stations, stationMap, lines, lookupDistance } from './useMapData';
+import { stations, stationMap, lines, lookupDistance, getPreset } from './useMapData';
 
 export type RouteMetric = 'fare' | 'time' | 'distance';
 
@@ -102,8 +102,9 @@ for (const line of lines) {
     const bSt = stationMap.get(bId);
     if (!aSt || !bSt) continue;
     const dist = lookupDistance(aId, bId);
-    const fare = Math.round(dist * 100);
-    const time = dist;
+    const preset = getPreset(line.costPreset);
+    const fare = Math.round(dist * preset.farePerKm);
+    const time = dist * preset.minutesPerKm;
     addEdge(`${aId}-${line.id}`, `${bId}-${line.id}`, fare, {
       fare,
       time,

@@ -68,6 +68,11 @@
                       class="edit-input line-name"
                       :placeholder="activeFile === 'inazuma' ? '中文名' : ''" />
                     <input v-model="line.nameEn" class="edit-input line-name" />
+                    <select v-model="line.costPreset" class="preset-select">
+                      <option v-for="p in presetOptions" :key="p.id" :value="p.id">
+                        {{ p.label }}
+                      </option>
+                    </select>
                   </div>
                   <table class="data-table">
                     <thead>
@@ -130,6 +135,16 @@ import { ref, reactive, computed } from 'vue';
 
 const fileKeys = ['teyvat', 'inazuma', 'liyue', 'ferry', 'same'];
 const regionKeys = ['teyvat', 'inazuma', 'liyue'];
+
+const presetOptions = [
+  { id: 'standard', label: '标准' },
+  { id: 'aquabus', label: '巡轨船' },
+  { id: 'natlan-resort', label: '度假村' },
+  { id: 'inazuma', label: '稻妻铁道' },
+  { id: 'liyue-metro', label: '璃月港地铁' },
+  { id: 'ferry', label: '轮渡' },
+  { id: 'same-station', label: '同站换乘' },
+];
 
 const isDev = import.meta.env.DEV;
 const open = ref(false);
@@ -457,6 +472,19 @@ async function save() {
 .line-name {
   flex: 1;
   min-width: 80px;
+}
+.preset-select {
+  font-size: 11px;
+  padding: 2px 4px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  outline: none;
+}
+.preset-select:focus {
+  border-color: #1f77b4;
 }
 
 .admin-footer {

@@ -8,7 +8,8 @@
       "stations": [
         ["Teyvat-LYH", false],
         ["Liyue-LYG", false]
-      ]
+      ],
+      "costPreset": "same-station"
     },
     {
       "id": "same-lys-lyn",
@@ -18,7 +19,8 @@
       "stations": [
         ["Teyvat-LYS", false],
         ["Liyue-LYN", false]
-      ]
+      ],
+      "costPreset": "same-station"
     },
     {
       "id": "same-lyh-lyb",
@@ -28,7 +30,8 @@
       "stations": [
         ["Teyvat-LYN", false],
         ["Liyue-LYB", false]
-      ]
+      ],
+      "costPreset": "same-station"
     }
   ],
   "stationDistances": [
@@ -40,12 +43,12 @@
     {
       "from": "Liyue-LYG",
       "to": "Teyvat-LYH",
-      "distance": 0.5
+      "distance": 0.3
     },
     {
       "from": "Liyue-LYN",
       "to": "Teyvat-LYS",
-      "distance": 0.5
+      "distance": 0.3
     }
   ]
 }

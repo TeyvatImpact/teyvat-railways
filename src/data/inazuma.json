@@ -321,7 +321,8 @@
         ["KDV", true],
         ["RTU", false],
         ["RTP", false]
-      ]
+      ],
+      "costPreset": "inazuma"
     },
     {
       "id": "YG",
@@ -337,7 +338,8 @@
         ["KSE", false],
         ["CJF", true],
         ["BKP", false]
-      ]
+      ],
+      "costPreset": "inazuma"
     },
     {
       "id": "NW",
@@ -357,7 +359,8 @@
         ["NCB", false],
         ["MSG", false],
         ["HGV", false]
-      ]
+      ],
+      "costPreset": "inazuma"
     },
     {
       "id": "NS",
@@ -371,7 +374,8 @@
         ["HMZ", false],
         ["BKP", false],
         ["GNS", false]
-      ]
+      ],
+      "costPreset": "inazuma"
     },
     {
       "id": "YS",
@@ -384,7 +388,8 @@
         ["HGV", false],
         ["SPH", false],
         ["JTM", false]
-      ]
+      ],
+      "costPreset": "inazuma"
     },
     {
       "id": "WT",
@@ -397,7 +402,8 @@
         ["BRV", false],
         ["SGM", false],
         ["MUS", false]
-      ]
+      ],
+      "costPreset": "inazuma"
     },
     {
       "id": "TA",
@@ -411,7 +417,8 @@
         ["CRS", false],
         ["MCS", false],
         ["WKS", false]
-      ]
+      ],
+      "costPreset": "inazuma"
     },
     {
       "id": "TB",
@@ -424,164 +431,165 @@
         ["MCS", false],
         ["MKN", false],
         ["ATP", false]
-      ]
+      ],
+      "costPreset": "inazuma"
     }
   ],
   "stationDistances": [
     {
       "from": "AKI",
       "to": "HMZ",
-      "distance": 10
+      "distance": 6
     },
     {
       "from": "AKI",
       "to": "KJE",
-      "distance": 10
+      "distance": 9
     },
     {
       "from": "ATP",
       "to": "MKN",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "AUM",
       "to": "KDV",
-      "distance": 10
+      "distance": 6
     },
     {
       "from": "AUM",
       "to": "YGN",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "BKP",
       "to": "CJF",
-      "distance": 10
+      "distance": 5
     },
     {
       "from": "BKP",
       "to": "GNS",
-      "distance": 10
+      "distance": 7
     },
     {
       "from": "BKP",
       "to": "HMZ",
-      "distance": 10
+      "distance": 3
     },
     {
       "from": "BKP",
       "to": "KDV",
-      "distance": 10
+      "distance": 6
     },
     {
       "from": "BRV",
       "to": "SGM",
-      "distance": 10
+      "distance": 3
     },
     {
       "from": "BRV",
       "to": "WTE",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "CJF",
       "to": "KSE",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "CRS",
       "to": "MCS",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "CRS",
       "to": "ONB",
-      "distance": 10
+      "distance": 3
     },
     {
       "from": "FFT",
       "to": "HGV",
-      "distance": 10
+      "distance": 3
     },
     {
       "from": "HGV",
       "to": "MSG",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "HGV",
       "to": "SPH",
-      "distance": 10
+      "distance": 2
     },
     {
       "from": "HMZ",
       "to": "IZC",
-      "distance": 10
+      "distance": 1.5
     },
     {
       "from": "IZC",
       "to": "NIT",
-      "distance": 10
+      "distance": 1
     },
     {
       "from": "JTM",
       "to": "SPH",
-      "distance": 10
+      "distance": 3
     },
     {
       "from": "KDV",
       "to": "RTU",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "KJE",
       "to": "KNZ",
-      "distance": 10
+      "distance": 7
     },
     {
       "from": "KNZ",
       "to": "NCB",
-      "distance": 10
+      "distance": 5
     },
     {
       "from": "KSE",
       "to": "YGN",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "MCS",
       "to": "MKN",
-      "distance": 10
+      "distance": 3
     },
     {
       "from": "MCS",
       "to": "TMP",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "MCS",
       "to": "WKS",
-      "distance": 10
+      "distance": 1
     },
     {
       "from": "MSG",
       "to": "NCB",
-      "distance": 10
+      "distance": 5
     },
     {
       "from": "MUS",
       "to": "SGM",
-      "distance": 10
+      "distance": 4
     },
     {
       "from": "ONB",
       "to": "SKP",
-      "distance": 10
+      "distance": 3
     },
     {
       "from": "RTP",
       "to": "RTU",
-      "distance": 10
+      "distance": 1
     }
   ]
 }

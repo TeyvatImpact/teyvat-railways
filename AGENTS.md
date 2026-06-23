@@ -44,6 +44,7 @@ src/main.ts → src/style.css         (Tailwind CSS v4 via @tailwindcss/vite)
 | Dev         | `components/AdminPanel.vue`        | Floating data editor (dev-only) — edit station names and segment costs via web UI                                         |
 | Dev         | `vite.config.ts`                   | Admin API middleware (`GET/PUT /__admin/data/*`) for reading/writing JSON files in dev mode                               |
 | Config      | `config/render.config.ts`          | All render constants (fonts, palette, spacing, special line colors)                                                       |
+| Config      | `config/fare-presets.json`         | Fare/speed presets (farePerKm, minutesPerKm); used by lines' `costPreset` field                                           |
 
 ### Component tree (current)
 
@@ -95,6 +96,7 @@ Two special line files:
       "name": string,
       "nameZh"?: string,
       "nameEn": string,
+      "costPreset": string,
       "lineLabels"?: [ [stationId, position], ... ],
       "stations": [ [stationId, diagonalFirst], ... ]
     }
@@ -133,18 +135,19 @@ Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat
 - **`lineLabels`**: Optional array of `[stationId, position]` — instructs renderer where to place the line's name label relative to that station.
 - **`config.x`/`config.y`**: Origin offset applied to all station coordinates in that region at runtime.
 - **Station tuple**: `[stationId, diagonalFirst]` — fare/time/distance are no longer stored inline. See `stationDistances` below.
+- **`costPreset`**: Each line selects a fare/speed preset from `config/fare-presets.json`. Determines `farePerKm` and `minutesPerKm` for cost computation.
 - **`stationDistances`**: Array of `{ from, to, distance }` where `from`/`to` are sorted alphabetically (direction-independent). Distance is in kilometers.
-- **Cost computation**: fare = distance × 100 (摩拉), time = distance × 1 (分钟). Computed at runtime in `useMapData.ts` and `useRouting.ts`.
+- **Cost computation**: fare = distance × farePerKm (摩拉), time = distance × minutesPerKm (分钟). Computed at runtime in `useMapData.ts` and `useRouting.ts`.
 
 ## Routing (`useRouting.ts`)
 
 **Graph construction** (built once at module load):
 
-| Edge type                          | Cost metric              | Description                                               |
-| ---------------------------------- | ------------------------ | --------------------------------------------------------- |
-| Line adjacency                     | Actual fare (dist × 100) | Consecutive stations on the same regular/ferry line       |
-| Transfer (same-station)            | 0                        | Two lines sharing the same physical station (same prefix) |
-| Cross-network transfer (same.json) | 0                        | Connections defined in `same.json` (different prefix)     |
+| Edge type                          | Cost metric                    | Description                                               |
+| ---------------------------------- | ------------------------------ | --------------------------------------------------------- |
+| Line adjacency                     | Actual fare (dist × farePerKm) | Consecutive stations on the same regular/ferry line       |
+| Transfer (same-station)            | 0                              | Two lines sharing the same physical station (same prefix) |
+| Cross-network transfer (same.json) | 0                              | Connections defined in `same.json` (different prefix)     |
 
 **Node format**: `` `${stationFullId}-${lineId}` ``, e.g. `Teyvat-LYH-A`, `Liyue-KYB-ferry-kyb-rtp`.
 
@@ -204,7 +207,7 @@ Scopes are optional but encouraged when relevant (e.g. `feat(routing)`, `fix(map
 - Ferry/same-station JSON files don't have their own stations — lines reference prefixed station IDs (e.g. `Teyvat-LYS`) directly. These lines are not run through the standard prefix step.
 - `intro.md` is imported via `?raw` in `InfoDialog.vue` and rendered with `markdown-exit`. The modal has `github-markdown-css` with transparent background override.
 - First visit detection uses localStorage key `teyvat-railways-visited`.
-- AdminPanel (🛠 button, dev-mode only) exposes a GUI for editing station names, line names, and station distances; changes write back via `PUT /__admin/data/*` and Vite HMR auto-reloads the app.
+- AdminPanel (🛠 button, dev-mode only) exposes a GUI for editing station names, line names, cost presets, and station distances; changes write back via `PUT /__admin/data/*` and Vite HMR auto-reloads the app.
 - RoutePanel exposes `onStationClick(stationId)` via `defineExpose` — App.vue calls it when RailwayMap emits `station-click`.
 - RoutePanel now shows a multi-route option list (fare/time/distance) after calculation; clicking one opens the RouteTimeline detail view, clicking × returns to the list.
 - `useRouting.ts` builds the graph eagerly at module import time (synchronous, runs once).

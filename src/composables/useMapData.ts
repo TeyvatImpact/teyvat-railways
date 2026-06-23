@@ -21,6 +21,7 @@ import {
   MARKER_TEXT_FILL,
   MARKER_FONT_FAMILY,
 } from '../config/render.config';
+import farePresets from '../config/fare-presets.json';
 
 export interface StationData {
   id: string;
@@ -41,16 +42,34 @@ export interface StationDistanceEntry {
   distance: number;
 }
 
+export interface PresetConfig {
+  id: string;
+  name: string;
+  nameEn: string;
+  farePerKm: number;
+  minutesPerKm: number;
+}
+
 export interface LineData {
   id: string;
   name: string;
   nameZh?: string;
   nameEn: string;
+  costPreset: string;
   lineLabels?: [string, string][];
   stations: [string, boolean][];
   fontFamily?: string;
   fontFamilyZh?: string;
   lineType?: 'ferry' | 'same-station';
+}
+
+const presetsMap = new Map<string, PresetConfig>();
+for (const p of farePresets as PresetConfig[]) {
+  presetsMap.set(p.id, p);
+}
+
+export function getPreset(id: string): PresetConfig {
+  return presetsMap.get(id) ?? presetsMap.get('standard')!;
 }
 
 export interface Station extends StationData {
@@ -64,6 +83,7 @@ export interface Line {
   nameZh?: string;
   nameEn: string;
   color: string;
+  costPreset: string;
   lineLabels?: [string, string][];
   stations: [string, boolean][];
   fontFamily?: string;
@@ -387,8 +407,9 @@ for (const line of parsedLines) {
     if (!sa || !sb) continue;
 
     const dist = lookupDistance(aId, bId);
-    const fare = Math.round(dist * 100);
-    const time = dist;
+    const preset = getPreset(line.costPreset);
+    const fare = Math.round(dist * preset.farePerKm);
+    const time = dist * preset.minutesPerKm;
 
     const ax = sa.cx,
       ay = sa.cy;
