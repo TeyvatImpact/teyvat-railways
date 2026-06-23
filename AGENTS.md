@@ -30,13 +30,15 @@ src/main.ts → src/style.css         (Tailwind CSS v4 via @tailwindcss/vite)
 | App | `TitleBar.vue` | Top title bar + "关于" button |
 | App | `InfoDialog.vue` | Modal showing intro.md via `markdown-exit` + `github-markdown-css` |
 | Map | `RailwayMap.vue` | SVG viewport with pan/zoom, grid lines, segments, stations, labels, markers; emits `station-click` |
-| Routing | `RoutePanel.vue` | Right sidebar: fuzzy-search dropdown, map pick mode, calculate button, JSON result display |
+| Routing | `RoutePanel.vue` | Right sidebar: fuzzy-search dropdown, map pick mode, calculate button, multi-route option list, RouteTimeline detail view |
 | Overlays | `ZoomControls.vue` | Fixed bottom-right zoom +/- buttons |
 | Overlays | `LineLegend.vue` | Fixed bottom-left mouse coordinate readout (data-space x,y) |
 | Data | `composables/useMapData.ts` | Imports region JSON + ferry.json + same.json, computes segments with line offsetting for parallel tracks |
 | Interaction | `composables/useMapInteraction.ts` | Mouse drag/scroll, touch pan/pinch-zoom; persists viewport to localStorage |
 | Labels | `composables/useLabelPlacement.ts` | Label box layout + leader lines via `@chenglou/pretext` |
 | **Routing** | **`composables/useRouting.ts`** | **Graph builder (node = prefix-stationId-lineId), Dijkstra multi-source/multi-target, fuzzy station search** |
+| Routing | `components/RouteTimeline.vue` | Detailed route timeline view with stations, line colors, and fare/time/distance stats |
+| Data | `scripts/migrate-segment-data.cjs` | One-time migration script that adds default fare/time/distance to all station tuples in JSON files |
 | Config | `config/render.config.ts` | All render constants (fonts, palette, spacing, zoom threshold, special line colors) |
 
 ### Component tree (current)
@@ -89,7 +91,7 @@ Two special line files:
       "name": string,
       "nameEn": string,
       "lineLabels"?: [ [stationId, position], ... ],  // position = label placement dir
-      "stations": [ [stationId, diagonalFirst], ... ]  // diagonalFirst = boolean
+      "stations": [ [stationId, diagonalFirst, fare, time, distance], ... ]  // fare=摩拉, time=分钟, distance=千米
     }
   ]
 }
@@ -97,8 +99,8 @@ Two special line files:
 
 ### Special line files
 
-**`ferry.json`** — `{ lines: [{ id, name, nameEn, "lineType": "ferry", stations: [[prefixedId, false], ...] }] }`  
-**`same.json`** — `{ lines: [{ id, name, nameEn, "lineType": "same-station", stations: [[prefixedId, false], ...] }] }`
+**`ferry.json`** — `{ lines: [{ id, name, nameEn, "lineType": "ferry", stations: [[prefixedId, false, 5000, 600, 1000], ...] }] }`  
+**`same.json`** — `{ lines: [{ id, name, nameEn, "lineType": "same-station", stations: [[prefixedId, false, 0, 5, 0.5], ...] }] }`
 
 Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat-LYS"`) to reference stations across region files. They are not re-prefixed at runtime.
 
@@ -122,25 +124,28 @@ Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat
 - **`diagonalFirst`**: Controls path routing for non-axis-aligned segments (`true` = diagonal→orthogonal, `false` = orthogonal→diagonal).
 - **`lineLabels`**: Optional array of `[stationId, position]` — instructs renderer where to place the line's name label relative to that station.
 - **`config.x`/`config.y`**: Origin offset applied to all station coordinates in that region at runtime.
+- **Station tuple**: `[stationId, diagonalFirst, fare, time, distance]` — each entry in a line's `stations` array now includes fare (摩拉), time (minutes), and distance (km) for the segment from this station to the next.
+- **Default values**: Railway lines `[500, 10, 10]`, Ferry lines `[5000, 600, 1000]`, Same-station lines `[0, 5, 0.5]`. Migration script at `scripts/migrate-segment-data.cjs`.
 
 ## Routing (`useRouting.ts`)
 
 **Graph construction** (built once at module load):
 
-| Edge type | Weight | Description |
+| Edge type | Cost metric | Description |
 |---|---|---|
-| Line adjacency | 1 | Consecutive stations on the same regular line |
-| Ferry adjacency | 5 | Consecutive stations on a `lineType: "ferry"` line |
-| Same-network same-station transfer | 0.1 | Two lines sharing the same physical station (same prefix) |
-| Cross-network transfer (same.json) | 0.5 | Connections defined in `same.json` (different prefix) |
+| Line adjacency | Actual fare | Consecutive stations on the same regular/ferry line |
+| Transfer (same-station) | 0 | Two lines sharing the same physical station (same prefix) |
+| Cross-network transfer (same.json) | 0 | Connections defined in `same.json` (different prefix) |
 
 **Node format**: `` `${stationFullId}-${lineId}` ``, e.g. `Teyvat-LYH-A`, `Liyue-KYB-ferry-kyb-rtp`.
 
-**`findRoute(startStationId, endStationId)`**: gathers ALL line-nodes for each physical station, runs Dijkstra with virtual multi-source / multi-target (all start-nodes at dist 0, stop when any end-node is reached).
+**`findRoute(startStationId, endStationId, metric)`**: gathers ALL line-nodes for each physical station, runs Dijkstra with virtual multi-source / multi-target (all start-nodes at dist 0, stop when any end-node is reached). `metric` is one of `'fare'` (default), `'time'`, or `'distance'` — Dijkstra uses the corresponding value from the station tuple as edge weight.
+
+**`findRoutes(startStationId, endStationId)`**: calls `findRoute` for all three metrics (`fare`, `time`, `distance`) and returns an array of up to 3 results.
 
 **`searchStations(query)`**: fuzzy match against `nameCn`, `nameEn`, `id`, short ID; returns up to 20 `StationSuggestion` entries with line info.
 
-**Result**: JSON blob with `{ segments, pathNodeIds, totalWeight }`.
+**Result**: JSON blob with `{ segments, pathNodeIds, totalFare, totalTime, totalDistance }`.
 
 ## Conventions
 
@@ -161,6 +166,20 @@ Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat
 - Entry: `src/style.css` → `@import "tailwindcss"` — imported first in `src/main.ts`.
 - **Do NOT use Tailwind classes inside RailwayMap.vue's template** — the SVG must remain self-contained for export.
 
+## Commit convention
+
+All commits MUST follow [Conventional Commits](https://www.conventionalcommits.org/) and be written in **English**.
+
+```
+feat: add multi-route navigation with fare/time/distance optimization
+fix: correct station label positioning at zoom boundaries
+refactor: extract Dijkstra weight function into helper
+docs: update AGENTS.md with new routing schema
+chore: add migration script for segment fare/time/distance data
+```
+
+Scopes are optional but encouraged when relevant (e.g. `feat(routing)`, `fix(map)`).
+
 ## Gotchas
 
 - `dist/` is committed to git — rebuilding overwrites it on build.
@@ -171,4 +190,5 @@ Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat
 - `intro.md` is imported via `?raw` in `InfoDialog.vue` and rendered with `markdown-exit`. The modal has `github-markdown-css` with transparent background override.
 - First visit detection uses localStorage key `teyvat-railways-visited`.
 - RoutePanel exposes `onStationClick(stationId)` via `defineExpose` — App.vue calls it when RailwayMap emits `station-click`.
+- RoutePanel now shows a multi-route option list (fare/time/distance) after calculation; clicking one opens the RouteTimeline detail view, clicking × returns to the list.
 - `useRouting.ts` builds the graph eagerly at module import time (synchronous, runs once).
