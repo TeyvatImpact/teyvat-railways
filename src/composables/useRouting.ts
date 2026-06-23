@@ -23,6 +23,7 @@ export interface RouteSegment {
   lineName: string;
   lineNameEn: string;
   isFerry: boolean;
+  isSameStation: boolean;
   nodes: NodeInfo[];
   fare: number;
   time: number;
@@ -71,8 +72,6 @@ function addEdge(a: string, b: string, w: number, m?: EdgeMetrics) {
 const seenNodes = new Set<string>();
 
 for (const line of lines) {
-  if (line.lineType === 'same-station') continue;
-
   for (const [sid] of line.stations) {
     const st = stationMap.get(sid);
     if (!st) continue;
@@ -118,19 +117,6 @@ for (const [, nodes] of stationNodeMap) {
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
       addEdge(nodes[i], nodes[j], 0);
-    }
-  }
-}
-
-for (const line of lines) {
-  if (line.lineType !== 'same-station') continue;
-  const [aId] = line.stations[0];
-  const [bId] = line.stations[1];
-  const nodesA = stationNodeMap.get(aId) || [];
-  const nodesB = stationNodeMap.get(bId) || [];
-  for (const na of nodesA) {
-    for (const nb of nodesB) {
-      addEdge(na, nb, 0);
     }
   }
 }
@@ -269,6 +255,7 @@ export function useRouting() {
           lineName: info.lineName,
           lineNameEn: info.lineNameEn,
           isFerry: info.lineId.startsWith('ferry-'),
+          isSameStation: info.lineId.startsWith('same-'),
           nodes: [info],
           fare: 0,
           time: 0,
@@ -338,7 +325,9 @@ export function useRouting() {
         .join(' → ');
       const suffix = restStations ? `: ${restStations}` : '';
 
-      if (seg.isFerry) {
+      if (seg.isSameStation) {
+        textLines.push(`${prefix}同站换乘 ${seg.lineName}${suffix}`);
+      } else if (seg.isFerry) {
         textLines.push(`${prefix}乘坐轮渡「${seg.lineName}」${suffix}`);
       } else if (prevSeg.isFerry) {
         textLines.push(`→ 在 ${seg.nodes[0].stationName} 下车，换乘 ${seg.lineName}${suffix}`);

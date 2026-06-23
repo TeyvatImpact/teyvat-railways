@@ -81,6 +81,9 @@
               <span class="font-semibold text-gray-800">
                 {{ block.lineName }}
                 <span v-if="block.isFerry" class="text-xs font-normal text-gray-400">(轮渡)</span>
+                <span v-else-if="block.isSameStation" class="text-xs font-normal text-gray-400"
+                  >(同站换乘)</span
+                >
               </span>
               <br />
               <span class="text-xs text-gray-400 truncate">· 往 {{ block.direction }} 方向</span>
@@ -129,6 +132,7 @@ interface ProcessBlock {
   lineName: string;
   lineNameEn: string;
   isFerry: boolean;
+  isSameStation: boolean;
   direction: string;
   intermediates: { stationName: string; stationNameEn: string }[];
   lineColor: string;
@@ -193,6 +197,7 @@ const blocks = computed<Block[]>(() => {
         lineName: seg.lineName,
         lineNameEn: seg.lineNameEn,
         isFerry: seg.isFerry,
+        isSameStation: seg.isSameStation,
         direction: seg.nodes[seg.nodes.length - 1].stationName,
         intermediates: seg.nodes.slice(1, -1).map((n) => ({
           stationName: n.stationName,
