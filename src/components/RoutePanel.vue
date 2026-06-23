@@ -3,9 +3,13 @@
     <h2 class="mb-4">路径规划</h2>
     <template v-if="!selectedRoute">
       <var-input placeholder="起点站" disabled v-model="startInput" variant="outlined" />
-      <var-button class="mb-4" @click="togglePick('start')"> 选择起点站 </var-button>
+      <var-button class="mb-4" @click="togglePick('start')">
+        {{ selectTarget === 'start' ? '请点击站点选择' : '选择起点站' }}
+      </var-button>
       <var-input placeholder="终点站" disabled v-model="endInput" variant="outlined" />
-      <var-button class="mb-4" @click="togglePick('end')"> 选择终点站 </var-button>
+      <var-button class="mb-4" @click="togglePick('end')">
+        {{ selectTarget === 'end' ? '请点击站点选择' : '选择终点站' }}
+      </var-button>
       <var-button :disabled="!startSelected || !endSelected" @click="calculate">
         计算路线
       </var-button>
