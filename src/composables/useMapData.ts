@@ -35,13 +35,19 @@ export interface StationData {
   fontFamilyZh?: string;
 }
 
+export interface StationDistanceEntry {
+  from: string;
+  to: string;
+  distance: number;
+}
+
 export interface LineData {
   id: string;
   name: string;
   nameZh?: string;
   nameEn: string;
   lineLabels?: [string, string][];
-  stations: [string, boolean, number, number, number][];
+  stations: [string, boolean][];
   fontFamily?: string;
   fontFamilyZh?: string;
   lineType?: 'ferry' | 'same-station';
@@ -59,7 +65,7 @@ export interface Line {
   nameEn: string;
   color: string;
   lineLabels?: [string, string][];
-  stations: [string, boolean, number, number, number][];
+  stations: [string, boolean][];
   fontFamily?: string;
   fontFamilyZh?: string;
   lineType?: 'ferry' | 'same-station';
@@ -110,6 +116,7 @@ interface RegionFile {
     labelDir?: string;
   }[];
   lines: LineData[];
+  stationDistances?: StationDistanceEntry[];
 }
 
 function parseStationsJson(data: RegionFile): {
@@ -150,38 +157,20 @@ const parsedLinesI = dataI.lines as unknown as LineData[];
 const parsedLinesL = dataL.lines as unknown as LineData[];
 
 for (const line of parsedLinesR) {
-  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [
-    parsedR.prefix + '-' + id,
-    dir,
-    fare,
-    time,
-    dist,
-  ]);
+  line.stations = line.stations.map(([id, dir]) => [parsedR.prefix + '-' + id, dir]);
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedR.prefix + '-' + id, dir]);
   line.fontFamily = parsedR.fontFamily;
 }
 for (const line of parsedLinesI) {
-  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [
-    parsedI.prefix + '-' + id,
-    dir,
-    fare,
-    time,
-    dist,
-  ]);
+  line.stations = line.stations.map(([id, dir]) => [parsedI.prefix + '-' + id, dir]);
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedI.prefix + '-' + id, dir]);
   line.fontFamily = parsedI.fontFamily;
   if (line.nameZh) line.fontFamilyZh = 'Noto Serif SC';
 }
 for (const line of parsedLinesL) {
-  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [
-    parsedL.prefix + '-' + id,
-    dir,
-    fare,
-    time,
-    dist,
-  ]);
+  line.stations = line.stations.map(([id, dir]) => [parsedL.prefix + '-' + id, dir]);
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedL.prefix + '-' + id, dir]);
   line.fontFamily = parsedL.fontFamily;
@@ -197,6 +186,44 @@ const parsedLines: LineData[] = [
   ...parsedFerryLines,
   ...parsedSameLines,
 ];
+
+const parsedStationDistancesR: StationDistanceEntry[] = (dataR as any).stationDistances ?? [];
+const parsedStationDistancesI: StationDistanceEntry[] = (dataI as any).stationDistances ?? [];
+const parsedStationDistancesL: StationDistanceEntry[] = (dataL as any).stationDistances ?? [];
+
+function prefixDistances(entries: StationDistanceEntry[], prefix: string): StationDistanceEntry[] {
+  return entries.map((e) => ({
+    from: prefix + '-' + e.from,
+    to: prefix + '-' + e.to,
+    distance: e.distance,
+  }));
+}
+
+const parsedRegionDistances: StationDistanceEntry[] = [
+  ...prefixDistances(parsedStationDistancesR, parsedR.prefix),
+  ...prefixDistances(parsedStationDistancesI, parsedI.prefix),
+  ...prefixDistances(parsedStationDistancesL, parsedL.prefix),
+];
+
+const parsedFerryDistances: StationDistanceEntry[] = (ferryData as any).stationDistances ?? [];
+const parsedSameDistances: StationDistanceEntry[] = (sameData as any).stationDistances ?? [];
+
+const allDistances: StationDistanceEntry[] = [
+  ...parsedRegionDistances,
+  ...parsedFerryDistances,
+  ...parsedSameDistances,
+];
+
+export const stationDistanceMap = new Map<string, number>();
+for (const d of allDistances) {
+  const key = [d.from, d.to].sort().join('|');
+  stationDistanceMap.set(key, d.distance);
+}
+
+export function lookupDistance(aId: string, bId: string): number {
+  const key = [aId, bId].sort().join('|');
+  return stationDistanceMap.get(key) ?? 10;
+}
 
 export const minX = Math.min(...parsedStations.map((s) => s.x)) - margin;
 const maxX = Math.max(...parsedStations.map((s) => s.x)) + margin;
@@ -353,11 +380,15 @@ for (const line of parsedLines) {
   const lw = lineWidth(line);
   const dash = line.lineType === 'ferry' ? FERRY_DASH : undefined;
   for (let i = 0; i < line.stations.length - 1; i++) {
-    const [aId, aDir, aFare, aTime, aDist] = line.stations[i];
+    const [aId, aDir] = line.stations[i];
     const [bId] = line.stations[i + 1];
     const sa = stationMap.get(aId);
     const sb = stationMap.get(bId);
     if (!sa || !sb) continue;
+
+    const dist = lookupDistance(aId, bId);
+    const fare = Math.round(dist * 100);
+    const time = dist;
 
     const ax = sa.cx,
       ay = sa.cy;
@@ -376,9 +407,9 @@ for (const line of parsedLines) {
         y2: by,
         width: lw,
         dasharray: dash,
-        fare: aFare,
-        time: aTime,
-        distance: aDist,
+        fare,
+        time,
+        distance: dist,
         showLabel: true,
       });
     } else {
@@ -409,9 +440,9 @@ for (const line of parsedLines) {
         y1: ay,
         x2: cx,
         y2: cy,
-        fare: aFare,
-        time: aTime,
-        distance: aDist,
+        fare,
+        time,
+        distance: dist,
         showLabel: true,
       });
       rawSegments.push({
@@ -421,9 +452,9 @@ for (const line of parsedLines) {
         y1: cy,
         x2: bx,
         y2: by,
-        fare: aFare,
-        time: aTime,
-        distance: aDist,
+        fare,
+        time,
+        distance: dist,
         showLabel: false,
       });
     }

@@ -58,7 +58,7 @@
               </div>
 
               <div class="admin-section">
-                <h3>Line Segments</h3>
+                <h3>Lines</h3>
                 <div v-for="line in currentLines" :key="line.id" class="line-group">
                   <div class="line-header">
                     <span class="line-id">{{ line.id }}</span>
@@ -73,37 +73,42 @@
                     <thead>
                       <tr>
                         <th class="col-seg">Segment</th>
-                        <th class="col-num">Fare</th>
-                        <th class="col-num">Time (min)</th>
-                        <th class="col-num">Dist (km)</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="(seg, si) in getSegments(line)" :key="si">
                         <td class="col-seg">{{ seg.fromName }} → {{ seg.toName }}</td>
-                        <td>
-                          <input
-                            type="number"
-                            v-model.number="seg.entry[2]"
-                            class="edit-input num" />
-                        </td>
-                        <td>
-                          <input
-                            type="number"
-                            v-model.number="seg.entry[3]"
-                            class="edit-input num" />
-                        </td>
-                        <td>
-                          <input
-                            type="number"
-                            v-model.number="seg.entry[4]"
-                            class="edit-input num"
-                            step="0.1" />
-                        </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
+              </div>
+
+              <div class="admin-section">
+                <h3>Station Distances</h3>
+                <table v-if="currentDistances.length" class="data-table">
+                  <thead>
+                    <tr>
+                      <th>From</th>
+                      <th>To</th>
+                      <th class="col-num">Dist (km)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(d, di) in currentDistances" :key="di">
+                      <td>{{ distStationName(d.from) }}</td>
+                      <td>{{ distStationName(d.to) }}</td>
+                      <td>
+                        <input
+                          type="number"
+                          v-model.number="d.distance"
+                          class="edit-input num"
+                          step="0.1" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p v-else class="text-gray-400 text-xs italic">No distance entries in this file.</p>
               </div>
             </div>
 
@@ -158,6 +163,18 @@ function stationName(stationId: string, fileKey?: string): string {
   return stationId;
 }
 
+function distStationName(id: string): string {
+  const fileKey = activeFile.value;
+  const data = filesData[fileKey];
+  if (data?.stations) {
+    const st = data.stations.find((s: any) => s.id === id);
+    if (st) return `${st.nameCn} / ${st.nameEn} (${id})`;
+  }
+  const fullName = stationNameMap.value.get(id);
+  if (fullName) return `${fullName} (${id})`;
+  return id;
+}
+
 const currentFileData = computed(() => filesData[activeFile.value]);
 
 const currentStations = computed(() => {
@@ -172,10 +189,15 @@ const currentLines = computed(() => {
   return d.lines;
 });
 
+const currentDistances = computed(() => {
+  const d = currentFileData.value;
+  if (!d?.stationDistances) return [];
+  return d.stationDistances;
+});
+
 function getSegments(line: any) {
   const segs: any[] = [];
   const data = currentFileData.value;
-  const prefix = data?.config?.name || '';
   for (let i = 0; i < line.stations.length - 1; i++) {
     const [fromId] = line.stations[i];
     const [toId] = line.stations[i + 1];
@@ -185,7 +207,7 @@ function getSegments(line: any) {
     const toName = regionKeys.includes(activeFile.value)
       ? stationName(toId, activeFile.value)
       : stationName(toId);
-    segs.push({ entry: line.stations[i], fromName, toName });
+    segs.push({ fromName, toName });
   }
   return segs;
 }

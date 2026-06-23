@@ -949,30 +949,30 @@
         ["VKO", "LT"]
       ],
       "stations": [
-        ["SAA", false, 500, 10, 1],
-        ["MSC", false, 500, 10, 0.5],
-        ["MSG", false, 500, 10, 8],
-        ["SPV", true, 500, 10, 12],
-        ["DWW", false, 500, 10, 20],
-        ["STG", false, 500, 10, 7],
-        ["DHM", false, 500, 10, 8],
-        ["WSI", false, 500, 10, 11],
-        ["GLP", false, 500, 10, 15],
-        ["LYN", false, 500, 10, 12],
-        ["LYH", false, 500, 10, 14],
-        ["LSA", false, 500, 10, 20],
-        ["CHM", false, 500, 10, 3],
-        ["CBC", false, 500, 10, 10],
-        ["GHV", true, 500, 10, 15],
-        ["SMC", false, 500, 10, 20],
-        ["PDD", false, 500, 10, 20],
-        ["CVR", true, 500, 10, 12],
-        ["ARV", false, 500, 10, 40],
-        ["MKD", false, 500, 10, 30],
-        ["DOM", false, 500, 10, 10],
-        ["WSV", false, 500, 10, 30],
-        ["TMM", true, 500, 10, 20],
-        ["VKO", false, 500, 10, 10]
+        ["SAA", false],
+        ["MSC", false],
+        ["MSG", false],
+        ["SPV", true],
+        ["DWW", false],
+        ["STG", false],
+        ["DHM", false],
+        ["WSI", false],
+        ["GLP", false],
+        ["LYN", false],
+        ["LYH", false],
+        ["LSA", false],
+        ["CHM", false],
+        ["CBC", false],
+        ["GHV", true],
+        ["SMC", false],
+        ["PDD", false],
+        ["CVR", true],
+        ["ARV", false],
+        ["MKD", false],
+        ["DOM", false],
+        ["WSV", false],
+        ["TMM", true],
+        ["VKO", false]
       ]
     },
     {
@@ -986,19 +986,19 @@
         ["DTM", "LT"]
       ],
       "stations": [
-        ["STL", true, 500, 10, 20],
-        ["WLD", false, 500, 10, 10],
-        ["DWW", true, 500, 10, 15],
-        ["WRV", false, 500, 10, 18],
-        ["MYV", true, 500, 10, 18],
-        ["GLP", false, 500, 10, 15],
-        ["CJS", false, 500, 10, 15],
-        ["TQV", true, 500, 10, 15],
-        ["LPV", false, 500, 10, 10],
-        ["CHM", false, 500, 10, 12],
-        ["TGG", false, 500, 10, 20],
-        ["DTM", false, 500, 10, 15],
-        ["POM", false, 500, 10, 10]
+        ["STL", true],
+        ["WLD", false],
+        ["DWW", true],
+        ["WRV", false],
+        ["MYV", true],
+        ["GLP", false],
+        ["CJS", false],
+        ["TQV", true],
+        ["LPV", false],
+        ["CHM", false],
+        ["TGG", false],
+        ["DTM", false],
+        ["POM", false]
       ]
     },
     {
@@ -1010,13 +1010,13 @@
         ["WRV", "RT"]
       ],
       "stations": [
-        ["SFL", false, 500, 10, 7],
-        ["WSW", false, 500, 10, 7],
-        ["MSG", false, 500, 10, 9],
-        ["WDR", false, 500, 10, 12],
-        ["DSC", false, 500, 10, 4],
-        ["SCP", false, 500, 10, 10],
-        ["WRV", false, 500, 10, 10]
+        ["SFL", false],
+        ["WSW", false],
+        ["MSG", false],
+        ["WDR", false],
+        ["DSC", false],
+        ["SCP", false],
+        ["WRV", false]
       ]
     },
     {
@@ -1029,16 +1029,16 @@
         ["YLW", "RT"]
       ],
       "stations": [
-        ["LYS", false, 500, 10, 3],
-        ["LYH", false, 500, 10, 8],
-        ["DYR", false, 500, 10, 10],
-        ["TQV", false, 500, 10, 11],
-        ["NTM", false, 500, 10, 7],
-        ["MIL", false, 500, 10, 10],
-        ["MXL", false, 500, 10, 8],
-        ["CZW", true, 500, 10, 11],
-        ["JDM", false, 500, 10, 10],
-        ["YLW", false, 500, 10, 10]
+        ["LYS", false],
+        ["LYH", false],
+        ["DYR", false],
+        ["TQV", false],
+        ["NTM", false],
+        ["MIL", false],
+        ["MXL", false],
+        ["CZW", true],
+        ["JDM", false],
+        ["YLW", false]
       ]
     },
     {
@@ -1051,13 +1051,13 @@
         ["WSI", "RT"]
       ],
       "stations": [
-        ["CWT", false, 500, 10, 16],
-        ["MMY", false, 500, 10, 5],
-        ["YLW", false, 500, 10, 18],
-        ["QYV", true, 500, 10, 25],
-        ["QCV", false, 500, 10, 11],
-        ["DHM", false, 500, 10, 8],
-        ["WSI", false, 500, 10, 10]
+        ["CWT", false],
+        ["MMY", false],
+        ["YLW", false],
+        ["QYV", true],
+        ["QCV", false],
+        ["DHM", false],
+        ["WSI", false]
       ]
     },
     {
@@ -1069,11 +1069,11 @@
         ["POM", "LT"]
       ],
       "stations": [
-        ["BDH", false, 500, 10, 12],
-        ["CTC", false, 500, 10, 6],
-        ["SMC", false, 500, 10, 14],
-        ["VMV", false, 500, 10, 16],
-        ["POM", false, 500, 10, 10]
+        ["BDH", false],
+        ["CTC", false],
+        ["SMC", false],
+        ["VMV", false],
+        ["POM", false]
       ]
     },
     {
@@ -1085,18 +1085,18 @@
         ["VNA", "RB"]
       ],
       "stations": [
-        ["CTC", false, 500, 10, 15],
-        ["CHH", false, 500, 10, 12],
-        ["GHV", false, 500, 10, 10],
-        ["DTM", false, 500, 10, 15],
-        ["POM", false, 500, 10, 16],
-        ["APW", false, 500, 10, 10],
-        ["ROD", false, 500, 10, 5],
-        ["CVR", false, 500, 10, 12],
-        ["YNM", false, 500, 10, 9],
-        ["FOA", false, 500, 10, 8],
-        ["VNA", false, 500, 10, 14],
-        ["CTC", false, 500, 10, 10]
+        ["CTC", false],
+        ["CHH", false],
+        ["GHV", false],
+        ["DTM", false],
+        ["POM", false],
+        ["APW", false],
+        ["ROD", false],
+        ["CVR", false],
+        ["YNM", false],
+        ["FOA", false],
+        ["VNA", false],
+        ["CTC", false]
       ]
     },
     {
@@ -1109,19 +1109,19 @@
         ["MAE", "RB"]
       ],
       "stations": [
-        ["COF", false, 500, 10, 1],
-        ["PLM", false, 500, 10, 25],
-        ["FRI", false, 500, 10, 8],
-        ["CLR", false, 500, 10, 18],
-        ["LCU", false, 500, 10, 6],
-        ["WWL", false, 500, 10, 7],
-        ["FFP", false, 500, 10, 12],
-        ["FCR", true, 500, 10, 15],
-        ["MAE", false, 500, 10, 6],
-        ["MAT", false, 500, 10, 3],
-        ["POI", false, 500, 10, 15],
-        ["ENS", false, 500, 10, 15],
-        ["COF", false, 500, 10, 10]
+        ["COF", false],
+        ["PLM", false],
+        ["FRI", false],
+        ["CLR", false],
+        ["LCU", false],
+        ["WWL", false],
+        ["FFP", false],
+        ["FCR", true],
+        ["MAE", false],
+        ["MAT", false],
+        ["POI", false],
+        ["ENS", false],
+        ["COF", false]
       ]
     },
     {
@@ -1133,11 +1133,11 @@
         ["LDH", "B"]
       ],
       "stations": [
-        ["COF", true, 500, 10, 16],
-        ["MCT", false, 500, 10, 10],
-        ["OPE", false, 500, 10, 10],
-        ["FFP", false, 500, 10, 10],
-        ["LDH", false, 500, 10, 10]
+        ["COF", true],
+        ["MCT", false],
+        ["OPE", false],
+        ["FFP", false],
+        ["LDH", false]
       ]
     },
     {
@@ -1149,11 +1149,11 @@
         ["MES", "L"]
       ],
       "stations": [
-        ["RRH", false, 500, 10, 20],
-        ["MAT", false, 500, 10, 20],
-        ["COF", false, 500, 10, 3],
-        ["PLM", true, 500, 10, 20],
-        ["MES", false, 500, 10, 10]
+        ["RRH", false],
+        ["MAT", false],
+        ["COF", false],
+        ["PLM", true],
+        ["MES", false]
       ]
     },
     {
@@ -1162,11 +1162,11 @@
       "nameEn": "Natlan Connection Line",
       "lineLabels": [["COE", "RB"]],
       "stations": [
-        ["DOM", false, 500, 10, 10],
-        ["COE", false, 500, 10, 10],
-        ["SFV", false, 500, 10, 10],
-        ["CWF", false, 500, 10, 10],
-        ["SSF", false, 500, 10, 10]
+        ["DOM", false],
+        ["COE", false],
+        ["SFV", false],
+        ["CWF", false],
+        ["SSF", false]
       ]
     },
     {
@@ -1178,12 +1178,12 @@
         ["FSF", "LB"]
       ],
       "stations": [
-        ["COE", false, 500, 10, 10],
-        ["SFV", false, 500, 10, 10],
-        ["CWF", false, 500, 10, 10],
-        ["NWW", false, 500, 10, 10],
-        ["COP", false, 500, 10, 10],
-        ["FSF", false, 500, 10, 10]
+        ["COE", false],
+        ["SFV", false],
+        ["CWF", false],
+        ["NWW", false],
+        ["COP", false],
+        ["FSF", false]
       ]
     },
     {
@@ -1196,17 +1196,17 @@
         ["TPR", "LT"]
       ],
       "stations": [
-        ["ONT", false, 500, 10, 10],
-        ["FFC", false, 500, 10, 10],
-        ["HZH", false, 500, 10, 10],
-        ["CWF", false, 500, 10, 10],
-        ["SSF", false, 500, 10, 10],
-        ["POS", false, 500, 10, 10],
-        ["AYW", true, 500, 10, 10],
-        ["TPP", false, 500, 10, 10],
-        ["AST", true, 500, 10, 10],
-        ["TPR", false, 500, 10, 10],
-        ["COE", false, 500, 10, 10]
+        ["ONT", false],
+        ["FFC", false],
+        ["HZH", false],
+        ["CWF", false],
+        ["SSF", false],
+        ["POS", false],
+        ["AYW", true],
+        ["TPP", false],
+        ["AST", true],
+        ["TPR", false],
+        ["COE", false]
       ]
     },
     {
@@ -1218,12 +1218,12 @@
         ["TPB", "LB"]
       ],
       "stations": [
-        ["TPP", false, 500, 10, 10],
-        ["SOC", true, 500, 10, 10],
-        ["SSF", false, 500, 10, 10],
-        ["NWW", false, 500, 10, 10],
-        ["MNW", false, 500, 10, 10],
-        ["TPB", false, 500, 10, 10]
+        ["TPP", false],
+        ["SOC", true],
+        ["SSF", false],
+        ["NWW", false],
+        ["MNW", false],
+        ["TPB", false]
       ]
     },
     {
@@ -1235,11 +1235,11 @@
         ["TLI", "T"]
       ],
       "stations": [
-        ["EBP", false, 500, 10, 10],
-        ["EBM", true, 500, 10, 10],
-        ["CFC", false, 500, 10, 10],
-        ["WVB", false, 500, 10, 10],
-        ["TLI", false, 500, 10, 10]
+        ["EBP", false],
+        ["EBM", true],
+        ["CFC", false],
+        ["WVB", false],
+        ["TLI", false]
       ]
     },
     {
@@ -1248,10 +1248,10 @@
       "nameEn": "Nod-Krai Hiisi Island Line",
       "lineLabels": [["NST", "L"]],
       "stations": [
-        ["NSP", false, 500, 10, 10],
-        ["NST", true, 500, 10, 10],
-        ["CKC", false, 500, 10, 10],
-        ["FME", false, 500, 10, 10]
+        ["NSP", false],
+        ["NST", true],
+        ["CKC", false],
+        ["FME", false]
       ]
     },
     {
@@ -1263,13 +1263,13 @@
         ["FNC", "L"]
       ],
       "stations": [
-        ["NSP", false, 500, 10, 10],
-        ["NST", false, 500, 10, 10],
-        ["BMB", false, 500, 10, 10],
-        ["BAL", false, 500, 10, 10],
-        ["NTP", false, 500, 10, 10],
-        ["PHI", false, 500, 10, 10],
-        ["FNC", false, 500, 10, 10]
+        ["NSP", false],
+        ["NST", false],
+        ["BMB", false],
+        ["BAL", false],
+        ["NTP", false],
+        ["PHI", false],
+        ["FNC", false]
       ]
     },
     {
@@ -1278,13 +1278,13 @@
       "nameEn": "Nod-Krai Paha Isle Branch Line",
       "lineLabels": [["KEE", "T"]],
       "stations": [
-        ["NSP", false, 500, 10, 10],
-        ["NST", false, 500, 10, 10],
-        ["BMB", false, 500, 10, 10],
-        ["BAL", false, 500, 10, 10],
-        ["NTP", false, 500, 10, 10],
-        ["KEE", false, 500, 10, 10],
-        ["KEW", false, 500, 10, 10]
+        ["NSP", false],
+        ["NST", false],
+        ["BMB", false],
+        ["BAL", false],
+        ["NTP", false],
+        ["KEE", false],
+        ["KEW", false]
       ]
     },
     {
@@ -1296,12 +1296,12 @@
         ["STR", "L"]
       ],
       "stations": [
-        ["VOP", false, 500, 10, 10],
-        ["PRM", false, 500, 10, 10],
-        ["DSM", false, 500, 10, 10],
-        ["FNK", false, 500, 10, 10],
-        ["AVT", true, 500, 10, 10],
-        ["STR", false, 500, 10, 10]
+        ["VOP", false],
+        ["PRM", false],
+        ["DSM", false],
+        ["FNK", false],
+        ["AVT", true],
+        ["STR", false]
       ]
     },
     {
@@ -1310,13 +1310,665 @@
       "lineLabels": [["FNK", "LB"]],
       "nameEn": "Nod-Krai Voidsea Outlook Branch Line",
       "stations": [
-        ["VOP", false, 500, 10, 10],
-        ["PRM", false, 500, 10, 10],
-        ["DSM", false, 500, 10, 10],
-        ["FNK", true, 500, 10, 10],
-        ["CWC", false, 500, 10, 10],
-        ["KMC", false, 500, 10, 10]
+        ["VOP", false],
+        ["PRM", false],
+        ["DSM", false],
+        ["FNK", true],
+        ["CWC", false],
+        ["KMC", false]
       ]
+    }
+  ],
+  "stationDistances": [
+    {
+      "from": "APW",
+      "to": "POM",
+      "distance": 16
+    },
+    {
+      "from": "APW",
+      "to": "ROD",
+      "distance": 10
+    },
+    {
+      "from": "ARV",
+      "to": "CVR",
+      "distance": 12
+    },
+    {
+      "from": "ARV",
+      "to": "MKD",
+      "distance": 40
+    },
+    {
+      "from": "AST",
+      "to": "TPP",
+      "distance": 10
+    },
+    {
+      "from": "AST",
+      "to": "TPR",
+      "distance": 10
+    },
+    {
+      "from": "AVT",
+      "to": "FNK",
+      "distance": 10
+    },
+    {
+      "from": "AVT",
+      "to": "STR",
+      "distance": 10
+    },
+    {
+      "from": "AYW",
+      "to": "POS",
+      "distance": 10
+    },
+    {
+      "from": "AYW",
+      "to": "TPP",
+      "distance": 10
+    },
+    {
+      "from": "BAL",
+      "to": "BMB",
+      "distance": 10
+    },
+    {
+      "from": "BAL",
+      "to": "NTP",
+      "distance": 10
+    },
+    {
+      "from": "BDH",
+      "to": "CTC",
+      "distance": 12
+    },
+    {
+      "from": "BMB",
+      "to": "NST",
+      "distance": 10
+    },
+    {
+      "from": "CBC",
+      "to": "CHM",
+      "distance": 3
+    },
+    {
+      "from": "CBC",
+      "to": "GHV",
+      "distance": 10
+    },
+    {
+      "from": "CFC",
+      "to": "EBM",
+      "distance": 10
+    },
+    {
+      "from": "CFC",
+      "to": "WVB",
+      "distance": 10
+    },
+    {
+      "from": "CHH",
+      "to": "CTC",
+      "distance": 15
+    },
+    {
+      "from": "CHH",
+      "to": "GHV",
+      "distance": 12
+    },
+    {
+      "from": "CHM",
+      "to": "LPV",
+      "distance": 10
+    },
+    {
+      "from": "CHM",
+      "to": "LSA",
+      "distance": 20
+    },
+    {
+      "from": "CHM",
+      "to": "TGG",
+      "distance": 12
+    },
+    {
+      "from": "CJS",
+      "to": "GLP",
+      "distance": 15
+    },
+    {
+      "from": "CJS",
+      "to": "TQV",
+      "distance": 15
+    },
+    {
+      "from": "CKC",
+      "to": "FME",
+      "distance": 10
+    },
+    {
+      "from": "CKC",
+      "to": "NST",
+      "distance": 10
+    },
+    {
+      "from": "CLR",
+      "to": "FRI",
+      "distance": 8
+    },
+    {
+      "from": "CLR",
+      "to": "LCU",
+      "distance": 18
+    },
+    {
+      "from": "COE",
+      "to": "DOM",
+      "distance": 10
+    },
+    {
+      "from": "COE",
+      "to": "SFV",
+      "distance": 10
+    },
+    {
+      "from": "COE",
+      "to": "TPR",
+      "distance": 10
+    },
+    {
+      "from": "COF",
+      "to": "ENS",
+      "distance": 15
+    },
+    {
+      "from": "COF",
+      "to": "MAT",
+      "distance": 20
+    },
+    {
+      "from": "COF",
+      "to": "MCT",
+      "distance": 16
+    },
+    {
+      "from": "COF",
+      "to": "PLM",
+      "distance": 1
+    },
+    {
+      "from": "COP",
+      "to": "FSF",
+      "distance": 10
+    },
+    {
+      "from": "COP",
+      "to": "NWW",
+      "distance": 10
+    },
+    {
+      "from": "CTC",
+      "to": "SMC",
+      "distance": 6
+    },
+    {
+      "from": "CTC",
+      "to": "VNA",
+      "distance": 14
+    },
+    {
+      "from": "CVR",
+      "to": "PDD",
+      "distance": 20
+    },
+    {
+      "from": "CVR",
+      "to": "ROD",
+      "distance": 5
+    },
+    {
+      "from": "CVR",
+      "to": "YNM",
+      "distance": 12
+    },
+    {
+      "from": "CWC",
+      "to": "FNK",
+      "distance": 10
+    },
+    {
+      "from": "CWC",
+      "to": "KMC",
+      "distance": 10
+    },
+    {
+      "from": "CWF",
+      "to": "HZH",
+      "distance": 10
+    },
+    {
+      "from": "CWF",
+      "to": "NWW",
+      "distance": 10
+    },
+    {
+      "from": "CWF",
+      "to": "SFV",
+      "distance": 10
+    },
+    {
+      "from": "CWF",
+      "to": "SSF",
+      "distance": 10
+    },
+    {
+      "from": "CWT",
+      "to": "MMY",
+      "distance": 16
+    },
+    {
+      "from": "CZW",
+      "to": "JDM",
+      "distance": 11
+    },
+    {
+      "from": "CZW",
+      "to": "MXL",
+      "distance": 8
+    },
+    {
+      "from": "DHM",
+      "to": "QCV",
+      "distance": 11
+    },
+    {
+      "from": "DHM",
+      "to": "STG",
+      "distance": 7
+    },
+    {
+      "from": "DHM",
+      "to": "WSI",
+      "distance": 8
+    },
+    {
+      "from": "DOM",
+      "to": "MKD",
+      "distance": 30
+    },
+    {
+      "from": "DOM",
+      "to": "WSV",
+      "distance": 10
+    },
+    {
+      "from": "DSC",
+      "to": "SCP",
+      "distance": 4
+    },
+    {
+      "from": "DSC",
+      "to": "WDR",
+      "distance": 12
+    },
+    {
+      "from": "DSM",
+      "to": "FNK",
+      "distance": 10
+    },
+    {
+      "from": "DSM",
+      "to": "PRM",
+      "distance": 10
+    },
+    {
+      "from": "DTM",
+      "to": "GHV",
+      "distance": 10
+    },
+    {
+      "from": "DTM",
+      "to": "POM",
+      "distance": 15
+    },
+    {
+      "from": "DTM",
+      "to": "TGG",
+      "distance": 20
+    },
+    {
+      "from": "DWW",
+      "to": "SPV",
+      "distance": 12
+    },
+    {
+      "from": "DWW",
+      "to": "STG",
+      "distance": 20
+    },
+    {
+      "from": "DWW",
+      "to": "WLD",
+      "distance": 10
+    },
+    {
+      "from": "DWW",
+      "to": "WRV",
+      "distance": 15
+    },
+    {
+      "from": "DYR",
+      "to": "LYH",
+      "distance": 8
+    },
+    {
+      "from": "DYR",
+      "to": "TQV",
+      "distance": 10
+    },
+    {
+      "from": "EBM",
+      "to": "EBP",
+      "distance": 10
+    },
+    {
+      "from": "ENS",
+      "to": "POI",
+      "distance": 15
+    },
+    {
+      "from": "FCR",
+      "to": "FFP",
+      "distance": 12
+    },
+    {
+      "from": "FCR",
+      "to": "MAE",
+      "distance": 15
+    },
+    {
+      "from": "FFC",
+      "to": "HZH",
+      "distance": 10
+    },
+    {
+      "from": "FFC",
+      "to": "ONT",
+      "distance": 10
+    },
+    {
+      "from": "FFP",
+      "to": "LDH",
+      "distance": 10
+    },
+    {
+      "from": "FFP",
+      "to": "OPE",
+      "distance": 10
+    },
+    {
+      "from": "FFP",
+      "to": "WWL",
+      "distance": 7
+    },
+    {
+      "from": "FNC",
+      "to": "PHI",
+      "distance": 10
+    },
+    {
+      "from": "FOA",
+      "to": "VNA",
+      "distance": 8
+    },
+    {
+      "from": "FOA",
+      "to": "YNM",
+      "distance": 9
+    },
+    {
+      "from": "FRI",
+      "to": "PLM",
+      "distance": 25
+    },
+    {
+      "from": "GHV",
+      "to": "SMC",
+      "distance": 15
+    },
+    {
+      "from": "GLP",
+      "to": "LYN",
+      "distance": 15
+    },
+    {
+      "from": "GLP",
+      "to": "MYV",
+      "distance": 18
+    },
+    {
+      "from": "GLP",
+      "to": "WSI",
+      "distance": 11
+    },
+    {
+      "from": "JDM",
+      "to": "YLW",
+      "distance": 10
+    },
+    {
+      "from": "KEE",
+      "to": "KEW",
+      "distance": 10
+    },
+    {
+      "from": "KEE",
+      "to": "NTP",
+      "distance": 10
+    },
+    {
+      "from": "LCU",
+      "to": "WWL",
+      "distance": 6
+    },
+    {
+      "from": "LPV",
+      "to": "TQV",
+      "distance": 15
+    },
+    {
+      "from": "LSA",
+      "to": "LYH",
+      "distance": 14
+    },
+    {
+      "from": "LYH",
+      "to": "LYN",
+      "distance": 12
+    },
+    {
+      "from": "LYH",
+      "to": "LYS",
+      "distance": 3
+    },
+    {
+      "from": "MAE",
+      "to": "MAT",
+      "distance": 6
+    },
+    {
+      "from": "MAT",
+      "to": "POI",
+      "distance": 3
+    },
+    {
+      "from": "MAT",
+      "to": "RRH",
+      "distance": 20
+    },
+    {
+      "from": "MCT",
+      "to": "OPE",
+      "distance": 10
+    },
+    {
+      "from": "MES",
+      "to": "PLM",
+      "distance": 20
+    },
+    {
+      "from": "MIL",
+      "to": "MXL",
+      "distance": 10
+    },
+    {
+      "from": "MIL",
+      "to": "NTM",
+      "distance": 7
+    },
+    {
+      "from": "MMY",
+      "to": "YLW",
+      "distance": 5
+    },
+    {
+      "from": "MNW",
+      "to": "NWW",
+      "distance": 10
+    },
+    {
+      "from": "MNW",
+      "to": "TPB",
+      "distance": 10
+    },
+    {
+      "from": "MSC",
+      "to": "MSG",
+      "distance": 0.5
+    },
+    {
+      "from": "MSC",
+      "to": "SAA",
+      "distance": 1
+    },
+    {
+      "from": "MSG",
+      "to": "SPV",
+      "distance": 8
+    },
+    {
+      "from": "MSG",
+      "to": "WDR",
+      "distance": 9
+    },
+    {
+      "from": "MSG",
+      "to": "WSW",
+      "distance": 7
+    },
+    {
+      "from": "MYV",
+      "to": "WRV",
+      "distance": 18
+    },
+    {
+      "from": "NSP",
+      "to": "NST",
+      "distance": 10
+    },
+    {
+      "from": "NTM",
+      "to": "TQV",
+      "distance": 11
+    },
+    {
+      "from": "NTP",
+      "to": "PHI",
+      "distance": 10
+    },
+    {
+      "from": "NWW",
+      "to": "SSF",
+      "distance": 10
+    },
+    {
+      "from": "PDD",
+      "to": "SMC",
+      "distance": 20
+    },
+    {
+      "from": "POM",
+      "to": "VMV",
+      "distance": 16
+    },
+    {
+      "from": "POS",
+      "to": "SSF",
+      "distance": 10
+    },
+    {
+      "from": "PRM",
+      "to": "VOP",
+      "distance": 10
+    },
+    {
+      "from": "QCV",
+      "to": "QYV",
+      "distance": 25
+    },
+    {
+      "from": "QYV",
+      "to": "YLW",
+      "distance": 18
+    },
+    {
+      "from": "SCP",
+      "to": "WRV",
+      "distance": 10
+    },
+    {
+      "from": "SFL",
+      "to": "WSW",
+      "distance": 7
+    },
+    {
+      "from": "SMC",
+      "to": "VMV",
+      "distance": 14
+    },
+    {
+      "from": "SOC",
+      "to": "SSF",
+      "distance": 10
+    },
+    {
+      "from": "SOC",
+      "to": "TPP",
+      "distance": 10
+    },
+    {
+      "from": "STL",
+      "to": "WLD",
+      "distance": 20
+    },
+    {
+      "from": "TLI",
+      "to": "WVB",
+      "distance": 10
+    },
+    {
+      "from": "TMM",
+      "to": "VKO",
+      "distance": 20
+    },
+    {
+      "from": "TMM",
+      "to": "WSV",
+      "distance": 30
     }
   ]
 }

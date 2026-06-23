@@ -314,13 +314,13 @@
         ["NIT", "LB"]
       ],
       "stations": [
-        ["NIT", false, 500, 10, 10],
-        ["IZC", false, 500, 10, 10],
-        ["HMZ", false, 500, 10, 10],
-        ["BKP", false, 500, 10, 10],
-        ["KDV", true, 500, 10, 10],
-        ["RTU", false, 500, 10, 10],
-        ["RTP", false, 500, 10, 10]
+        ["NIT", false],
+        ["IZC", false],
+        ["HMZ", false],
+        ["BKP", false],
+        ["KDV", true],
+        ["RTU", false],
+        ["RTP", false]
       ]
     },
     {
@@ -330,13 +330,13 @@
       "nameEn": "IR East Mt. Yougou Loop Line",
       "lineLabels": [["AUM", "T"]],
       "stations": [
-        ["BKP", false, 500, 10, 10],
-        ["KDV", false, 500, 10, 10],
-        ["AUM", false, 500, 10, 10],
-        ["YGN", true, 500, 10, 10],
-        ["KSE", false, 500, 10, 10],
-        ["CJF", true, 500, 10, 10],
-        ["BKP", false, 500, 10, 10]
+        ["BKP", false],
+        ["KDV", false],
+        ["AUM", false],
+        ["YGN", true],
+        ["KSE", false],
+        ["CJF", true],
+        ["BKP", false]
       ]
     },
     {
@@ -349,14 +349,14 @@
         ["NCB", "B"]
       ],
       "stations": [
-        ["IZC", false, 500, 10, 10],
-        ["HMZ", false, 500, 10, 10],
-        ["AKI", true, 500, 10, 10],
-        ["KJE", false, 500, 10, 10],
-        ["KNZ", false, 500, 10, 10],
-        ["NCB", false, 500, 10, 10],
-        ["MSG", false, 500, 10, 10],
-        ["HGV", false, 500, 10, 10]
+        ["IZC", false],
+        ["HMZ", false],
+        ["AKI", true],
+        ["KJE", false],
+        ["KNZ", false],
+        ["NCB", false],
+        ["MSG", false],
+        ["HGV", false]
       ]
     },
     {
@@ -366,11 +366,11 @@
       "nameEn": "IR East Shrine Line",
       "lineLabels": [["IZC", "LB"]],
       "stations": [
-        ["NIT", false, 500, 10, 10],
-        ["IZC", false, 500, 10, 10],
-        ["HMZ", false, 500, 10, 10],
-        ["BKP", false, 500, 10, 10],
-        ["GNS", false, 500, 10, 10]
+        ["NIT", false],
+        ["IZC", false],
+        ["HMZ", false],
+        ["BKP", false],
+        ["GNS", false]
       ]
     },
     {
@@ -380,10 +380,10 @@
       "nameEn": "IR East Yashiori Island Line",
       "lineLabels": [["SPH", "LB"]],
       "stations": [
-        ["FFT", false, 500, 10, 10],
-        ["HGV", false, 500, 10, 10],
-        ["SPH", false, 500, 10, 10],
-        ["JTM", false, 500, 10, 10]
+        ["FFT", false],
+        ["HGV", false],
+        ["SPH", false],
+        ["JTM", false]
       ]
     },
     {
@@ -393,10 +393,10 @@
       "nameEn": "IR Sangonomiya Watatsumi Island Line",
       "lineLabels": [["WTE", "LB"]],
       "stations": [
-        ["WTE", false, 500, 10, 10],
-        ["BRV", false, 500, 10, 10],
-        ["SGM", false, 500, 10, 10],
-        ["MUS", false, 500, 10, 10]
+        ["WTE", false],
+        ["BRV", false],
+        ["SGM", false],
+        ["MUS", false]
       ]
     },
     {
@@ -406,11 +406,11 @@
       "nameEn": "IR Tsurumi Line 1",
       "lineLabels": [["SKP", "LB"]],
       "stations": [
-        ["SKP", false, 500, 10, 10],
-        ["ONB", false, 500, 10, 10],
-        ["CRS", false, 500, 10, 10],
-        ["MCS", false, 500, 10, 10],
-        ["WKS", false, 500, 10, 10]
+        ["SKP", false],
+        ["ONB", false],
+        ["CRS", false],
+        ["MCS", false],
+        ["WKS", false]
       ]
     },
     {
@@ -420,11 +420,168 @@
       "nameEn": "IR Tsurumi Line 12",
       "lineLabels": [["TMP", "RT"]],
       "stations": [
-        ["TMP", false, 500, 10, 10],
-        ["MCS", false, 500, 10, 10],
-        ["MKN", false, 500, 10, 10],
-        ["ATP", false, 500, 10, 10]
+        ["TMP", false],
+        ["MCS", false],
+        ["MKN", false],
+        ["ATP", false]
       ]
+    }
+  ],
+  "stationDistances": [
+    {
+      "from": "AKI",
+      "to": "HMZ",
+      "distance": 10
+    },
+    {
+      "from": "AKI",
+      "to": "KJE",
+      "distance": 10
+    },
+    {
+      "from": "ATP",
+      "to": "MKN",
+      "distance": 10
+    },
+    {
+      "from": "AUM",
+      "to": "KDV",
+      "distance": 10
+    },
+    {
+      "from": "AUM",
+      "to": "YGN",
+      "distance": 10
+    },
+    {
+      "from": "BKP",
+      "to": "CJF",
+      "distance": 10
+    },
+    {
+      "from": "BKP",
+      "to": "GNS",
+      "distance": 10
+    },
+    {
+      "from": "BKP",
+      "to": "HMZ",
+      "distance": 10
+    },
+    {
+      "from": "BKP",
+      "to": "KDV",
+      "distance": 10
+    },
+    {
+      "from": "BRV",
+      "to": "SGM",
+      "distance": 10
+    },
+    {
+      "from": "BRV",
+      "to": "WTE",
+      "distance": 10
+    },
+    {
+      "from": "CJF",
+      "to": "KSE",
+      "distance": 10
+    },
+    {
+      "from": "CRS",
+      "to": "MCS",
+      "distance": 10
+    },
+    {
+      "from": "CRS",
+      "to": "ONB",
+      "distance": 10
+    },
+    {
+      "from": "FFT",
+      "to": "HGV",
+      "distance": 10
+    },
+    {
+      "from": "HGV",
+      "to": "MSG",
+      "distance": 10
+    },
+    {
+      "from": "HGV",
+      "to": "SPH",
+      "distance": 10
+    },
+    {
+      "from": "HMZ",
+      "to": "IZC",
+      "distance": 10
+    },
+    {
+      "from": "IZC",
+      "to": "NIT",
+      "distance": 10
+    },
+    {
+      "from": "JTM",
+      "to": "SPH",
+      "distance": 10
+    },
+    {
+      "from": "KDV",
+      "to": "RTU",
+      "distance": 10
+    },
+    {
+      "from": "KJE",
+      "to": "KNZ",
+      "distance": 10
+    },
+    {
+      "from": "KNZ",
+      "to": "NCB",
+      "distance": 10
+    },
+    {
+      "from": "KSE",
+      "to": "YGN",
+      "distance": 10
+    },
+    {
+      "from": "MCS",
+      "to": "MKN",
+      "distance": 10
+    },
+    {
+      "from": "MCS",
+      "to": "TMP",
+      "distance": 10
+    },
+    {
+      "from": "MCS",
+      "to": "WKS",
+      "distance": 10
+    },
+    {
+      "from": "MSG",
+      "to": "NCB",
+      "distance": 10
+    },
+    {
+      "from": "MUS",
+      "to": "SGM",
+      "distance": 10
+    },
+    {
+      "from": "ONB",
+      "to": "SKP",
+      "distance": 10
+    },
+    {
+      "from": "RTP",
+      "to": "RTU",
+      "distance": 10
     }
   ]
 }

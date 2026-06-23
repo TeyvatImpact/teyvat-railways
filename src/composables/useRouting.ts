@@ -1,5 +1,5 @@
 import { ref, type Ref } from 'vue';
-import { stations, stationMap, lines } from './useMapData';
+import { stations, stationMap, lines, lookupDistance } from './useMapData';
 
 export type RouteMetric = 'fare' | 'time' | 'distance';
 
@@ -96,15 +96,18 @@ for (const line of lines) {
   }
 
   for (let i = 0; i < line.stations.length - 1; i++) {
-    const [aId, , aFare, aTime, aDist] = line.stations[i];
+    const [aId] = line.stations[i];
     const [bId] = line.stations[i + 1];
     const aSt = stationMap.get(aId);
     const bSt = stationMap.get(bId);
     if (!aSt || !bSt) continue;
-    addEdge(`${aId}-${line.id}`, `${bId}-${line.id}`, aFare, {
-      fare: aFare,
-      time: aTime,
-      distance: aDist,
+    const dist = lookupDistance(aId, bId);
+    const fare = Math.round(dist * 100);
+    const time = dist;
+    addEdge(`${aId}-${line.id}`, `${bId}-${line.id}`, fare, {
+      fare,
+      time,
+      distance: dist,
     });
   }
 }

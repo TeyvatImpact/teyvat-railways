@@ -183,13 +183,13 @@
         ["HYG", "T"]
       ],
       "stations": [
-        ["LYG", false, 500, 10, 10],
-        ["HET", false, 500, 10, 10],
-        ["FYP", false, 500, 10, 10],
-        ["LYN", false, 500, 10, 10],
-        ["PSC", false, 500, 10, 10],
-        ["CHY", false, 500, 10, 10],
-        ["HYG", false, 500, 10, 10]
+        ["LYG", false],
+        ["HET", false],
+        ["FYP", false],
+        ["LYN", false],
+        ["PSC", false],
+        ["CHY", false],
+        ["HYG", false]
       ]
     },
     {
@@ -201,14 +201,14 @@
         ["LYB", "LB"]
       ],
       "stations": [
-        ["HYC", false, 500, 10, 10],
-        ["NCM", false, 500, 10, 10],
-        ["PSC", false, 500, 10, 10],
-        ["KYN", false, 500, 10, 10],
-        ["KYB", false, 500, 10, 10],
-        ["BCM", false, 500, 10, 10],
-        ["YLQ", false, 500, 10, 10],
-        ["LYB", false, 500, 10, 10]
+        ["HYC", false],
+        ["NCM", false],
+        ["PSC", false],
+        ["KYN", false],
+        ["KYB", false],
+        ["BCM", false],
+        ["YLQ", false],
+        ["LYB", false]
       ]
     },
     {
@@ -220,13 +220,13 @@
         ["YLY", "B"]
       ],
       "stations": [
-        ["HJW", false, 500, 10, 10],
-        ["NCM", false, 500, 10, 10],
-        ["YJT", false, 500, 10, 10],
-        ["YHT", false, 500, 10, 10],
-        ["HET", false, 500, 10, 10],
-        ["BCM", true, 500, 10, 10],
-        ["YLY", false, 500, 10, 10]
+        ["HJW", false],
+        ["NCM", false],
+        ["YJT", false],
+        ["YHT", false],
+        ["HET", false],
+        ["BCM", true],
+        ["YLY", false]
       ]
     },
     {
@@ -238,12 +238,129 @@
         ["GYG", "B"]
       ],
       "stations": [
-        ["LHC", true, 500, 10, 10],
-        ["LYB", false, 500, 10, 10],
-        ["YLY", false, 500, 10, 10],
-        ["GYX", false, 500, 10, 10],
-        ["GYG", false, 500, 10, 10]
+        ["LHC", true],
+        ["LYB", false],
+        ["YLY", false],
+        ["GYX", false],
+        ["GYG", false]
       ]
+    }
+  ],
+  "stationDistances": [
+    {
+      "from": "BCM",
+      "to": "HET",
+      "distance": 10
+    },
+    {
+      "from": "BCM",
+      "to": "KYB",
+      "distance": 10
+    },
+    {
+      "from": "BCM",
+      "to": "YLQ",
+      "distance": 10
+    },
+    {
+      "from": "BCM",
+      "to": "YLY",
+      "distance": 10
+    },
+    {
+      "from": "CHY",
+      "to": "HYG",
+      "distance": 10
+    },
+    {
+      "from": "CHY",
+      "to": "PSC",
+      "distance": 10
+    },
+    {
+      "from": "FYP",
+      "to": "HET",
+      "distance": 10
+    },
+    {
+      "from": "FYP",
+      "to": "LYN",
+      "distance": 10
+    },
+    {
+      "from": "GYG",
+      "to": "GYX",
+      "distance": 10
+    },
+    {
+      "from": "GYX",
+      "to": "YLY",
+      "distance": 10
+    },
+    {
+      "from": "HET",
+      "to": "LYG",
+      "distance": 10
+    },
+    {
+      "from": "HET",
+      "to": "YHT",
+      "distance": 10
+    },
+    {
+      "from": "HJW",
+      "to": "NCM",
+      "distance": 10
+    },
+    {
+      "from": "HYC",
+      "to": "NCM",
+      "distance": 10
+    },
+    {
+      "from": "KYB",
+      "to": "KYN",
+      "distance": 10
+    },
+    {
+      "from": "KYN",
+      "to": "PSC",
+      "distance": 10
+    },
+    {
+      "from": "LHC",
+      "to": "LYB",
+      "distance": 10
+    },
+    {
+      "from": "LYB",
+      "to": "YLQ",
+      "distance": 10
+    },
+    {
+      "from": "LYB",
+      "to": "YLY",
+      "distance": 10
+    },
+    {
+      "from": "LYN",
+      "to": "PSC",
+      "distance": 10
+    },
+    {
+      "from": "NCM",
+      "to": "PSC",
+      "distance": 10
+    },
+    {
+      "from": "NCM",
+      "to": "YJT",
+      "distance": 10
+    },
+    {
+      "from": "YHT",
+      "to": "YJT",
+      "distance": 10
     }
   ]
 }

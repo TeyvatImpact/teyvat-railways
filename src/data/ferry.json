@@ -6,8 +6,8 @@
       "nameEn": "Passenger Port North ↔ Ritou Port Ferry",
       "lineType": "ferry",
       "stations": [
-        ["Liyue-KYB", false, 5000, 600, 1000],
-        ["Inazuma-RTP", false, 5000, 600, 1000]
+        ["Liyue-KYB", false],
+        ["Inazuma-RTP", false]
       ]
     },
     {
@@ -16,8 +16,8 @@
       "nameEn": "Passenger Port South ↔ Mouun Shrine Ferry",
       "lineType": "ferry",
       "stations": [
-        ["Liyue-KYN", false, 5000, 600, 1000],
-        ["Inazuma-MUS", false, 5000, 600, 1000]
+        ["Liyue-KYN", false],
+        ["Inazuma-MUS", false]
       ]
     },
     {
@@ -26,8 +26,8 @@
       "nameEn": "Port Ormos ↔ Mouun Shrine Ferry",
       "lineType": "ferry",
       "stations": [
-        ["Teyvat-POM", false, 5000, 600, 1000],
-        ["Inazuma-MUS", false, 5000, 600, 1000]
+        ["Teyvat-POM", false],
+        ["Inazuma-MUS", false]
       ]
     },
     {
@@ -36,8 +36,8 @@
       "nameEn": "Bayda Harbor ↔ Romaritime Harbor Ferry",
       "lineType": "ferry",
       "stations": [
-        ["Teyvat-BDH", false, 5000, 600, 1000],
-        ["Teyvat-RRH", false, 5000, 600, 1000]
+        ["Teyvat-BDH", false],
+        ["Teyvat-RRH", false]
       ]
     },
     {
@@ -46,8 +46,8 @@
       "nameEn": "Vourukasha Oasis ↔ Romaritime Harbor Ferry",
       "lineType": "ferry",
       "stations": [
-        ["Teyvat-VKO", false, 5000, 600, 1000],
-        ["Teyvat-RRH", false, 5000, 600, 1000]
+        ["Teyvat-VKO", false],
+        ["Teyvat-RRH", false]
       ]
     },
     {
@@ -56,8 +56,8 @@
       "nameEn": "Romaritime Harbor ↔ Nasha Port Ferry",
       "lineType": "ferry",
       "stations": [
-        ["Teyvat-RRH", false, 5000, 600, 1000],
-        ["Teyvat-NSP", false, 5000, 600, 1000]
+        ["Teyvat-RRH", false],
+        ["Teyvat-NSP", false]
       ]
     },
     {
@@ -66,8 +66,8 @@
       "nameEn": "Flower-Feather Clan ↔ Nasha Port Ferry",
       "lineType": "ferry",
       "stations": [
-        ["Teyvat-FFC", false, 5000, 600, 1000],
-        ["Teyvat-NSP", false, 5000, 600, 1000]
+        ["Teyvat-FFC", false],
+        ["Teyvat-NSP", false]
       ]
     },
     {
@@ -76,8 +76,8 @@
       "nameEn": "Flower-Feather Clan ↔ Easybreeze Port Ferry",
       "lineType": "ferry",
       "stations": [
-        ["Teyvat-FFC", false, 5000, 600, 1000],
-        ["Teyvat-EBP", false, 5000, 600, 1000]
+        ["Teyvat-FFC", false],
+        ["Teyvat-EBP", false]
       ]
     },
     {
@@ -86,9 +86,56 @@
       "nameEn": "Yilong Wharf ↔ Lumidouce Harbor Ferry",
       "lineType": "ferry",
       "stations": [
-        ["Teyvat-YLW", false, 5000, 600, 1000],
-        ["Teyvat-LDH", false, 5000, 600, 1000]
+        ["Teyvat-YLW", false],
+        ["Teyvat-LDH", false]
       ]
+    }
+  ],
+  "stationDistances": [
+    {
+      "from": "Inazuma-MUS",
+      "to": "Liyue-KYN",
+      "distance": 1000
+    },
+    {
+      "from": "Inazuma-MUS",
+      "to": "Teyvat-POM",
+      "distance": 1000
+    },
+    {
+      "from": "Inazuma-RTP",
+      "to": "Liyue-KYB",
+      "distance": 1000
+    },
+    {
+      "from": "Teyvat-BDH",
+      "to": "Teyvat-RRH",
+      "distance": 1000
+    },
+    {
+      "from": "Teyvat-EBP",
+      "to": "Teyvat-FFC",
+      "distance": 1000
+    },
+    {
+      "from": "Teyvat-FFC",
+      "to": "Teyvat-NSP",
+      "distance": 1000
+    },
+    {
+      "from": "Teyvat-LDH",
+      "to": "Teyvat-YLW",
+      "distance": 1000
+    },
+    {
+      "from": "Teyvat-NSP",
+      "to": "Teyvat-RRH",
+      "distance": 1000
+    },
+    {
+      "from": "Teyvat-RRH",
+      "to": "Teyvat-VKO",
+      "distance": 1000
     }
   ]
 }

@@ -40,7 +40,7 @@ src/main.ts → src/style.css         (Tailwind CSS v4 via @tailwindcss/vite)
 | Labels      | `composables/useLabelPlacement.ts` | Label box layout + leader lines via `@chenglou/pretext`                                                                   |
 | **Routing** | **`composables/useRouting.ts`**    | **Graph builder (node = prefix-stationId-lineId), Dijkstra multi-source/multi-target, fuzzy station search**              |
 | Routing     | `components/RouteTimeline.vue`     | Detailed route timeline view with stations, line colors, and fare/time/distance stats                                     |
-| Data        | `scripts/migrate-segment-data.cjs` | One-time migration script that adds default fare/time/distance to all station tuples in JSON files                        |
+| Data        | `scripts/migrate-data-v2.cjs`      | Migration script that extracts fare/time/distance from station tuples into standalone stationDistances arrays             |
 | Dev         | `components/AdminPanel.vue`        | Floating data editor (dev-only) — edit station names and segment costs via web UI                                         |
 | Dev         | `vite.config.ts`                   | Admin API middleware (`GET/PUT /__admin/data/*`) for reading/writing JSON files in dev mode                               |
 | Config      | `config/render.config.ts`          | All render constants (fonts, palette, spacing, special line colors)                                                       |
@@ -61,9 +61,9 @@ App.vue
 
 All data is JSON stored in `src/data/`. No CSV files.
 
-**IMPORTANT**: When working with these files, do NOT always read them in full — they can be large (e.g. `teyvat.json` is ~1100 lines). Read only the first ~30-40 lines to understand structure, or use `grep` to find specific stations/lines by ID or name. The schemas below describe the structure precisely — rely on them instead of full file reads.
+**IMPORTANT**: When working with these files, do NOT always read them in full — they can be large (e.g. `teyvat.json` is ~2000 lines). Read only the first ~30-40 lines to understand structure, or use `grep` to find specific stations/lines by ID or name. The schemas below describe the structure precisely — rely on them instead of full file reads.
 
-Three region files, each with structure `{ config, stations, lines }`:
+Three region files, each with structure `{ config, stations, lines, stationDistances }`:
 
 | File           | Config prefix | Config font                                                 |
 | -------------- | ------------- | ----------------------------------------------------------- |
@@ -91,23 +91,26 @@ Two special line files:
   ],
   "lines": [
     {
-      "id": string,            // short id like "A","B","L1","S1","NK"...
+      "id": string,
       "name": string,
       "nameZh"?: string,
       "nameEn": string,
-      "lineLabels"?: [ [stationId, position], ... ],  // position = label placement dir
-      "stations": [ [stationId, diagonalFirst, fare, time, distance], ... ]  // fare=摩拉, time=分钟, distance=千米
+      "lineLabels"?: [ [stationId, position], ... ],
+      "stations": [ [stationId, diagonalFirst], ... ]
     }
+  ],
+  "stationDistances": [
+    { "from": string, "to": string, "distance": number }
   ]
 }
 ```
 
 ### Special line files
 
-**`ferry.json`** — `{ lines: [{ id, name, nameEn, "lineType": "ferry", stations: [[prefixedId, false, 5000, 600, 1000], ...] }] }`  
-**`same.json`** — `{ lines: [{ id, name, nameEn, "lineType": "same-station", stations: [[prefixedId, false, 0, 5, 0.5], ...] }] }`
+**`ferry.json`** — `{ lines: [{ id, name, nameEn, "lineType": "ferry", stations: [[prefixedId, false], ...] }], stationDistances: [{ from, to, distance }] }`  
+**`same.json`** — `{ lines: [{ id, name, nameEn, "lineType": "same-station", stations: [[prefixedId, false], ...] }], stationDistances: [{ from, to, distance }] }`
 
-Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat-LYS"`) to reference stations across region files. They are not re-prefixed at runtime.
+Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat-LYS"`) to reference stations across region files. They are not re-prefixed at runtime. Their `stationDistances` entries likewise use prefixed IDs.
 
 ### Annotation file (`mark.json`)
 
@@ -129,22 +132,23 @@ Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat
 - **`diagonalFirst`**: Controls path routing for non-axis-aligned segments (`true` = diagonal→orthogonal, `false` = orthogonal→diagonal).
 - **`lineLabels`**: Optional array of `[stationId, position]` — instructs renderer where to place the line's name label relative to that station.
 - **`config.x`/`config.y`**: Origin offset applied to all station coordinates in that region at runtime.
-- **Station tuple**: `[stationId, diagonalFirst, fare, time, distance]` — each entry in a line's `stations` array now includes fare (摩拉), time (minutes), and distance (km) for the segment from this station to the next.
-- **Default values**: Railway lines `[500, 10, 10]`, Ferry lines `[5000, 600, 1000]`, Same-station lines `[0, 5, 0.5]`. Migration script at `scripts/migrate-segment-data.cjs`.
+- **Station tuple**: `[stationId, diagonalFirst]` — fare/time/distance are no longer stored inline. See `stationDistances` below.
+- **`stationDistances`**: Array of `{ from, to, distance }` where `from`/`to` are sorted alphabetically (direction-independent). Distance is in kilometers.
+- **Cost computation**: fare = distance × 100 (摩拉), time = distance × 1 (分钟). Computed at runtime in `useMapData.ts` and `useRouting.ts`.
 
 ## Routing (`useRouting.ts`)
 
 **Graph construction** (built once at module load):
 
-| Edge type                          | Cost metric | Description                                               |
-| ---------------------------------- | ----------- | --------------------------------------------------------- |
-| Line adjacency                     | Actual fare | Consecutive stations on the same regular/ferry line       |
-| Transfer (same-station)            | 0           | Two lines sharing the same physical station (same prefix) |
-| Cross-network transfer (same.json) | 0           | Connections defined in `same.json` (different prefix)     |
+| Edge type                          | Cost metric              | Description                                               |
+| ---------------------------------- | ------------------------ | --------------------------------------------------------- |
+| Line adjacency                     | Actual fare (dist × 100) | Consecutive stations on the same regular/ferry line       |
+| Transfer (same-station)            | 0                        | Two lines sharing the same physical station (same prefix) |
+| Cross-network transfer (same.json) | 0                        | Connections defined in `same.json` (different prefix)     |
 
 **Node format**: `` `${stationFullId}-${lineId}` ``, e.g. `Teyvat-LYH-A`, `Liyue-KYB-ferry-kyb-rtp`.
 
-**`findRoute(startStationId, endStationId, metric)`**: gathers ALL line-nodes for each physical station, runs Dijkstra with virtual multi-source / multi-target (all start-nodes at dist 0, stop when any end-node is reached). `metric` is one of `'fare'` (default), `'time'`, or `'distance'` — Dijkstra uses the corresponding value from the station tuple as edge weight.
+**`findRoute(startStationId, endStationId, metric)`**: gathers ALL line-nodes for each physical station, runs Dijkstra with virtual multi-source / multi-target (all start-nodes at dist 0, stop when any end-node is reached). `metric` is one of `'fare'` (default), `'time'`, or `'distance'` — Dijkstra uses the corresponding value from the edge metrics as weight.
 
 **`findRoutes(startStationId, endStationId)`**: calls `findRoute` for all three metrics (`fare`, `time`, `distance`) and returns an array of up to 3 results.
 
@@ -181,7 +185,7 @@ feat: add multi-route navigation with fare/time/distance optimization
 fix: correct station label positioning at zoom boundaries
 refactor: extract Dijkstra weight function into helper
 docs: update AGENTS.md with new routing schema
-chore: add migration script for segment fare/time/distance data
+chore: add migration script for station distances
 ```
 
 Scopes are optional but encouraged when relevant (e.g. `feat(routing)`, `fix(map)`).
@@ -200,7 +204,7 @@ Scopes are optional but encouraged when relevant (e.g. `feat(routing)`, `fix(map
 - Ferry/same-station JSON files don't have their own stations — lines reference prefixed station IDs (e.g. `Teyvat-LYS`) directly. These lines are not run through the standard prefix step.
 - `intro.md` is imported via `?raw` in `InfoDialog.vue` and rendered with `markdown-exit`. The modal has `github-markdown-css` with transparent background override.
 - First visit detection uses localStorage key `teyvat-railways-visited`.
-- AdminPanel (🛠 button, dev-mode only) exposes a GUI for editing station names and segment costs; changes write back via `PUT /__admin/data/*` and Vite HMR auto-reloads the app.
+- AdminPanel (🛠 button, dev-mode only) exposes a GUI for editing station names, line names, and station distances; changes write back via `PUT /__admin/data/*` and Vite HMR auto-reloads the app.
 - RoutePanel exposes `onStationClick(stationId)` via `defineExpose` — App.vue calls it when RailwayMap emits `station-click`.
 - RoutePanel now shows a multi-route option list (fare/time/distance) after calculation; clicking one opens the RouteTimeline detail view, clicking × returns to the list.
 - `useRouting.ts` builds the graph eagerly at module import time (synchronous, runs once).
