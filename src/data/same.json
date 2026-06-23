@@ -6,20 +6,8 @@
       "nameEn": "Liyue Harbor Same-Station",
       "lineType": "same-station",
       "stations": [
-        [
-          "Teyvat-LYH",
-          false,
-          0,
-          5,
-          0.5
-        ],
-        [
-          "Liyue-LYG",
-          false,
-          0,
-          5,
-          0.5
-        ]
+        ["Teyvat-LYH", false, 0, 5, 0.5],
+        ["Liyue-LYG", false, 0, 5, 0.5]
       ]
     },
     {
@@ -28,20 +16,8 @@
       "nameEn": "Liyue Harbor South Same-Station",
       "lineType": "same-station",
       "stations": [
-        [
-          "Teyvat-LYS",
-          false,
-          0,
-          5,
-          0.5
-        ],
-        [
-          "Liyue-LYN",
-          false,
-          0,
-          5,
-          0.5
-        ]
+        ["Teyvat-LYS", false, 0, 5, 0.5],
+        ["Liyue-LYN", false, 0, 5, 0.5]
       ]
     },
     {
@@ -50,20 +26,8 @@
       "nameEn": "Liyue Harbor North Same-Station",
       "lineType": "same-station",
       "stations": [
-        [
-          "Teyvat-LYN",
-          false,
-          0,
-          5,
-          0.5
-        ],
-        [
-          "Liyue-LYB",
-          false,
-          0,
-          5,
-          0.5
-        ]
+        ["Teyvat-LYN", false, 0, 5, 0.5],
+        ["Liyue-LYB", false, 0, 5, 0.5]
       ]
     }
   ]

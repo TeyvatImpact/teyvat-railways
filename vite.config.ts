@@ -8,7 +8,11 @@ import type { Connect } from 'vite';
 const DATA_DIR = path.join(__dirname, 'src', 'data');
 const ALLOWED_FILES = ['teyvat.json', 'inazuma.json', 'liyue.json', 'ferry.json', 'same.json'];
 
-function adminApi(req: Connect.IncomingMessage, res: Connect.ServerResponse, next: Connect.NextFunction) {
+function adminApi(
+  req: Connect.IncomingMessage,
+  res: Connect.ServerResponse,
+  next: Connect.NextFunction,
+) {
   const url = req.url || '';
   const match = url.match(/^\/__admin\/data\/(.+)\.json$/);
   if (!match) return next();
@@ -37,7 +41,9 @@ function adminApi(req: Connect.IncomingMessage, res: Connect.ServerResponse, nex
 
   if (req.method === 'PUT') {
     let body = '';
-    req.on('data', (chunk) => { body += chunk; });
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
     req.on('end', () => {
       try {
         JSON.parse(body);

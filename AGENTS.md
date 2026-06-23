@@ -26,24 +26,24 @@ src/main.ts → src/style.css         (Tailwind CSS v4 via @tailwindcss/vite)
               └── src/components/InfoDialog.vue   (markdown intro modal)
 ```
 
-| Layer | File | Role |
-|---|---|---|
-| App | `App.vue` | Root layout, first-visit dialog trigger; flex layout with TitleBar + (map \| RoutePanel) |
-| App | `TitleBar.vue` | Top title bar + "关于" button |
-| App | `InfoDialog.vue` | Modal showing intro.md via `markdown-exit` + `github-markdown-css` |
-| Map | `RailwayMap.vue` | SVG viewport with pan/zoom, grid lines, segments, stations, labels, markers; emits `station-click` |
-| Routing | `RoutePanel.vue` | Right sidebar: fuzzy-search dropdown, map pick mode, calculate button, multi-route option list, RouteTimeline detail view |
-| Overlays | `ZoomControls.vue` | Fixed bottom-right zoom +/- buttons |
-| Overlays | `LineLegend.vue` | Fixed bottom-left mouse coordinate readout (data-space x,y) |
-| Data | `composables/useMapData.ts` | Imports region JSON + ferry.json + same.json, computes segments with line offsetting for parallel tracks |
-| Interaction | `composables/useMapInteraction.ts` | Mouse drag/scroll, touch pan/pinch-zoom; persists viewport to localStorage |
-| Labels | `composables/useLabelPlacement.ts` | Label box layout + leader lines via `@chenglou/pretext` |
-| **Routing** | **`composables/useRouting.ts`** | **Graph builder (node = prefix-stationId-lineId), Dijkstra multi-source/multi-target, fuzzy station search** |
-| Routing | `components/RouteTimeline.vue` | Detailed route timeline view with stations, line colors, and fare/time/distance stats |
-| Data | `scripts/migrate-segment-data.cjs` | One-time migration script that adds default fare/time/distance to all station tuples in JSON files |
-| Dev | `components/AdminPanel.vue` | Floating data editor (dev-only) — edit station names and segment costs via web UI |
-| Dev | `vite.config.ts` | Admin API middleware (`GET/PUT /__admin/data/*`) for reading/writing JSON files in dev mode |
-| Config | `config/render.config.ts` | All render constants (fonts, palette, spacing, special line colors) |
+| Layer       | File                               | Role                                                                                                                      |
+| ----------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| App         | `App.vue`                          | Root layout, first-visit dialog trigger; flex layout with TitleBar + (map \| RoutePanel)                                  |
+| App         | `TitleBar.vue`                     | Top title bar + "关于" button                                                                                             |
+| App         | `InfoDialog.vue`                   | Modal showing intro.md via `markdown-exit` + `github-markdown-css`                                                        |
+| Map         | `RailwayMap.vue`                   | SVG viewport with pan/zoom, grid lines, segments, stations, labels, markers; emits `station-click`                        |
+| Routing     | `RoutePanel.vue`                   | Right sidebar: fuzzy-search dropdown, map pick mode, calculate button, multi-route option list, RouteTimeline detail view |
+| Overlays    | `ZoomControls.vue`                 | Fixed bottom-right zoom +/- buttons                                                                                       |
+| Overlays    | `LineLegend.vue`                   | Fixed bottom-left mouse coordinate readout (data-space x,y)                                                               |
+| Data        | `composables/useMapData.ts`        | Imports region JSON + ferry.json + same.json, computes segments with line offsetting for parallel tracks                  |
+| Interaction | `composables/useMapInteraction.ts` | Mouse drag/scroll, touch pan/pinch-zoom; persists viewport to localStorage                                                |
+| Labels      | `composables/useLabelPlacement.ts` | Label box layout + leader lines via `@chenglou/pretext`                                                                   |
+| **Routing** | **`composables/useRouting.ts`**    | **Graph builder (node = prefix-stationId-lineId), Dijkstra multi-source/multi-target, fuzzy station search**              |
+| Routing     | `components/RouteTimeline.vue`     | Detailed route timeline view with stations, line colors, and fare/time/distance stats                                     |
+| Data        | `scripts/migrate-segment-data.cjs` | One-time migration script that adds default fare/time/distance to all station tuples in JSON files                        |
+| Dev         | `components/AdminPanel.vue`        | Floating data editor (dev-only) — edit station names and segment costs via web UI                                         |
+| Dev         | `vite.config.ts`                   | Admin API middleware (`GET/PUT /__admin/data/*`) for reading/writing JSON files in dev mode                               |
+| Config      | `config/render.config.ts`          | All render constants (fonts, palette, spacing, special line colors)                                                       |
 
 ### Component tree (current)
 
@@ -65,20 +65,20 @@ All data is JSON stored in `src/data/`. No CSV files.
 
 Three region files, each with structure `{ config, stations, lines }`:
 
-| File | Config prefix | Config font |
-|---|---|---|
-| `teyvat.json` | `"Teyvat"` | `"Noto Sans SC"` |
-| `inazuma.json` | `"Inazuma"` | `"Noto Serif JP"` (loaded via Google Fonts in `index.html`) |
-| `liyue.json` | `"Liyue"` | `"Noto Sans SC"` |
+| File           | Config prefix | Config font                                                 |
+| -------------- | ------------- | ----------------------------------------------------------- |
+| `teyvat.json`  | `"Teyvat"`    | `"Noto Sans SC"`                                            |
+| `inazuma.json` | `"Inazuma"`   | `"Noto Serif JP"` (loaded via Google Fonts in `index.html`) |
+| `liyue.json`   | `"Liyue"`     | `"Noto Sans SC"`                                            |
 
 `mark.json` contains `{ paths, texts }` for annotation overlays.
 
 Two special line files:
 
-| File | `lineType` | Visual style |
-|---|---|---|
-| `ferry.json` | `"ferry"` | Thin dark blue dashed line |
-| `same.json` | `"same-station"` | Thin semi-transparent black solid line |
+| File         | `lineType`       | Visual style                           |
+| ------------ | ---------------- | -------------------------------------- |
+| `ferry.json` | `"ferry"`        | Thin dark blue dashed line             |
+| `same.json`  | `"same-station"` | Thin semi-transparent black solid line |
 
 ### Region file schema (`teyvat.json`, `inazuma.json`, `liyue.json`)
 
@@ -136,11 +136,11 @@ Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat
 
 **Graph construction** (built once at module load):
 
-| Edge type | Cost metric | Description |
-|---|---|---|
-| Line adjacency | Actual fare | Consecutive stations on the same regular/ferry line |
-| Transfer (same-station) | 0 | Two lines sharing the same physical station (same prefix) |
-| Cross-network transfer (same.json) | 0 | Connections defined in `same.json` (different prefix) |
+| Edge type                          | Cost metric | Description                                               |
+| ---------------------------------- | ----------- | --------------------------------------------------------- |
+| Line adjacency                     | Actual fare | Consecutive stations on the same regular/ferry line       |
+| Transfer (same-station)            | 0           | Two lines sharing the same physical station (same prefix) |
+| Cross-network transfer (same.json) | 0           | Connections defined in `same.json` (different prefix)     |
 
 **Node format**: `` `${stationFullId}-${lineId}` ``, e.g. `Teyvat-LYH-A`, `Liyue-KYB-ferry-kyb-rtp`.
 

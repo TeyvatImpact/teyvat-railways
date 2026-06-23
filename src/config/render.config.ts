@@ -58,8 +58,6 @@ export const BLOCK_SIZE = 50;
 /** 边界留白（数据坐标单位），用于计算 SVG 尺寸时的额外边距 */
 export const margin = 2;
 
-
-
 // ===== 标注配置 =====
 
 /** 标注路径描边颜色 */

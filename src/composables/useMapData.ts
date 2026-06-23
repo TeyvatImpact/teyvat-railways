@@ -150,20 +150,38 @@ const parsedLinesI = dataI.lines as unknown as LineData[];
 const parsedLinesL = dataL.lines as unknown as LineData[];
 
 for (const line of parsedLinesR) {
-  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [parsedR.prefix + '-' + id, dir, fare, time, dist]);
+  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [
+    parsedR.prefix + '-' + id,
+    dir,
+    fare,
+    time,
+    dist,
+  ]);
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedR.prefix + '-' + id, dir]);
   line.fontFamily = parsedR.fontFamily;
 }
 for (const line of parsedLinesI) {
-  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [parsedI.prefix + '-' + id, dir, fare, time, dist]);
+  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [
+    parsedI.prefix + '-' + id,
+    dir,
+    fare,
+    time,
+    dist,
+  ]);
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedI.prefix + '-' + id, dir]);
   line.fontFamily = parsedI.fontFamily;
   if (line.nameZh) line.fontFamilyZh = 'Noto Serif SC';
 }
 for (const line of parsedLinesL) {
-  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [parsedL.prefix + '-' + id, dir, fare, time, dist]);
+  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [
+    parsedL.prefix + '-' + id,
+    dir,
+    fare,
+    time,
+    dist,
+  ]);
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedL.prefix + '-' + id, dir]);
   line.fontFamily = parsedL.fontFamily;
@@ -172,7 +190,13 @@ for (const line of parsedLinesL) {
 const parsedFerryLines = (ferryData as any).lines as LineData[];
 const parsedSameLines = (sameData as any).lines as LineData[];
 
-const parsedLines: LineData[] = [...parsedLinesR, ...parsedLinesI, ...parsedLinesL, ...parsedFerryLines, ...parsedSameLines];
+const parsedLines: LineData[] = [
+  ...parsedLinesR,
+  ...parsedLinesI,
+  ...parsedLinesL,
+  ...parsedFerryLines,
+  ...parsedSameLines,
+];
 
 export const minX = Math.min(...parsedStations.map((s) => s.x)) - margin;
 const maxX = Math.max(...parsedStations.map((s) => s.x)) + margin;
@@ -208,9 +232,12 @@ export const transferStationIds = new Set(
 
 export const lines: Line[] = parsedLines.map((line, index) => ({
   ...line,
-  color: line.lineType === 'ferry' ? FERRY_COLOR :
-         line.lineType === 'same-station' ? SAME_COLOR :
-         palette[index % palette.length],
+  color:
+    line.lineType === 'ferry'
+      ? FERRY_COLOR
+      : line.lineType === 'same-station'
+        ? SAME_COLOR
+        : palette[index % palette.length],
 }));
 
 export const lineColorMap = new Map(lines.map((l) => [l.id, l.color]));
@@ -313,9 +340,11 @@ interface RawSegment {
 const rawSegments: RawSegment[] = [];
 
 function lineWidth(line: LineData): number | undefined {
-  return line.lineType === 'ferry' ? FERRY_LINE_WIDTH :
-         line.lineType === 'same-station' ? SAME_LINE_WIDTH :
-         undefined;
+  return line.lineType === 'ferry'
+    ? FERRY_LINE_WIDTH
+    : line.lineType === 'same-station'
+      ? SAME_LINE_WIDTH
+      : undefined;
 }
 
 const specialLineTypes = new Set(['ferry', 'same-station']);

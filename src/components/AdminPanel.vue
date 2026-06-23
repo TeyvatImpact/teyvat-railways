@@ -1,11 +1,8 @@
 <template>
   <div v-if="isDev">
-    <button
-      class="admin-toggle"
-      :class="{ active: open }"
-      @click="toggle"
-      title="数据编辑器"
-    >🛠</button>
+    <button class="admin-toggle" :class="{ active: open }" @click="toggle" title="数据编辑器">
+      🛠
+    </button>
 
     <Teleport to="body">
       <div v-if="open" class="admin-overlay" @click.self="open = false">
@@ -24,8 +21,9 @@
                 :key="key"
                 class="tab-btn"
                 :class="{ active: activeFile === key }"
-                @click="activeFile = key"
-              >{{ key }}</button>
+                @click="activeFile = key">
+                {{ key }}
+              </button>
             </div>
 
             <div class="admin-body">
@@ -44,12 +42,19 @@
                     <tr v-for="st in currentStations" :key="st.id">
                       <td class="col-id">{{ st.id }}</td>
                       <td><input v-model="st.nameCn" class="edit-input" /></td>
-                      <td><input v-model="st.nameZh" class="edit-input" :placeholder="activeFile === 'inazuma' ? '中文译名' : ''" /></td>
+                      <td>
+                        <input
+                          v-model="st.nameZh"
+                          class="edit-input"
+                          :placeholder="activeFile === 'inazuma' ? '中文译名' : ''" />
+                      </td>
                       <td><input v-model="st.nameEn" class="edit-input" /></td>
                     </tr>
                   </tbody>
                 </table>
-                <p v-else class="text-gray-400 text-xs italic">No station definitions in this file.</p>
+                <p v-else class="text-gray-400 text-xs italic">
+                  No station definitions in this file.
+                </p>
               </div>
 
               <div class="admin-section">
@@ -58,7 +63,10 @@
                   <div class="line-header">
                     <span class="line-id">{{ line.id }}</span>
                     <input v-model="line.name" class="edit-input line-name" />
-                    <input v-model="line.nameZh" class="edit-input line-name" :placeholder="activeFile === 'inazuma' ? '中文名' : ''" />
+                    <input
+                      v-model="line.nameZh"
+                      class="edit-input line-name"
+                      :placeholder="activeFile === 'inazuma' ? '中文名' : ''" />
                     <input v-model="line.nameEn" class="edit-input line-name" />
                   </div>
                   <table class="data-table">
@@ -73,9 +81,25 @@
                     <tbody>
                       <tr v-for="(seg, si) in getSegments(line)" :key="si">
                         <td class="col-seg">{{ seg.fromName }} → {{ seg.toName }}</td>
-                        <td><input type="number" v-model.number="seg.entry[2]" class="edit-input num" /></td>
-                        <td><input type="number" v-model.number="seg.entry[3]" class="edit-input num" /></td>
-                        <td><input type="number" v-model.number="seg.entry[4]" class="edit-input num" step="0.1" /></td>
+                        <td>
+                          <input
+                            type="number"
+                            v-model.number="seg.entry[2]"
+                            class="edit-input num" />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            v-model.number="seg.entry[3]"
+                            class="edit-input num" />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            v-model.number="seg.entry[4]"
+                            class="edit-input num"
+                            step="0.1" />
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -97,121 +121,123 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed } from 'vue';
 
-const fileKeys = ['teyvat', 'inazuma', 'liyue', 'ferry', 'same']
-const regionKeys = ['teyvat', 'inazuma', 'liyue']
+const fileKeys = ['teyvat', 'inazuma', 'liyue', 'ferry', 'same'];
+const regionKeys = ['teyvat', 'inazuma', 'liyue'];
 
-const isDev = import.meta.env.DEV
-const open = ref(false)
-const loading = ref(true)
-const saving = ref(false)
-const savedMsg = ref('')
-const activeFile = ref('teyvat')
-const filesData = reactive<Record<string, any>>({})
+const isDev = import.meta.env.DEV;
+const open = ref(false);
+const loading = ref(true);
+const saving = ref(false);
+const savedMsg = ref('');
+const activeFile = ref('teyvat');
+const filesData = reactive<Record<string, any>>({});
 
 const stationNameMap = computed(() => {
-  const map = new Map<string, string>()
+  const map = new Map<string, string>();
   for (const key of regionKeys) {
-    const data = filesData[key]
-    if (!data?.config?.name || !data.stations) continue
-    const prefix = data.config.name
+    const data = filesData[key];
+    if (!data?.config?.name || !data.stations) continue;
+    const prefix = data.config.name;
     for (const st of data.stations) {
-      map.set(`${prefix}-${st.id}`, st.nameCn)
+      map.set(`${prefix}-${st.id}`, st.nameCn);
     }
   }
-  return map
-})
+  return map;
+});
 
 function stationName(stationId: string, fileKey?: string): string {
-  const data = fileKey ? filesData[fileKey] : null
+  const data = fileKey ? filesData[fileKey] : null;
   if (data?.stations) {
-    const st = data.stations.find((s: any) => s.id === stationId)
-    if (st) return `${st.nameCn} / ${st.nameEn}`
+    const st = data.stations.find((s: any) => s.id === stationId);
+    if (st) return `${st.nameCn} / ${st.nameEn}`;
   }
-  const name = stationNameMap.value.get(stationId)
-  if (name) return name
-  return stationId
+  const name = stationNameMap.value.get(stationId);
+  if (name) return name;
+  return stationId;
 }
 
-const currentFileData = computed(() => filesData[activeFile.value])
+const currentFileData = computed(() => filesData[activeFile.value]);
 
 const currentStations = computed(() => {
-  const d = currentFileData.value
-  if (!d?.stations) return []
-  return d.stations
-})
+  const d = currentFileData.value;
+  if (!d?.stations) return [];
+  return d.stations;
+});
 
 const currentLines = computed(() => {
-  const d = currentFileData.value
-  if (!d?.lines) return []
-  return d.lines
-})
+  const d = currentFileData.value;
+  if (!d?.lines) return [];
+  return d.lines;
+});
 
 function getSegments(line: any) {
-  const segs: any[] = []
-  const data = currentFileData.value
-  const prefix = data?.config?.name || ''
+  const segs: any[] = [];
+  const data = currentFileData.value;
+  const prefix = data?.config?.name || '';
   for (let i = 0; i < line.stations.length - 1; i++) {
-    const [fromId] = line.stations[i]
-    const [toId] = line.stations[i + 1]
+    const [fromId] = line.stations[i];
+    const [toId] = line.stations[i + 1];
     const fromName = regionKeys.includes(activeFile.value)
       ? stationName(fromId, activeFile.value)
-      : stationName(fromId)
+      : stationName(fromId);
     const toName = regionKeys.includes(activeFile.value)
       ? stationName(toId, activeFile.value)
-      : stationName(toId)
-    segs.push({ entry: line.stations[i], fromName, toName })
+      : stationName(toId);
+    segs.push({ entry: line.stations[i], fromName, toName });
   }
-  return segs
+  return segs;
 }
 
 async function loadAll() {
-  loading.value = true
+  loading.value = true;
   for (const key of fileKeys) {
     try {
-      const res = await fetch(`/__admin/data/${key}.json`)
+      const res = await fetch(`/__admin/data/${key}.json`);
       if (res.ok) {
-        filesData[key] = await res.json()
+        filesData[key] = await res.json();
       }
     } catch (e) {
-      console.error(`Failed to load ${key}.json`, e)
+      console.error(`Failed to load ${key}.json`, e);
     }
   }
-  loading.value = false
+  loading.value = false;
 }
 
 function toggle() {
-  open.value = !open.value
-  if (open.value) loadAll()
+  open.value = !open.value;
+  if (open.value) loadAll();
 }
 
 async function save() {
-  saving.value = true
-  savedMsg.value = ''
-  let ok = true
+  saving.value = true;
+  savedMsg.value = '';
+  let ok = true;
   for (const key of fileKeys) {
-    const data = filesData[key]
-    if (!data) continue
+    const data = filesData[key];
+    if (!data) continue;
     try {
-      const body = JSON.stringify(data, null, 2) + '\n'
+      const body = JSON.stringify(data, null, 2) + '\n';
       const res = await fetch(`/__admin/data/${key}.json`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body,
-      })
+      });
       if (!res.ok) {
-        console.error(`Failed to save ${key}.json`)
-        ok = false
+        console.error(`Failed to save ${key}.json`);
+        ok = false;
       }
     } catch (e) {
-      console.error(`Failed to save ${key}.json`, e)
-      ok = false
+      console.error(`Failed to save ${key}.json`, e);
+      ok = false;
     }
   }
-  saving.value = false
-  savedMsg.value = ok ? '✓ Saved' : '✗ Some files failed'
-  setTimeout(() => { savedMsg.value = '' }, 3000)
+  saving.value = false;
+  savedMsg.value = ok ? '✓ Saved' : '✗ Some files failed';
+  setTimeout(() => {
+    savedMsg.value = '';
+  }, 3000);
 }
 </script>
 
@@ -231,7 +257,7 @@ async function save() {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: background 0.15s;
 }
 .admin-toggle:hover,
@@ -244,7 +270,7 @@ async function save() {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -258,7 +284,7 @@ async function save() {
   max-height: 85vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
 
@@ -312,7 +338,9 @@ async function save() {
   color: #666;
   cursor: pointer;
   border-bottom: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
 }
 .tab-btn:hover {
   color: #1f77b4;

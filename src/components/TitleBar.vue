@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-defineEmits<{ open: []; 'open-ai': [] }>()
+defineEmits<{ open: []; 'open-ai': [] }>();
 </script>
 
 <style scoped>

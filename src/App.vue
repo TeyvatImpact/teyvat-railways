@@ -12,39 +12,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import RailwayMap from './components/RailwayMap.vue'
-import TitleBar from './components/TitleBar.vue'
-import RoutePanel from './components/RoutePanel.vue'
-import InfoDialog from './components/InfoDialog.vue'
-import AiPromptDialog from './components/AiPromptDialog.vue'
-import AdminPanel from './components/AdminPanel.vue'
-import type { RouteResult } from './composables/useRouting'
+import { ref, onMounted } from 'vue';
+import RailwayMap from './components/RailwayMap.vue';
+import TitleBar from './components/TitleBar.vue';
+import RoutePanel from './components/RoutePanel.vue';
+import InfoDialog from './components/InfoDialog.vue';
+import AiPromptDialog from './components/AiPromptDialog.vue';
+import AdminPanel from './components/AdminPanel.vue';
+import type { RouteResult } from './composables/useRouting';
 
-const STORAGE_KEY = 'teyvat-railways-visited'
-const showDialog = ref(false)
-const showAiDialog = ref(false)
-const routeResult = ref<RouteResult | null>(null)
-const panel = ref<InstanceType<typeof RoutePanel> | null>(null)
+const STORAGE_KEY = 'teyvat-railways-visited';
+const showDialog = ref(false);
+const showAiDialog = ref(false);
+const routeResult = ref<RouteResult | null>(null);
+const panel = ref<InstanceType<typeof RoutePanel> | null>(null);
 
 function onResultChange(v: RouteResult | null) {
-  routeResult.value = v
+  routeResult.value = v;
 }
 
 function onStationClick(stationId: string) {
-  panel.value?.onStationClick(stationId)
+  panel.value?.onStationClick(stationId);
 }
 
 function onClose() {
-  showDialog.value = false
-  localStorage.setItem(STORAGE_KEY, '1')
+  showDialog.value = false;
+  localStorage.setItem(STORAGE_KEY, '1');
 }
 
 onMounted(() => {
   if (!localStorage.getItem(STORAGE_KEY)) {
-    showDialog.value = true
+    showDialog.value = true;
   }
-})
+});
 </script>
 
 <style scoped>

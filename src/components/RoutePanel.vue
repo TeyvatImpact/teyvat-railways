@@ -11,26 +11,25 @@
               v-model="startInput"
               placeholder="搜索站名或ID"
               @input="onStartInput"
-              @focus="startFocused = true; endFocused = false"
-              @blur="onStartBlur"
-            />
+              @focus="
+                startFocused = true;
+                endFocused = false;
+              "
+              @blur="onStartBlur" />
             <ul v-if="startSuggestions.length > 0 && startFocused" class="suggestions">
-              <li
-                v-for="s in startSuggestions"
-                :key="s.id"
-                @mousedown.prevent="selectStart(s)"
-              >
+              <li v-for="s in startSuggestions" :key="s.id" @mousedown.prevent="selectStart(s)">
                 <span class="sug-name">{{ s.name }} / {{ s.nameEn }}</span>
                 <span class="sug-id">{{ s.id }}</span>
-                <span class="sug-lines">{{ s.lines.map(l => l.name).join('、') }}</span>
+                <span class="sug-lines">{{ s.lines.map((l) => l.name).join('、') }}</span>
               </li>
             </ul>
           </div>
           <button
             class="pick-btn"
             :class="{ active: selectTarget === 'start' }"
-            @click="togglePick('start')"
-          >选</button>
+            @click="togglePick('start')">
+            选
+          </button>
         </div>
         <div v-if="startSelected" class="selected-info">
           已选: {{ startSelected.name }} ({{ startSelected.id }})
@@ -45,37 +44,34 @@
               v-model="endInput"
               placeholder="搜索站名或ID"
               @input="onEndInput"
-              @focus="endFocused = true; startFocused = false"
-              @blur="onEndBlur"
-            />
+              @focus="
+                endFocused = true;
+                startFocused = false;
+              "
+              @blur="onEndBlur" />
             <ul v-if="endSuggestions.length > 0 && endFocused" class="suggestions">
-              <li
-                v-for="s in endSuggestions"
-                :key="s.id"
-                @mousedown.prevent="selectEnd(s)"
-              >
+              <li v-for="s in endSuggestions" :key="s.id" @mousedown.prevent="selectEnd(s)">
                 <span class="sug-name">{{ s.name }} / {{ s.nameEn }}</span>
                 <span class="sug-id">{{ s.id }}</span>
-                <span class="sug-lines">{{ s.lines.map(l => l.name).join('、') }}</span>
+                <span class="sug-lines">{{ s.lines.map((l) => l.name).join('、') }}</span>
               </li>
             </ul>
           </div>
           <button
             class="pick-btn"
             :class="{ active: selectTarget === 'end' }"
-            @click="togglePick('end')"
-          >选</button>
+            @click="togglePick('end')">
+            选
+          </button>
         </div>
         <div v-if="endSelected" class="selected-info">
           已选: {{ endSelected.name }} ({{ endSelected.id }})
         </div>
       </div>
 
-      <button
-        class="calc-btn"
-        :disabled="!startSelected || !endSelected"
-        @click="calculate"
-      >计算路线</button>
+      <button class="calc-btn" :disabled="!startSelected || !endSelected" @click="calculate">
+        计算路线
+      </button>
 
       <div v-if="routeError" class="result error px-4 py-4">{{ routeError }}</div>
 
@@ -84,8 +80,7 @@
           v-for="opt in routeOptions"
           :key="opt.metric"
           class="route-option"
-          @click="selectRoute(opt)"
-        >
+          @click="selectRoute(opt)">
           <div class="ro-header">
             <span class="ro-metric">{{ opt.label }}</span>
             <span class="ro-segments">{{ opt.result.segments.length }} 段</span>
@@ -108,137 +103,143 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouting, METRIC_LABELS, type RouteMetric, type StationSuggestion, type RouteResult } from '../composables/useRouting'
-import RouteTimeline from './RouteTimeline.vue'
+import { ref } from 'vue';
+import {
+  useRouting,
+  METRIC_LABELS,
+  type RouteMetric,
+  type StationSuggestion,
+  type RouteResult,
+} from '../composables/useRouting';
+import RouteTimeline from './RouteTimeline.vue';
 
 interface RouteOption {
-  metric: RouteMetric
-  label: string
-  result: RouteResult
+  metric: RouteMetric;
+  label: string;
+  result: RouteResult;
 }
 
 const emit = defineEmits<{
-  (e: 'result-change', v: RouteResult | null): void
-}>()
+  (e: 'result-change', v: RouteResult | null): void;
+}>();
 
-const {
-  selectTarget,
-  searchStations,
-  findRoutes,
-} = useRouting()
+const { selectTarget, searchStations, findRoutes } = useRouting();
 
-const startInput = ref('')
-const endInput = ref('')
-const startFocused = ref(false)
-const endFocused = ref(false)
-const startSuggestions = ref<StationSuggestion[]>([])
-const endSuggestions = ref<StationSuggestion[]>([])
-const startSelected = ref<StationSuggestion | null>(null)
-const endSelected = ref<StationSuggestion | null>(null)
-const routeOptions = ref<RouteOption[]>([])
-const selectedRoute = ref<RouteOption | null>(null)
-const routeError = ref('')
+const startInput = ref('');
+const endInput = ref('');
+const startFocused = ref(false);
+const endFocused = ref(false);
+const startSuggestions = ref<StationSuggestion[]>([]);
+const endSuggestions = ref<StationSuggestion[]>([]);
+const startSelected = ref<StationSuggestion | null>(null);
+const endSelected = ref<StationSuggestion | null>(null);
+const routeOptions = ref<RouteOption[]>([]);
+const selectedRoute = ref<RouteOption | null>(null);
+const routeError = ref('');
 
-let startTimer: ReturnType<typeof setTimeout> | null = null
-let endTimer: ReturnType<typeof setTimeout> | null = null
+let startTimer: ReturnType<typeof setTimeout> | null = null;
+let endTimer: ReturnType<typeof setTimeout> | null = null;
 
 function togglePick(target: 'start' | 'end') {
   if (selectTarget.value === target) {
-    selectTarget.value = null
+    selectTarget.value = null;
   } else {
-    selectTarget.value = target
+    selectTarget.value = target;
   }
 }
 
 function onStartInput() {
-  if (startTimer) clearTimeout(startTimer)
-  startSelected.value = null
+  if (startTimer) clearTimeout(startTimer);
+  startSelected.value = null;
   startTimer = setTimeout(() => {
-    startSuggestions.value = searchStations(startInput.value)
-  }, 150)
+    startSuggestions.value = searchStations(startInput.value);
+  }, 150);
 }
 
 function onEndInput() {
-  if (endTimer) clearTimeout(endTimer)
-  endSelected.value = null
+  if (endTimer) clearTimeout(endTimer);
+  endSelected.value = null;
   endTimer = setTimeout(() => {
-    endSuggestions.value = searchStations(endInput.value)
-  }, 150)
+    endSuggestions.value = searchStations(endInput.value);
+  }, 150);
 }
 
 function selectStart(s: StationSuggestion) {
-  startInput.value = `${s.name} (${s.id})`
-  startSelected.value = s
-  startSuggestions.value = []
-  startFocused.value = false
-  clearResults()
-  routeError.value = ''
+  startInput.value = `${s.name} (${s.id})`;
+  startSelected.value = s;
+  startSuggestions.value = [];
+  startFocused.value = false;
+  clearResults();
+  routeError.value = '';
 }
 
 function selectEnd(s: StationSuggestion) {
-  endInput.value = `${s.name} (${s.id})`
-  endSelected.value = s
-  endSuggestions.value = []
-  endFocused.value = false
-  clearResults()
-  routeError.value = ''
+  endInput.value = `${s.name} (${s.id})`;
+  endSelected.value = s;
+  endSuggestions.value = [];
+  endFocused.value = false;
+  clearResults();
+  routeError.value = '';
 }
 
 function onStartBlur() {
-  setTimeout(() => { startFocused.value = false }, 200)
+  setTimeout(() => {
+    startFocused.value = false;
+  }, 200);
 }
 
 function onEndBlur() {
-  setTimeout(() => { endFocused.value = false }, 200)
+  setTimeout(() => {
+    endFocused.value = false;
+  }, 200);
 }
 
 function calculate() {
-  if (!startSelected.value || !endSelected.value) return
-  routeError.value = ''
-  clearResults()
+  if (!startSelected.value || !endSelected.value) return;
+  routeError.value = '';
+  clearResults();
 
-  const results = findRoutes(startSelected.value.id, endSelected.value.id)
+  const results = findRoutes(startSelected.value.id, endSelected.value.id);
 
   if (results.length === 0) {
-    routeError.value = '未找到可行路径'
-    return
+    routeError.value = '未找到可行路径';
+    return;
   }
 
-  const metrics: RouteMetric[] = ['fare', 'time', 'distance']
+  const metrics: RouteMetric[] = ['fare', 'time', 'distance'];
   routeOptions.value = results.map((r, i) => ({
     metric: metrics[i],
     label: METRIC_LABELS[metrics[i]],
     result: r,
-  }))
+  }));
 }
 
 function selectRoute(opt: RouteOption) {
-  selectedRoute.value = opt
-  emit('result-change', opt.result)
+  selectedRoute.value = opt;
+  emit('result-change', opt.result);
 }
 
 function clearResults() {
-  routeOptions.value = []
-  selectedRoute.value = null
-  emit('result-change', null)
+  routeOptions.value = [];
+  selectedRoute.value = null;
+  emit('result-change', null);
 }
 
 function onStationClick(stationId: string) {
-  const suggestions = searchStations(stationId)
-  const match = suggestions.find(s => s.id === stationId)
-  if (!match) return
+  const suggestions = searchStations(stationId);
+  const match = suggestions.find((s) => s.id === stationId);
+  if (!match) return;
 
   if (selectTarget.value === 'start') {
-    selectStart(match)
-    selectTarget.value = null
+    selectStart(match);
+    selectTarget.value = null;
   } else if (selectTarget.value === 'end') {
-    selectEnd(match)
-    selectTarget.value = null
+    selectEnd(match);
+    selectTarget.value = null;
   }
 }
 
-defineExpose({ onStationClick })
+defineExpose({ onStationClick });
 </script>
 
 <style scoped>
@@ -404,7 +405,9 @@ defineExpose({ onStationClick })
   border: 1px solid #e0e0e0;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
 }
 
 .route-option:hover {

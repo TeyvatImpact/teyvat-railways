@@ -179,65 +179,17 @@
       "name": "璃月港地铁·1号线",
       "nameEn": "Lyue Harbor Line 1",
       "lineLabels": [
-        [
-          "LYG",
-          "RT"
-        ],
-        [
-          "HYG",
-          "T"
-        ]
+        ["LYG", "RT"],
+        ["HYG", "T"]
       ],
       "stations": [
-        [
-          "LYG",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "HET",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "FYP",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "LYN",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "PSC",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "CHY",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "HYG",
-          false,
-          500,
-          10,
-          10
-        ]
+        ["LYG", false, 500, 10, 10],
+        ["HET", false, 500, 10, 10],
+        ["FYP", false, 500, 10, 10],
+        ["LYN", false, 500, 10, 10],
+        ["PSC", false, 500, 10, 10],
+        ["CHY", false, 500, 10, 10],
+        ["HYG", false, 500, 10, 10]
       ]
     },
     {
@@ -245,72 +197,18 @@
       "name": "璃月港地铁·2号线",
       "nameEn": "Lyue Harbor Line 2",
       "lineLabels": [
-        [
-          "HYC",
-          "LT"
-        ],
-        [
-          "LYB",
-          "LB"
-        ]
+        ["HYC", "LT"],
+        ["LYB", "LB"]
       ],
       "stations": [
-        [
-          "HYC",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "NCM",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "PSC",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "KYN",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "KYB",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "BCM",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "YLQ",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "LYB",
-          false,
-          500,
-          10,
-          10
-        ]
+        ["HYC", false, 500, 10, 10],
+        ["NCM", false, 500, 10, 10],
+        ["PSC", false, 500, 10, 10],
+        ["KYN", false, 500, 10, 10],
+        ["KYB", false, 500, 10, 10],
+        ["BCM", false, 500, 10, 10],
+        ["YLQ", false, 500, 10, 10],
+        ["LYB", false, 500, 10, 10]
       ]
     },
     {
@@ -318,65 +216,17 @@
       "name": "璃月港地铁·3号线",
       "nameEn": "Lyue Harbor Line 3",
       "lineLabels": [
-        [
-          "YHT",
-          "LB"
-        ],
-        [
-          "YLY",
-          "B"
-        ]
+        ["YHT", "LB"],
+        ["YLY", "B"]
       ],
       "stations": [
-        [
-          "HJW",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "NCM",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "YJT",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "YHT",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "HET",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "BCM",
-          true,
-          500,
-          10,
-          10
-        ],
-        [
-          "YLY",
-          false,
-          500,
-          10,
-          10
-        ]
+        ["HJW", false, 500, 10, 10],
+        ["NCM", false, 500, 10, 10],
+        ["YJT", false, 500, 10, 10],
+        ["YHT", false, 500, 10, 10],
+        ["HET", false, 500, 10, 10],
+        ["BCM", true, 500, 10, 10],
+        ["YLY", false, 500, 10, 10]
       ]
     },
     {
@@ -384,51 +234,15 @@
       "name": "璃月港地铁·S1号线",
       "nameEn": "Lyue Harbor Line S1",
       "lineLabels": [
-        [
-          "LHC",
-          "LT"
-        ],
-        [
-          "GYG",
-          "B"
-        ]
+        ["LHC", "LT"],
+        ["GYG", "B"]
       ],
       "stations": [
-        [
-          "LHC",
-          true,
-          500,
-          10,
-          10
-        ],
-        [
-          "LYB",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "YLY",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "GYX",
-          false,
-          500,
-          10,
-          10
-        ],
-        [
-          "GYG",
-          false,
-          500,
-          10,
-          10
-        ]
+        ["LHC", true, 500, 10, 10],
+        ["LYB", false, 500, 10, 10],
+        ["YLY", false, 500, 10, 10],
+        ["GYX", false, 500, 10, 10],
+        ["GYG", false, 500, 10, 10]
       ]
     }
   ]

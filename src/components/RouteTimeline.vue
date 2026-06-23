@@ -4,29 +4,30 @@
     <div class="px-6 py-4 border-b border-gray-200 flex items-start justify-between gap-4">
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 text-sm mb-1.5">
-        <span
-          class="w-3 h-3 rounded-full inline-block shrink-0"
-          :style="{ background: firstLineColor }" />
-        <span class="font-semibold text-gray-900">{{ startName }}</span>
-        <span class="text-gray-400 mx-1">→</span>
-        <span
-          class="w-3 h-3 rounded-full inline-block shrink-0"
-          :style="{ background: lastLineColor }" />
-        <span class="font-semibold text-gray-900">{{ endName }}</span>
+          <span
+            class="w-3 h-3 rounded-full inline-block shrink-0"
+            :style="{ background: firstLineColor }" />
+          <span class="font-semibold text-gray-900">{{ startName }}</span>
+          <span class="text-gray-400 mx-1">→</span>
+          <span
+            class="w-3 h-3 rounded-full inline-block shrink-0"
+            :style="{ background: lastLineColor }" />
+          <span class="font-semibold text-gray-900">{{ endName }}</span>
+        </div>
+        <div class="text-xs text-gray-500">
+          <span v-if="result.segments.length === 1">直达</span>
+          <span v-else>{{ result.segments.length }} 段换乘</span>
+          <span class="ml-2">票价 {{ result.totalFare }} 摩拉</span>
+          <span class="ml-2">时间 {{ result.totalTime }} min</span>
+          <span class="ml-2">距离 {{ result.totalDistance }} km</span>
+        </div>
       </div>
-      <div class="text-xs text-gray-500">
-        <span v-if="result.segments.length === 1">直达</span>
-        <span v-else>{{ result.segments.length }} 段换乘</span>
-        <span class="ml-2">票价 {{ result.totalFare }} 摩拉</span>
-        <span class="ml-2">时间 {{ result.totalTime }} min</span>
-        <span class="ml-2">距离 {{ result.totalDistance }} km</span>
-      </div>
+      <button
+        class="shrink-0 mt-0.5 w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors text-lg leading-none cursor-pointer"
+        @click="$emit('close')">
+        ×
+      </button>
     </div>
-    <button
-      class="shrink-0 mt-0.5 w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors text-lg leading-none cursor-pointer"
-      @click="$emit('close')"
-    >×</button>
-  </div>
 
     <!-- Blocks -->
     <div class="py-2">
@@ -83,7 +84,9 @@
               </span>
               <br />
               <span class="text-xs text-gray-400 truncate">· 往 {{ block.direction }} 方向</span>
-              <span class="text-xs text-gray-400 ml-2">({{ block.fare }}摩拉 {{ block.time }}min {{ block.distance }}km)</span>
+              <span class="text-xs text-gray-400 ml-2"
+                >({{ block.fare }}摩拉 {{ block.time }}min {{ block.distance }}km)</span
+              >
             </div>
             <div v-if="block.intermediates.length > 0" class="space-y-1">
               <div v-for="n in block.intermediates" :key="n.stationName" class="leading-tight">
