@@ -1,6 +1,6 @@
 <template>
   <div ref="container" class="map-container" @wheel.prevent="onWheel">
-    <MapControls :mouse-coord="mouseCoord" :scale="scale" @update:scale="scale = $event" />
+    <MapControls :mouse-coord="mouseCoord" :scale="scale" @update:scale="onZoomBtn" />
     <svg
       ref="svgEl"
       :width="svgWidth"
@@ -374,11 +374,28 @@ const cy0 = (0 - minY) * BLOCK_SIZE;
 const initPanX = svgWidth / 2 - cx0;
 const initPanY = svgHeight / 2 - cy0;
 
-const { container, svgEl, panX, panY, scale, onMouseDown, onMouseMove, onMouseUp, onWheel } =
-  useMapInteraction(initPanX, initPanY, 1);
+const {
+  container,
+  svgEl,
+  panX,
+  panY,
+  scale,
+  zoomTo,
+  onMouseDown,
+  onMouseMove,
+  onMouseUp,
+  onWheel,
+} = useMapInteraction(initPanX, initPanY, 1);
 
 const { visibleStations, labelBoxes, leaderLines, lineLabels, lineLeaderLines, gridX, gridY } =
   useLabelPlacement();
+
+function onZoomBtn(targetScale: number) {
+  const svg = svgEl.value;
+  if (!svg) return;
+  const rect = svg.getBoundingClientRect();
+  zoomTo(targetScale, rect.width / 2 + rect.left, rect.height / 2 + rect.top);
+}
 
 function onSvgMouseMove(e: MouseEvent) {
   onMouseMove(e);

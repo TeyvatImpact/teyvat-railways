@@ -1,6 +1,11 @@
 import { ref, watch, onMounted, onUnmounted } from 'vue';
 
 const STORAGE_KEY = 'teyvat-railways-map-state';
+const ZOOM_DURATION = 500;
+
+function easeOutCubic(t: number): number {
+  return 1 - (1 - t) ** 3;
+}
 
 function loadSavedState(fallbackPanX: number, fallbackPanY: number, fallbackScale: number) {
   try {
@@ -25,6 +30,61 @@ export function useMapInteraction(initPanX = 0, initPanY = 0, initScale = 1) {
   const panY = ref(saved.panY);
   const scale = ref(saved.scale);
 
+  let animFrameId = 0;
+  let animStart = 0;
+  let scaleFrom = 1;
+  let scaleTo = 1;
+  let panXFrom = 0;
+  let panXTo = 0;
+  let panYFrom = 0;
+  let panYTo = 0;
+
+  function cancelAnim() {
+    if (animFrameId) {
+      cancelAnimationFrame(animFrameId);
+      animFrameId = 0;
+    }
+  }
+
+  function tick(time: number) {
+    if (!animStart) animStart = time;
+    const t = Math.min(1, (time - animStart) / ZOOM_DURATION);
+    const p = easeOutCubic(t);
+    scale.value = scaleFrom + (scaleTo - scaleFrom) * p;
+    panX.value = panXFrom + (panXTo - panXFrom) * p;
+    panY.value = panYFrom + (panYTo - panYFrom) * p;
+    if (t < 1) {
+      animFrameId = requestAnimationFrame(tick);
+    } else {
+      animFrameId = 0;
+      scale.value = scaleTo;
+      panX.value = panXTo;
+      panY.value = panYTo;
+    }
+  }
+
+  function zoomTo(targetScale: number, targetPanX: number, targetPanY: number) {
+    cancelAnim();
+    scaleFrom = scale.value;
+    scaleTo = targetScale;
+    panXFrom = panX.value;
+    panXTo = targetPanX;
+    panYFrom = panY.value;
+    panYTo = targetPanY;
+    animStart = 0;
+    animFrameId = requestAnimationFrame(tick);
+  }
+
+  function zoomToCenter(targetScale: number, cx: number, cy: number) {
+    const rect = container.value!.getBoundingClientRect();
+    const mx = cx - rect.left;
+    const my = cy - rect.top;
+    const ratio = targetScale / scale.value;
+    const tpX = mx - (mx - panX.value) * ratio;
+    const tpY = my - (my - panY.value) * ratio;
+    zoomTo(targetScale, tpX, tpY);
+  }
+
   watch([panX, panY, scale], () => {
     try {
       localStorage.setItem(
@@ -45,6 +105,7 @@ export function useMapInteraction(initPanX = 0, initPanY = 0, initScale = 1) {
   let panStartY = 0;
 
   function onMouseDown(e: MouseEvent) {
+    cancelAnim();
     dragging = true;
     dragStartX = e.clientX;
     dragStartY = e.clientY;
@@ -65,15 +126,9 @@ export function useMapInteraction(initPanX = 0, initPanY = 0, initScale = 1) {
   }
 
   function onWheel(e: WheelEvent) {
-    const factor = e.deltaY > 0 ? 1 / 1.1 : 1.1;
+    const factor = e.deltaY > 0 ? 1 / 1.5 : 1.5;
     const ns = Math.max(0.2, Math.min(5, scale.value * factor));
-    const rect = container.value!.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
-    const my = e.clientY - rect.top;
-    const ratio = ns / scale.value;
-    panX.value = mx - (mx - panX.value) * ratio;
-    panY.value = my - (my - panY.value) * ratio;
-    scale.value = ns;
+    zoomToCenter(ns, e.clientX, e.clientY);
   }
 
   let touchPoints: { x: number; y: number }[] = [];
@@ -85,6 +140,7 @@ export function useMapInteraction(initPanX = 0, initPanY = 0, initScale = 1) {
   let savedCenterY = 0;
 
   function onTouchStart(e: TouchEvent) {
+    cancelAnim();
     touchPoints = Array.from(e.touches).map((t) => ({ x: t.clientX, y: t.clientY }));
     if (e.touches.length >= 2) {
       savedScale = scale.value;
@@ -166,6 +222,8 @@ export function useMapInteraction(initPanX = 0, initPanY = 0, initScale = 1) {
     panX,
     panY,
     scale,
+    zoomTo,
+    zoomToCenter,
     onMouseDown,
     onMouseMove,
     onMouseUp,
