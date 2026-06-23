@@ -1,18 +1,25 @@
 <template>
-  <TitleBar @open="showDialog = true" @open-ai="showAiDialog = true" />
-  <div class="app-body">
-    <div class="map-area">
-      <RailwayMap :route-result="routeResult" @station-click="onStationClick" />
+  <var-style-provider :style-vars="styleVars">
+    <TitleBar
+      @open="showDialog = true"
+      @open-ai="showAiDialog = true"
+      @toggle-theme="toggleTheme"
+      :theme="theme" />
+    <div class="app-body">
+      <div class="map-area">
+        <RailwayMap :route-result="routeResult" @station-click="onStationClick" />
+      </div>
+      <RoutePanel ref="panel" @result-change="onResultChange" />
     </div>
-    <RoutePanel ref="panel" @result-change="onResultChange" />
-  </div>
-  <InfoDialog :visible="showDialog" @close="onClose" />
-  <AiPromptDialog :visible="showAiDialog" @close="showAiDialog = false" />
-  <AdminPanel />
+    <InfoDialog :visible="showDialog" @close="onClose" />
+    <AiPromptDialog :visible="showAiDialog" @close="showAiDialog = false" />
+    <AdminPanel />
+  </var-style-provider>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
+import { useTheme } from './composables/useTheme';
 import RailwayMap from './components/RailwayMap.vue';
 import TitleBar from './components/TitleBar.vue';
 import RoutePanel from './components/RoutePanel.vue';
@@ -22,10 +29,15 @@ import AdminPanel from './components/AdminPanel.vue';
 import type { RouteResult } from './composables/useRouting';
 
 const STORAGE_KEY = 'teyvat-railways-visited';
+const { theme, styleVars, toggle: toggleTheme } = useTheme();
 const showDialog = ref(false);
 const showAiDialog = ref(false);
 const routeResult = ref<RouteResult | null>(null);
 const panel = ref<InstanceType<typeof RoutePanel> | null>(null);
+
+watch(theme, () => document.documentElement.setAttribute('data-theme', theme.value), {
+  immediate: true,
+});
 
 function onResultChange(v: RouteResult | null) {
   routeResult.value = v;
@@ -56,8 +68,5 @@ onMounted(() => {
   flex: 1;
   position: relative;
   overflow: hidden;
-}
-:deep(.title-bar) {
-  position: relative;
 }
 </style>

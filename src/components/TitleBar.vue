@@ -2,6 +2,9 @@
   <div class="title-bar">
     <span class="title">提瓦特铁路网</span>
     <div class="btn-group">
+      <button class="info-btn" @click="$emit('toggle-theme')">
+        {{ theme === 'dark' ? '☀️' : '🌙' }}
+      </button>
       <button class="info-btn" @click="$emit('open')">关于</button>
       <button class="info-btn" @click="$emit('open-ai')">AI 提示词</button>
     </div>
@@ -9,7 +12,8 @@
 </template>
 
 <script setup lang="ts">
-defineEmits<{ open: []; 'open-ai': [] }>();
+defineProps<{ theme: 'light' | 'dark' }>();
+defineEmits<{ open: []; 'open-ai': []; 'toggle-theme': [] }>();
 </script>
 
 <style scoped>
