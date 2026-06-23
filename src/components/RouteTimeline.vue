@@ -1,20 +1,19 @@
 <template>
-  <div class="route-timeline">
+  <div class="flex flex-col">
     <!-- Header -->
-    <div class="px-6 py-4 border-b border-gray-200 flex items-start justify-between gap-4">
+    <div class="flex flex-col items-start justify-between gap-4">
+      <var-button @click="$emit('close')"> 返回 </var-button>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 text-sm mb-1.5">
-          <span
-            class="w-3 h-3 rounded-full inline-block shrink-0"
-            :style="{ background: firstLineColor }" />
-          <span class="font-semibold text-gray-900">{{ startName }}</span>
-          <span class="text-gray-400 mx-1">→</span>
-          <span
-            class="w-3 h-3 rounded-full inline-block shrink-0"
-            :style="{ background: lastLineColor }" />
-          <span class="font-semibold text-gray-900">{{ endName }}</span>
+          <span class="font-semibold border-b-2" :style="{ borderColor: firstLineColor }">{{
+            startName
+          }}</span>
+          <span class="mx-1">→</span>
+          <span class="font-semibold border-b-2" :style="{ borderColor: lastLineColor }">{{
+            endName
+          }}</span>
         </div>
-        <div class="text-xs text-gray-500">
+        <div class="text-xs">
           <span v-if="result.segments.length === 1">直达</span>
           <span v-else>{{ result.segments.length }} 段换乘</span>
           <span class="ml-2">票价 {{ result.totalFare }} 摩拉</span>
@@ -22,40 +21,28 @@
           <span class="ml-2">距离 {{ result.totalDistance }} km</span>
         </div>
       </div>
-      <button
-        class="shrink-0 mt-0.5 w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors text-lg leading-none cursor-pointer"
-        @click="$emit('close')">
-        ×
-      </button>
     </div>
 
-    <!-- Blocks -->
-    <div class="py-2">
+    <div class="mt-2 py-2 h-full overflow-y-auto">
       <div v-for="(block, i) in blocks" :key="i" class="flex">
-        <!-- Left rail -->
         <div class="w-12 shrink-0 flex flex-col items-center">
-          <!-- Station block -->
           <template v-if="block.type === 'station'">
             <div
               v-if="block.lineInColor"
-              class="flex-1 w-1 min-h-[8px]"
+              class="flex-1 w-1 min-h-2"
               :style="{ background: block.lineInColor }" />
             <div v-else class="flex-1" />
             <div
-              class="w-4 h-4 rounded-full shrink-0 z-10"
+              class="w-4 h-4 rounded-full shrink-0 z-10 bg-white"
               :style="{
-                border: `3px solid ${block.lineOutColor || block.lineInColor || '#999'}`,
-                background: block.isEnd
-                  ? 'white'
-                  : block.lineOutColor || block.lineInColor || '#999',
+                border: `4px solid ${block.lineOutColor || block.lineInColor || '#999'}`,
               }" />
             <div
               v-if="block.lineOutColor"
-              class="flex-1 w-1 min-h-[8px]"
+              class="flex-1 w-1 min-h-2"
               :style="{ background: block.lineOutColor }" />
             <div v-else class="flex-1" />
           </template>
-          <!-- Process block -->
           <template v-if="block.type === 'process'">
             <div class="flex-1 w-1" :style="{ background: block.lineColor }" />
           </template>
@@ -64,37 +51,30 @@
         <!-- Content -->
         <div class="flex-1 pr-1 min-w-0 py-1">
           <template v-if="block.type === 'station'">
-            <div
-              class="text-base font-bold leading-tight"
-              :class="block.isEnd ? 'text-green-700' : 'text-gray-900'">
+            <div class="text-base font-bold leading-tight">
               {{ block.stationName }}
-              <span v-if="block.isEnd" class="text-sm font-normal text-green-600 ml-1.5"
-                >✓ 到达</span
-              >
             </div>
-            <div class="text-xs text-gray-400 mt-0.5">
+            <div class="text-xs mt-0.5 font-en">
               {{ block.stationNameEn }}
             </div>
           </template>
           <template v-if="block.type === 'process'">
             <div class="text-sm mb-2">
-              <span class="font-semibold text-gray-800">
+              <span class="font-semibold">
                 {{ block.lineName }}
-                <span v-if="block.isFerry" class="text-xs font-normal text-gray-400">(轮渡)</span>
-                <span v-else-if="block.isSameStation" class="text-xs font-normal text-gray-400"
-                  >(同站换乘)</span
-                >
+                <span v-if="block.isFerry" class="text-xs font-normal">(轮渡)</span>
+                <span v-else-if="block.isSameStation" class="text-xs font-normal">(同站换乘)</span>
               </span>
               <br />
-              <span class="text-xs text-gray-400 truncate">· 往 {{ block.direction }} 方向</span>
-              <span class="text-xs text-gray-400 ml-2"
+              <span class="text-xs truncate">{{ block.direction }} 方向</span>
+              <span class="text-xs ml-2"
                 >({{ block.fare }}摩拉 {{ block.time }}min {{ block.distance }}km)</span
               >
             </div>
             <div v-if="block.intermediates.length > 0" class="space-y-1">
               <div v-for="n in block.intermediates" :key="n.stationName" class="leading-tight">
-                <div class="text-xs text-gray-600 font-medium">{{ n.stationName }}</div>
-                <div class="text-[11px] text-gray-400">{{ n.stationNameEn }}</div>
+                <div class="text-xs">{{ n.stationName }}</div>
+                <div class="text-xs font-en">{{ n.stationNameEn }}</div>
               </div>
             </div>
           </template>

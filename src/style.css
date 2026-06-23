@@ -6,3 +6,7 @@ body {
   color: var(--color-text);
   margin: 0;
 }
+
+@utility font-en {
+  font-family: 'Barlow', sans-serif;
+}
