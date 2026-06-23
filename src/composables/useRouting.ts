@@ -1,6 +1,14 @@
 import { ref, type Ref } from 'vue'
 import { stations, stationMap, lines } from './useMapData'
 
+export type RouteMetric = 'fare' | 'time' | 'distance'
+
+export const METRIC_LABELS: Record<RouteMetric, string> = {
+  fare: '票价最低',
+  time: '时间最短',
+  distance: '路程最短',
+}
+
 export interface NodeInfo {
   stationId: string
   lineId: string
@@ -153,12 +161,22 @@ export function useRouting() {
     return results.slice(0, 20)
   }
 
-  function findRoute(startStationId: string, endStationId: string): RouteResult | null {
+  function findRoute(startStationId: string, endStationId: string, metric: RouteMetric = 'fare'): RouteResult | null {
     const startNodes = stationNodeMap.get(startStationId)
     const endNodes = stationNodeMap.get(endStationId)
 
     if (!startNodes || startNodes.length === 0) return null
     if (!endNodes || endNodes.length === 0) return null
+
+    const getWeight = (a: string, b: string): number => {
+      const m = edgeMetrics.get(a)?.get(b)
+      if (!m) return 0
+      switch (metric) {
+        case 'fare': return m.fare
+        case 'time': return m.time
+        case 'distance': return m.distance
+      }
+    }
 
     const dist = new Map<string, number>()
     const prev = new Map<string, string | null>()
@@ -189,9 +207,10 @@ export function useRouting() {
       const neighbors = graph.get(current)
       if (!neighbors) continue
 
-      for (const [next, weight] of neighbors) {
+      for (const [next] of neighbors) {
         if (visited.has(next)) continue
-        const nd = d + weight
+        const w = getWeight(current, next)
+        const nd = d + w
         if (!dist.has(next) || nd < dist.get(next)!) {
           dist.set(next, nd)
           prev.set(next, current)
@@ -257,6 +276,16 @@ export function useRouting() {
     return { segments, pathNodeIds: pathNodes, totalFare, totalTime, totalDistance }
   }
 
+  function findRoutes(startStationId: string, endStationId: string): RouteResult[] {
+    const metrics: RouteMetric[] = ['fare', 'time', 'distance']
+    const results: RouteResult[] = []
+    for (const m of metrics) {
+      const r = findRoute(startStationId, endStationId, m)
+      if (r) results.push(r)
+    }
+    return results
+  }
+
   function formatRoute(result: RouteResult): string {
     if (result.segments.length === 0) return '未找到路径'
 
@@ -305,6 +334,7 @@ export function useRouting() {
     selectTarget,
     searchStations,
     findRoute,
+    findRoutes,
     formatRoute,
   }
 }
