@@ -1,0 +1,419 @@
+<template>
+  <div v-if="isDev">
+    <button
+      class="admin-toggle"
+      :class="{ active: open }"
+      @click="toggle"
+      title="数据编辑器"
+    >🛠</button>
+
+    <Teleport to="body">
+      <div v-if="open" class="admin-overlay" @click.self="open = false">
+        <div class="admin-panel">
+          <div class="admin-header">
+            <h2>Data Editor</h2>
+            <button class="close-btn" @click="open = false">✕</button>
+          </div>
+
+          <div v-if="loading" class="admin-loading">Loading...</div>
+
+          <template v-else>
+            <div class="admin-tabs">
+              <button
+                v-for="key in fileKeys"
+                :key="key"
+                class="tab-btn"
+                :class="{ active: activeFile === key }"
+                @click="activeFile = key"
+              >{{ key }}</button>
+            </div>
+
+            <div class="admin-body">
+              <div class="admin-section">
+                <h3>Stations</h3>
+                <table v-if="currentStations.length" class="data-table">
+                  <thead>
+                    <tr>
+                      <th class="col-id">ID</th>
+                      <th>Name (CN)</th>
+                      <th>Name (EN)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="st in currentStations" :key="st.id">
+                      <td class="col-id">{{ st.id }}</td>
+                      <td><input v-model="st.nameCn" class="edit-input" /></td>
+                      <td><input v-model="st.nameEn" class="edit-input" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p v-else class="text-gray-400 text-xs italic">No station definitions in this file.</p>
+              </div>
+
+              <div class="admin-section">
+                <h3>Line Segments</h3>
+                <div v-for="line in currentLines" :key="line.id" class="line-group">
+                  <h4>{{ line.name }} ({{ line.id }})</h4>
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th class="col-seg">Segment</th>
+                        <th class="col-num">Fare</th>
+                        <th class="col-num">Time (min)</th>
+                        <th class="col-num">Dist (km)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(seg, si) in getSegments(line)" :key="si">
+                        <td class="col-seg">{{ seg.fromName }} → {{ seg.toName }}</td>
+                        <td><input type="number" v-model.number="seg.entry[2]" class="edit-input num" /></td>
+                        <td><input type="number" v-model.number="seg.entry[3]" class="edit-input num" /></td>
+                        <td><input type="number" v-model.number="seg.entry[4]" class="edit-input num" step="0.1" /></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-footer">
+              <button class="save-btn" :disabled="saving" @click="save">
+                {{ saving ? 'Saving...' : 'Save All Changes' }}
+              </button>
+              <span v-if="savedMsg" class="saved-msg">{{ savedMsg }}</span>
+            </div>
+          </template>
+        </div>
+      </div>
+    </Teleport>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, reactive, computed } from 'vue'
+
+const fileKeys = ['teyvat', 'inazuma', 'liyue', 'ferry', 'same']
+const regionKeys = ['teyvat', 'inazuma', 'liyue']
+
+const isDev = import.meta.env.DEV
+const open = ref(false)
+const loading = ref(true)
+const saving = ref(false)
+const savedMsg = ref('')
+const activeFile = ref('teyvat')
+const filesData = reactive<Record<string, any>>({})
+
+const stationNameMap = computed(() => {
+  const map = new Map<string, string>()
+  for (const key of regionKeys) {
+    const data = filesData[key]
+    if (!data?.config?.name || !data.stations) continue
+    const prefix = data.config.name
+    for (const st of data.stations) {
+      map.set(`${prefix}-${st.id}`, st.nameCn)
+    }
+  }
+  return map
+})
+
+function stationName(stationId: string, fileKey?: string): string {
+  const data = fileKey ? filesData[fileKey] : null
+  if (data?.stations) {
+    const st = data.stations.find((s: any) => s.id === stationId)
+    if (st) return `${st.nameCn} / ${st.nameEn}`
+  }
+  const name = stationNameMap.value.get(stationId)
+  if (name) return name
+  return stationId
+}
+
+const currentFileData = computed(() => filesData[activeFile.value])
+
+const currentStations = computed(() => {
+  const d = currentFileData.value
+  if (!d?.stations) return []
+  return d.stations
+})
+
+const currentLines = computed(() => {
+  const d = currentFileData.value
+  if (!d?.lines) return []
+  return d.lines
+})
+
+function getSegments(line: any) {
+  const segs: any[] = []
+  const data = currentFileData.value
+  const prefix = data?.config?.name || ''
+  for (let i = 0; i < line.stations.length - 1; i++) {
+    const [fromId] = line.stations[i]
+    const [toId] = line.stations[i + 1]
+    const fromName = regionKeys.includes(activeFile.value)
+      ? stationName(fromId, activeFile.value)
+      : stationName(fromId)
+    const toName = regionKeys.includes(activeFile.value)
+      ? stationName(toId, activeFile.value)
+      : stationName(toId)
+    segs.push({ entry: line.stations[i], fromName, toName })
+  }
+  return segs
+}
+
+async function loadAll() {
+  loading.value = true
+  for (const key of fileKeys) {
+    try {
+      const res = await fetch(`/__admin/data/${key}.json`)
+      if (res.ok) {
+        filesData[key] = await res.json()
+      }
+    } catch (e) {
+      console.error(`Failed to load ${key}.json`, e)
+    }
+  }
+  loading.value = false
+}
+
+function toggle() {
+  open.value = !open.value
+  if (open.value) loadAll()
+}
+
+async function save() {
+  saving.value = true
+  savedMsg.value = ''
+  let ok = true
+  for (const key of fileKeys) {
+    const data = filesData[key]
+    if (!data) continue
+    try {
+      const body = JSON.stringify(data, null, 2) + '\n'
+      const res = await fetch(`/__admin/data/${key}.json`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      })
+      if (!res.ok) {
+        console.error(`Failed to save ${key}.json`)
+        ok = false
+      }
+    } catch (e) {
+      console.error(`Failed to save ${key}.json`, e)
+      ok = false
+    }
+  }
+  saving.value = false
+  savedMsg.value = ok ? '✓ Saved' : '✗ Some files failed'
+  setTimeout(() => { savedMsg.value = '' }, 3000)
+}
+</script>
+
+<style scoped>
+.admin-toggle {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 9999;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #1f77b4;
+  background: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background 0.15s;
+}
+.admin-toggle:hover,
+.admin-toggle.active {
+  background: #1f77b4;
+  color: #fff;
+}
+
+.admin-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-panel {
+  background: #fff;
+  border-radius: 8px;
+  width: 90vw;
+  max-width: 800px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+}
+.admin-header h2 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+.close-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+.close-btn:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.admin-loading {
+  padding: 40px;
+  text-align: center;
+  color: #888;
+}
+
+.admin-tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 0 12px;
+  gap: 0;
+}
+.tab-btn {
+  padding: 8px 14px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover {
+  color: #1f77b4;
+}
+.tab-btn.active {
+  color: #1f77b4;
+  border-bottom-color: #1f77b4;
+  font-weight: 600;
+}
+
+.admin-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+}
+
+.admin-section {
+  margin-bottom: 20px;
+}
+.admin-section h3 {
+  font-size: 14px;
+  margin: 0 0 8px;
+  color: #555;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.data-table th {
+  text-align: left;
+  padding: 6px 8px;
+  background: #f5f5f5;
+  color: #666;
+  font-weight: 600;
+  border: 1px solid #e0e0e0;
+}
+.data-table td {
+  padding: 4px 8px;
+  border: 1px solid #e0e0e0;
+}
+.col-id {
+  width: 60px;
+  font-family: monospace;
+  color: #888;
+}
+.col-seg {
+  min-width: 200px;
+}
+.col-num {
+  width: 90px;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 3px 6px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 12px;
+  outline: none;
+  box-sizing: border-box;
+}
+.edit-input:focus {
+  border-color: #1f77b4;
+}
+.edit-input.num {
+  text-align: right;
+  width: 80px;
+}
+
+.line-group {
+  margin-bottom: 14px;
+}
+.line-group h4 {
+  font-size: 13px;
+  margin: 0 0 6px;
+  color: #444;
+}
+
+.admin-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+}
+
+.save-btn {
+  padding: 8px 20px;
+  background: #1f77b4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.save-btn:hover {
+  background: #1669a1;
+}
+.save-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.saved-msg {
+  font-size: 13px;
+  color: #2e7d32;
+}
+</style>

@@ -8,6 +8,7 @@
   </div>
   <InfoDialog :visible="showDialog" @close="onClose" />
   <AiPromptDialog :visible="showAiDialog" @close="showAiDialog = false" />
+  <AdminPanel />
 </template>
 
 <script setup lang="ts">
@@ -17,6 +18,7 @@ import TitleBar from './components/TitleBar.vue'
 import RoutePanel from './components/RoutePanel.vue'
 import InfoDialog from './components/InfoDialog.vue'
 import AiPromptDialog from './components/AiPromptDialog.vue'
+import AdminPanel from './components/AdminPanel.vue'
 import type { RouteResult } from './composables/useRouting'
 
 const STORAGE_KEY = 'teyvat-railways-visited'
