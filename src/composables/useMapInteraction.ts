@@ -65,8 +65,8 @@ export function useMapInteraction(initPanX = 0, initPanY = 0, initScale = 1) {
   }
 
   function onWheel(e: WheelEvent) {
-    const delta = -Math.sign(e.deltaY) * 0.1;
-    const ns = Math.max(0.2, Math.min(5, scale.value + delta));
+    const factor = e.deltaY > 0 ? 1 / 1.1 : 1.1;
+    const ns = Math.max(0.2, Math.min(5, scale.value * factor));
     const rect = container.value!.getBoundingClientRect();
     const mx = e.clientX - rect.left;
     const my = e.clientY - rect.top;

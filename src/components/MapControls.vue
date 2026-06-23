@@ -3,9 +3,9 @@
     <span v-if="mouseCoord" class="coord">{{ mouseCoord }}</span>
     <span v-else class="coord-placeholder" />
     <div class="zoom-group">
-      <button @click="$emit('update:scale', Math.min(5, scale + 0.2))">+</button>
+      <button @click="$emit('update:scale', Math.min(5, scale * 1.1))">+</button>
       <span>{{ Math.round(scale * 100) }}%</span>
-      <button @click="$emit('update:scale', Math.max(0.2, scale - 0.2))">−</button>
+      <button @click="$emit('update:scale', Math.max(0.2, scale / 1.1))">−</button>
     </div>
   </div>
 </template>
