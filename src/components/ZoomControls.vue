@@ -19,25 +19,27 @@ defineEmits<{ 'update:scale': [value: number] }>();
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--color-surface-container);
   border-radius: 8px;
   padding: 6px 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   z-index: 10;
   font-family: sans-serif;
   font-size: 14px;
+  color: var(--color-text);
 }
 .zoom-controls button {
   width: 28px;
   height: 28px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-outline);
   border-radius: 4px;
-  background: #fff;
+  background: var(--color-surface-container-high);
   cursor: pointer;
   font-size: 16px;
   line-height: 1;
+  color: var(--color-text);
 }
 .zoom-controls button:hover {
-  background: #eee;
+  background: var(--color-surface-container-highest);
 }
 </style>

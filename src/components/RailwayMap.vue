@@ -14,14 +14,26 @@
       @mouseup="onMouseUp"
       @mouseleave="onSvgMouseLeave"
       style="cursor: grab; user-select: none">
-      <rect width="100%" height="100%" fill="#f8f9fa" />
+      <rect width="100%" height="100%" fill="var(--color-body, #f8f9fa)" />
 
       <g :transform="`translate(${panX}, ${panY}) scale(${scale})`">
         <g v-for="(gx, i) in gridX" :key="'gx' + i">
-          <line :x1="gx" y1="0" :x2="gx" :y2="svgHeight" stroke="#e0e0e0" stroke-width="0.5" />
+          <line
+            :x1="gx"
+            y1="0"
+            :x2="gx"
+            :y2="svgHeight"
+            stroke="var(--color-outline, #e0e0e0)"
+            stroke-width="0.5" />
         </g>
         <g v-for="(gy, i) in gridY" :key="'gy' + i">
-          <line x1="0" :y1="gy" :x2="svgWidth" :y2="gy" stroke="#e0e0e0" stroke-width="0.5" />
+          <line
+            x1="0"
+            :y1="gy"
+            :x2="svgWidth"
+            :y2="gy"
+            stroke="var(--color-outline, #e0e0e0)"
+            stroke-width="0.5" />
         </g>
 
         <line
@@ -41,7 +53,7 @@
           v-for="lb in segLabels"
           :key="lb.key"
           :transform="`translate(${lb.x}, ${lb.y})${lb.angle ? ` rotate(${lb.angle})` : ''}`"
-          fill="#999"
+          fill="var(--color-text-disabled, #999)"
           :font-size="lb.fontSize"
           text-anchor="middle"
           dominant-baseline="central"
@@ -57,7 +69,7 @@
           :y1="ll.y1"
           :x2="ll.x2"
           :y2="ll.y2"
-          stroke="#999"
+          stroke="var(--color-outline, #999)"
           stroke-width="1"
           stroke-dasharray="4,3" />
 
@@ -68,7 +80,7 @@
           :y1="ll.y1"
           :x2="ll.x2"
           :y2="ll.y2"
-          stroke="#999"
+          stroke="var(--color-outline, #999)"
           stroke-width="1"
           stroke-dasharray="4,3" />
 
@@ -81,7 +93,7 @@
             :cy="station.cy"
             :r="transferStationIds.has(station.id) ? 7 : 5"
             fill="#1f77b4"
-            stroke="#fff"
+            stroke="var(--color-body, #fff)"
             stroke-width="2"
             style="cursor: pointer"
             @click.stop="onStationClick(station.id)" />
@@ -92,7 +104,7 @@
           <text
             :x="lb.cnX"
             :y="lb.top + lb.fCN * 1.1"
-            fill="#333"
+            fill="var(--color-text, #333)"
             font-weight="bold"
             :font-size="lb.fCN"
             :font-family="lb.fontFamily">
@@ -102,7 +114,7 @@
             v-if="lb.nameZh"
             :x="lb.zhX"
             :y="lb.top + lb.fCN * 1.2 + textGap + lb.fEN * 1.1"
-            fill="#555"
+            fill="var(--color-on-surface-variant, #555)"
             font-weight="bold"
             :font-size="lb.fEN"
             :font-family="lb.fontFamilyZh">
@@ -111,7 +123,7 @@
           <text
             :x="lb.enX"
             :y="lb.top + lb.h - pad"
-            fill="#555"
+            fill="var(--color-on-surface-variant, #555)"
             font-weight="bold"
             :font-size="lb.fEN"
             :font-family="lb.fontFamilyEn">
@@ -125,7 +137,7 @@
           <text
             :x="lb.cnX"
             :y="lb.top + lb.fCN * 1.1"
-            fill="#333"
+            fill="var(--color-text, #333)"
             font-weight="bold"
             :font-size="lb.fCN"
             :font-family="lb.fontFamily">
@@ -135,7 +147,7 @@
             v-if="lb.nameZh"
             :x="lb.zhX"
             :y="lb.top + lb.fCN * 1.2 + textGap + lb.fEN * 1.1"
-            fill="#555"
+            fill="var(--color-on-surface-variant, #555)"
             font-weight="bold"
             :font-size="lb.fEN"
             :font-family="lb.fontFamilyZh">
@@ -144,7 +156,7 @@
           <text
             :x="lb.enX"
             :y="lb.top + lb.h - pad"
-            fill="#555"
+            fill="var(--color-on-surface-variant, #555)"
             font-weight="bold"
             :font-size="lb.fEN"
             :font-family="lb.fontFamilyEn">
@@ -399,7 +411,7 @@ function onStationClick(stationId: string) {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #f0f0f0;
+  background: var(--color-body, #f0f0f0);
   touch-action: none;
 }
 svg {

@@ -29,8 +29,9 @@ defineEmits<{ close: [] }>();
   max-height: 80vh;
   overflow-y: auto;
   padding: 24px 28px;
-  background: #fff;
+  background: var(--color-surface-container);
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  color: var(--color-text);
 }
 </style>

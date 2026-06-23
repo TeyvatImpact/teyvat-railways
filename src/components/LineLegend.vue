@@ -11,13 +11,13 @@ defineProps<{ mouseCoord?: string | null }>();
   position: fixed;
   bottom: 12px;
   left: 12px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--color-surface-container);
   border-radius: 8px;
   padding: 6px 10px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   font-family: 'Courier New', monospace;
   font-size: 13px;
-  color: #555;
+  color: var(--color-text);
   z-index: 10;
 }
 </style>

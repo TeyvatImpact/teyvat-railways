@@ -18,9 +18,10 @@ const html = computed(() => md.render(raw));
 </script>
 
 <style>
-@import 'github-markdown-css/github-markdown-light.css';
+@import 'github-markdown-css/github-markdown.css';
 
 .markdown-body {
-  background: #eeeeee !important;
+  background: var(--color-surface-container-low) !important;
+  color: var(--color-text) !important;
 }
 </style>
