@@ -949,29 +949,29 @@
         ["VKO", "LT"]
       ],
       "stations": [
-        ["SAA", false, 500, 10, 10],
-        ["MSC", false, 500, 10, 10],
-        ["MSG", false, 500, 10, 10],
-        ["SPV", true, 500, 10, 10],
-        ["DWW", false, 500, 10, 10],
-        ["STG", false, 500, 10, 10],
-        ["DHM", false, 500, 10, 10],
-        ["WSI", false, 500, 10, 10],
-        ["GLP", false, 500, 10, 10],
-        ["LYN", false, 500, 10, 10],
-        ["LYH", false, 500, 10, 10],
-        ["LSA", false, 500, 10, 10],
-        ["CHM", false, 500, 10, 10],
+        ["SAA", false, 500, 10, 1],
+        ["MSC", false, 500, 10, 0.5],
+        ["MSG", false, 500, 10, 8],
+        ["SPV", true, 500, 10, 12],
+        ["DWW", false, 500, 10, 20],
+        ["STG", false, 500, 10, 7],
+        ["DHM", false, 500, 10, 8],
+        ["WSI", false, 500, 10, 11],
+        ["GLP", false, 500, 10, 15],
+        ["LYN", false, 500, 10, 12],
+        ["LYH", false, 500, 10, 14],
+        ["LSA", false, 500, 10, 20],
+        ["CHM", false, 500, 10, 3],
         ["CBC", false, 500, 10, 10],
-        ["GHV", true, 500, 10, 10],
-        ["SMC", false, 500, 10, 10],
-        ["PDD", false, 500, 10, 10],
-        ["CVR", true, 500, 10, 10],
-        ["ARV", false, 500, 10, 10],
-        ["MKD", false, 500, 10, 10],
+        ["GHV", true, 500, 10, 15],
+        ["SMC", false, 500, 10, 20],
+        ["PDD", false, 500, 10, 20],
+        ["CVR", true, 500, 10, 12],
+        ["ARV", false, 500, 10, 40],
+        ["MKD", false, 500, 10, 30],
         ["DOM", false, 500, 10, 10],
-        ["WSV", false, 500, 10, 10],
-        ["TMM", true, 500, 10, 10],
+        ["WSV", false, 500, 10, 30],
+        ["TMM", true, 500, 10, 20],
         ["VKO", false, 500, 10, 10]
       ]
     },
@@ -986,18 +986,18 @@
         ["DTM", "LT"]
       ],
       "stations": [
-        ["STL", true, 500, 10, 10],
+        ["STL", true, 500, 10, 20],
         ["WLD", false, 500, 10, 10],
-        ["DWW", true, 500, 10, 10],
-        ["WRV", false, 500, 10, 10],
-        ["MYV", true, 500, 10, 10],
-        ["GLP", false, 500, 10, 10],
-        ["CJS", false, 500, 10, 10],
-        ["TQV", true, 500, 10, 10],
+        ["DWW", true, 500, 10, 15],
+        ["WRV", false, 500, 10, 18],
+        ["MYV", true, 500, 10, 18],
+        ["GLP", false, 500, 10, 15],
+        ["CJS", false, 500, 10, 15],
+        ["TQV", true, 500, 10, 15],
         ["LPV", false, 500, 10, 10],
-        ["CHM", false, 500, 10, 10],
-        ["TGG", false, 500, 10, 10],
-        ["DTM", false, 500, 10, 10],
+        ["CHM", false, 500, 10, 12],
+        ["TGG", false, 500, 10, 20],
+        ["DTM", false, 500, 10, 15],
         ["POM", false, 500, 10, 10]
       ]
     },
@@ -1010,11 +1010,11 @@
         ["WRV", "RT"]
       ],
       "stations": [
-        ["SFL", false, 500, 10, 10],
-        ["WSW", false, 500, 10, 10],
-        ["MSG", false, 500, 10, 10],
-        ["WDR", false, 500, 10, 10],
-        ["DSC", false, 500, 10, 10],
+        ["SFL", false, 500, 10, 7],
+        ["WSW", false, 500, 10, 7],
+        ["MSG", false, 500, 10, 9],
+        ["WDR", false, 500, 10, 12],
+        ["DSC", false, 500, 10, 4],
         ["SCP", false, 500, 10, 10],
         ["WRV", false, 500, 10, 10]
       ]
@@ -1029,14 +1029,14 @@
         ["YLW", "RT"]
       ],
       "stations": [
-        ["LYS", false, 500, 10, 10],
-        ["LYH", false, 500, 10, 10],
+        ["LYS", false, 500, 10, 3],
+        ["LYH", false, 500, 10, 8],
         ["DYR", false, 500, 10, 10],
-        ["TQV", false, 500, 10, 10],
-        ["NTM", false, 500, 10, 10],
+        ["TQV", false, 500, 10, 11],
+        ["NTM", false, 500, 10, 7],
         ["MIL", false, 500, 10, 10],
-        ["MXL", false, 500, 10, 10],
-        ["CZW", true, 500, 10, 10],
+        ["MXL", false, 500, 10, 8],
+        ["CZW", true, 500, 10, 11],
         ["JDM", false, 500, 10, 10],
         ["YLW", false, 500, 10, 10]
       ]
@@ -1051,12 +1051,12 @@
         ["WSI", "RT"]
       ],
       "stations": [
-        ["CWT", false, 500, 10, 10],
-        ["MMY", false, 500, 10, 10],
-        ["YLW", false, 500, 10, 10],
-        ["QYV", true, 500, 10, 10],
-        ["QCV", false, 500, 10, 10],
-        ["DHM", false, 500, 10, 10],
+        ["CWT", false, 500, 10, 16],
+        ["MMY", false, 500, 10, 5],
+        ["YLW", false, 500, 10, 18],
+        ["QYV", true, 500, 10, 25],
+        ["QCV", false, 500, 10, 11],
+        ["DHM", false, 500, 10, 8],
         ["WSI", false, 500, 10, 10]
       ]
     },
@@ -1069,10 +1069,10 @@
         ["POM", "LT"]
       ],
       "stations": [
-        ["BDH", false, 500, 10, 10],
-        ["CTC", false, 500, 10, 10],
-        ["SMC", false, 500, 10, 10],
-        ["VMV", false, 500, 10, 10],
+        ["BDH", false, 500, 10, 12],
+        ["CTC", false, 500, 10, 6],
+        ["SMC", false, 500, 10, 14],
+        ["VMV", false, 500, 10, 16],
         ["POM", false, 500, 10, 10]
       ]
     },
@@ -1085,17 +1085,17 @@
         ["VNA", "RB"]
       ],
       "stations": [
-        ["CTC", false, 500, 10, 10],
-        ["CHH", false, 500, 10, 10],
+        ["CTC", false, 500, 10, 15],
+        ["CHH", false, 500, 10, 12],
         ["GHV", false, 500, 10, 10],
-        ["DTM", false, 500, 10, 10],
-        ["POM", false, 500, 10, 10],
+        ["DTM", false, 500, 10, 15],
+        ["POM", false, 500, 10, 16],
         ["APW", false, 500, 10, 10],
-        ["ROD", false, 500, 10, 10],
-        ["CVR", false, 500, 10, 10],
-        ["YNM", false, 500, 10, 10],
-        ["FOA", false, 500, 10, 10],
-        ["VNA", false, 500, 10, 10],
+        ["ROD", false, 500, 10, 5],
+        ["CVR", false, 500, 10, 12],
+        ["YNM", false, 500, 10, 9],
+        ["FOA", false, 500, 10, 8],
+        ["VNA", false, 500, 10, 14],
         ["CTC", false, 500, 10, 10]
       ]
     },
@@ -1109,18 +1109,18 @@
         ["MAE", "RB"]
       ],
       "stations": [
-        ["COF", false, 500, 10, 10],
-        ["PLM", false, 500, 10, 10],
-        ["FRI", false, 500, 10, 10],
-        ["CLR", false, 500, 10, 10],
-        ["LCU", false, 500, 10, 10],
-        ["WWL", false, 500, 10, 10],
-        ["FFP", false, 500, 10, 10],
-        ["FCR", true, 500, 10, 10],
-        ["MAE", false, 500, 10, 10],
-        ["MAT", false, 500, 10, 10],
-        ["POI", false, 500, 10, 10],
-        ["ENS", false, 500, 10, 10],
+        ["COF", false, 500, 10, 1],
+        ["PLM", false, 500, 10, 25],
+        ["FRI", false, 500, 10, 8],
+        ["CLR", false, 500, 10, 18],
+        ["LCU", false, 500, 10, 6],
+        ["WWL", false, 500, 10, 7],
+        ["FFP", false, 500, 10, 12],
+        ["FCR", true, 500, 10, 15],
+        ["MAE", false, 500, 10, 6],
+        ["MAT", false, 500, 10, 3],
+        ["POI", false, 500, 10, 15],
+        ["ENS", false, 500, 10, 15],
         ["COF", false, 500, 10, 10]
       ]
     },
@@ -1133,7 +1133,7 @@
         ["LDH", "B"]
       ],
       "stations": [
-        ["COF", true, 500, 10, 10],
+        ["COF", true, 500, 10, 16],
         ["MCT", false, 500, 10, 10],
         ["OPE", false, 500, 10, 10],
         ["FFP", false, 500, 10, 10],
@@ -1149,10 +1149,10 @@
         ["MES", "L"]
       ],
       "stations": [
-        ["RRH", false, 500, 10, 10],
-        ["MAT", false, 500, 10, 10],
-        ["COF", false, 500, 10, 10],
-        ["PLM", true, 500, 10, 10],
+        ["RRH", false, 500, 10, 20],
+        ["MAT", false, 500, 10, 20],
+        ["COF", false, 500, 10, 3],
+        ["PLM", true, 500, 10, 20],
         ["MES", false, 500, 10, 10]
       ]
     },
