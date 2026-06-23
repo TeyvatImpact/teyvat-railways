@@ -103,7 +103,7 @@ for (const line of lines) {
     const dist = lookupDistance(aId, bId);
     const preset = getPreset(line.costPreset);
     const fare = Math.round(dist * preset.farePerKm);
-    const time = dist * preset.minutesPerKm;
+    const time = Math.round(dist * preset.minutesPerKm);
     addEdge(`${aId}-${line.id}`, `${bId}-${line.id}`, fare, {
       fare,
       time,

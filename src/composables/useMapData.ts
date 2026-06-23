@@ -409,7 +409,7 @@ for (const line of parsedLines) {
     const dist = lookupDistance(aId, bId);
     const preset = getPreset(line.costPreset);
     const fare = Math.round(dist * preset.farePerKm);
-    const time = dist * preset.minutesPerKm;
+    const time = Math.round(dist * preset.minutesPerKm);
 
     const ax = sa.cx,
       ay = sa.cy;

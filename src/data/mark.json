@@ -24,55 +24,55 @@
     },
     {
       "content": "稲妻旅客鉄道株式会社",
-      "x": 8,
+      "x": 15,
       "y": 13,
       "fontFamily": "Noto Sans JP"
     },
     {
       "content": "Inazuma Railways",
-      "x": 8,
+      "x": 15,
       "y": 13.5,
       "fontSize": 18,
       "fontFamily": "Noto Sans JP"
     },
     {
       "content": "IR 東稲妻 IR East",
-      "x": 15,
+      "x": 25,
       "y": 17,
       "fontSize": 24,
       "fontFamily": "Noto Sans JP"
     },
     {
       "content": "(稲妻幕府)",
-      "x": 15,
+      "x": 25,
       "y": 17.5,
       "fontSize": 18,
       "fontFamily": "Noto Sans JP"
     },
     {
       "content": "IR 珊瑚宮 IR Sangonomiya",
-      "x": 4,
+      "x": 14,
       "y": 20,
       "fontSize": 24,
       "fontFamily": "Noto Sans JP"
     },
     {
       "content": "(稲妻国海祇島珊瑚宮自治政府)",
-      "x": 4,
+      "x": 14,
       "y": 20.5,
       "fontSize": 18,
       "fontFamily": "Noto Sans JP"
     },
     {
       "content": "IR 鶴観 IR Tsurumi",
-      "x": 13,
+      "x": 23,
       "y": 21,
       "fontSize": 24,
       "fontFamily": "Noto Sans JP"
     },
     {
       "content": "(稲妻幕府)",
-      "x": 13,
+      "x": 23,
       "y": 21.5,
       "fontSize": 18,
       "fontFamily": "Noto Sans JP"
