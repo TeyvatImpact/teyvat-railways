@@ -1,9 +1,35 @@
 {
-  "config": { "x": 11, "y": 7, "name": "Inazuma", "fontFamily": "Noto Serif JP" },
+  "config": {
+    "x": 11,
+    "y": 7,
+    "name": "Inazuma",
+    "fontFamily": "Noto Serif JP"
+  },
   "stations": [
-    { "id": "RTP", "nameCn": "離島港", "nameEn": "Ritou Port", "x": 0, "y": 0, "labelDir": "LB" },
-    { "id": "RTU", "nameCn": "離島", "nameEn": "Ritou", "x": 1, "y": 0, "labelDir": "T" },
-    { "id": "KDV", "nameCn": "紺田村", "nameEn": "Konda Village", "x": 3, "y": 1, "labelDir": "L" },
+    {
+      "id": "RTP",
+      "nameCn": "離島港",
+      "nameEn": "Ritou Port",
+      "x": 0,
+      "y": 0,
+      "labelDir": "LB"
+    },
+    {
+      "id": "RTU",
+      "nameCn": "離島",
+      "nameEn": "Ritou",
+      "x": 1,
+      "y": 0,
+      "labelDir": "T"
+    },
+    {
+      "id": "KDV",
+      "nameCn": "紺田村",
+      "nameEn": "Konda Village",
+      "x": 3,
+      "y": 1,
+      "labelDir": "L"
+    },
     {
       "id": "BKP",
       "nameCn": "白狐の野",
@@ -12,8 +38,22 @@
       "y": 2,
       "labelDir": "L"
     },
-    { "id": "HMZ", "nameCn": "花見坂", "nameEn": "Hanamizaka", "x": 5, "y": 3, "labelDir": "RT" },
-    { "id": "IZC", "nameCn": "稲妻城", "nameEn": "Inazuma City", "x": 6, "y": 4, "labelDir": "RT" },
+    {
+      "id": "HMZ",
+      "nameCn": "花見坂",
+      "nameEn": "Hanamizaka",
+      "x": 5,
+      "y": 3,
+      "labelDir": "RT"
+    },
+    {
+      "id": "IZC",
+      "nameCn": "稲妻城",
+      "nameEn": "Inazuma City",
+      "x": 6,
+      "y": 4,
+      "labelDir": "RT"
+    },
     {
       "id": "NIT",
       "nameCn": "鳴神島・天守",
@@ -22,7 +62,14 @@
       "y": 5,
       "labelDir": "RT"
     },
-    { "id": "AUM", "nameCn": "荒海", "nameEn": "Araumi", "x": 4, "y": -2, "labelDir": "RB" },
+    {
+      "id": "AUM",
+      "nameCn": "荒海",
+      "nameEn": "Araumi",
+      "x": 4,
+      "y": -2,
+      "labelDir": "RB"
+    },
     {
       "id": "YGN",
       "nameCn": "影向山北",
@@ -31,7 +78,13 @@
       "y": -2,
       "labelDir": "RT"
     },
-    { "id": "KSE", "nameCn": "神里屋敷", "nameEn": "Kamisato Estate", "x": 7, "y": 0 },
+    {
+      "id": "KSE",
+      "nameCn": "神里屋敷",
+      "nameEn": "Kamisato Estate",
+      "x": 7,
+      "y": 0
+    },
     {
       "id": "CJF",
       "nameCn": "鎮守の森",
@@ -64,7 +117,14 @@
       "y": 4,
       "labelDir": "RB"
     },
-    { "id": "KNZ", "nameCn": "神無塚", "nameEn": "Kannazuka", "x": -2, "y": 5, "labelDir": "RB" },
+    {
+      "id": "KNZ",
+      "nameCn": "神無塚",
+      "nameEn": "Kannazuka",
+      "x": -2,
+      "y": 5,
+      "labelDir": "RB"
+    },
     {
       "id": "NCB",
       "nameCn": "名椎の浜",
@@ -81,7 +141,14 @@
       "y": 5,
       "labelDir": "T"
     },
-    { "id": "HGV", "nameCn": "緋木村", "nameEn": "Higi Village", "x": -8, "y": 6, "labelDir": "L" },
+    {
+      "id": "HGV",
+      "nameCn": "緋木村",
+      "nameEn": "Higi Village",
+      "x": -8,
+      "y": 6,
+      "labelDir": "L"
+    },
     {
       "id": "FFT",
       "nameCn": "藤兜砦",
@@ -122,7 +189,14 @@
       "y": 6,
       "labelDir": "T"
     },
-    { "id": "SGM", "nameCn": "珊瑚宮", "nameEn": "Sangonomiya", "x": -13, "y": 6, "labelDir": "B" },
+    {
+      "id": "SGM",
+      "nameCn": "珊瑚宮",
+      "nameEn": "Sangonomiya",
+      "x": -13,
+      "y": 6,
+      "labelDir": "B"
+    },
     {
       "id": "MUS",
       "nameCn": "曚雲神社",
@@ -171,7 +245,14 @@
       "y": 14,
       "labelDir": "RB"
     },
-    { "id": "TMP", "nameCn": "鶴観港", "nameEn": "Tsurumi Port", "x": 1, "y": 12, "labelDir": "B" },
+    {
+      "id": "TMP",
+      "nameCn": "鶴観港",
+      "nameEn": "Tsurumi Port",
+      "x": 1,
+      "y": 12,
+      "labelDir": "B"
+    },
     {
       "id": "MKN",
       "nameCn": "カンナ山",
@@ -195,32 +276,127 @@
       "name": "IR 東稲妻·鳴神島線",
       "nameEn": "IR East Narukami Line",
       "lineLabels": [
-        ["RTP", "LT"],
-        ["NIT", "LB"]
+        [
+          "RTP",
+          "LT"
+        ],
+        [
+          "NIT",
+          "LB"
+        ]
       ],
       "stations": [
-        ["RTP", false],
-        ["RTU", false],
-        ["KDV", false],
-        ["BKP", false],
-        ["HMZ", false],
-        ["IZC", false],
-        ["NIT", false]
+        [
+          "RTP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "RTU",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "KDV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "BKP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "HMZ",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "IZC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NIT",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
       "id": "YG",
       "name": "IR 東稲妻·影向山環状線",
       "nameEn": "IR East Mt. Yougou Loop Line",
-      "lineLabels": [["AUM", "T"]],
+      "lineLabels": [
+        [
+          "AUM",
+          "T"
+        ]
+      ],
       "stations": [
-        ["BKP", false],
-        ["KDV", false],
-        ["AUM", false],
-        ["YGN", true],
-        ["KSE", false],
-        ["CJF", true],
-        ["BKP", false]
+        [
+          "BKP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "KDV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "AUM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "YGN",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "KSE",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CJF",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "BKP",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -228,67 +404,243 @@
       "name": "IR 東稲妻·鳴海線",
       "nameEn": "IR East Inazuma-Watatsumi Line",
       "lineLabels": [
-        ["AKI", "LT"],
-        ["NCB", "B"]
+        [
+          "AKI",
+          "LT"
+        ],
+        [
+          "NCB",
+          "B"
+        ]
       ],
       "stations": [
-        ["GNS", false],
-        ["BKP", false],
-        ["AKI", true],
-        ["KJE", false],
-        ["KNZ", false],
-        ["NCB", false],
-        ["MSG", false],
-        ["HGV", false]
+        [
+          "GNS",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "BKP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "AKI",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "KJE",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "KNZ",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NCB",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MSG",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "HGV",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
       "id": "YO",
       "name": "IR 東稲妻·ヤシオリ島線",
       "nameEn": "IR East Yashiori Island Line",
-      "lineLabels": [["SPH", "LB"]],
+      "lineLabels": [
+        [
+          "SPH",
+          "LB"
+        ]
+      ],
       "stations": [
-        ["FFT", false],
-        ["HGV", false],
-        ["SPH", false],
-        ["JTM", false]
+        [
+          "FFT",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "HGV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SPH",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "JTM",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
       "id": "WT",
       "name": "IR 珊瑚宮·海祇島線",
       "nameEn": "IR Sangonomiya Watatsumi Island Line",
-      "lineLabels": [["WTE", "LB"]],
+      "lineLabels": [
+        [
+          "WTE",
+          "LB"
+        ]
+      ],
       "stations": [
-        ["WTE", false],
-        ["BRV", false],
-        ["SGM", false],
-        ["MUS", false]
+        [
+          "WTE",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "BRV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SGM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MUS",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
       "id": "TA",
       "name": "IR 鶴観·一番線",
       "nameEn": "IR Tsurumi Line 1",
-      "lineLabels": [["SKP", "LB"]],
+      "lineLabels": [
+        [
+          "SKP",
+          "LB"
+        ]
+      ],
       "stations": [
-        ["SKP", false],
-        ["ONB", false],
-        ["CRS", false],
-        ["MCS", false],
-        ["WKS", false]
+        [
+          "SKP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "ONB",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CRS",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MCS",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "WKS",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
       "id": "TB",
       "name": "IR 鶴観·二番線",
       "nameEn": "IR Tsurumi Line 12",
-      "lineLabels": [["TMP", "RT"]],
+      "lineLabels": [
+        [
+          "TMP",
+          "RT"
+        ]
+      ],
       "stations": [
-        ["TMP", false],
-        ["MCS", false],
-        ["MKN", false],
-        ["ATP", false]
+        [
+          "TMP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MCS",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MKN",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "ATP",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     }
   ]

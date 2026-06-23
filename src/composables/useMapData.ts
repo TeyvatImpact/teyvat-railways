@@ -38,7 +38,7 @@ export interface LineData {
   name: string;
   nameEn: string;
   lineLabels?: [string, string][];
-  stations: [string, boolean][];
+  stations: [string, boolean, number, number, number][];
   fontFamily?: string;
   lineType?: 'ferry' | 'same-station';
 }
@@ -54,7 +54,7 @@ export interface Line {
   nameEn: string;
   color: string;
   lineLabels?: [string, string][];
-  stations: [string, boolean][];
+  stations: [string, boolean, number, number, number][];
   fontFamily?: string;
   lineType?: 'ferry' | 'same-station';
 }
@@ -137,19 +137,19 @@ const parsedLinesI = dataI.lines as LineData[];
 const parsedLinesL = dataL.lines as LineData[];
 
 for (const line of parsedLinesR) {
-  line.stations = line.stations.map(([id, dir]) => [parsedR.prefix + '-' + id, dir]);
+  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [parsedR.prefix + '-' + id, dir, fare, time, dist]);
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedR.prefix + '-' + id, dir]);
   line.fontFamily = parsedR.fontFamily;
 }
 for (const line of parsedLinesI) {
-  line.stations = line.stations.map(([id, dir]) => [parsedI.prefix + '-' + id, dir]);
+  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [parsedI.prefix + '-' + id, dir, fare, time, dist]);
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedI.prefix + '-' + id, dir]);
   line.fontFamily = parsedI.fontFamily;
 }
 for (const line of parsedLinesL) {
-  line.stations = line.stations.map(([id, dir]) => [parsedL.prefix + '-' + id, dir]);
+  line.stations = line.stations.map(([id, dir, fare, time, dist]) => [parsedL.prefix + '-' + id, dir, fare, time, dist]);
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedL.prefix + '-' + id, dir]);
   line.fontFamily = parsedL.fontFamily;
@@ -306,7 +306,7 @@ for (const line of parsedLines) {
   const lw = lineWidth(line);
   const dash = line.lineType === 'ferry' ? FERRY_DASH : undefined;
   for (let i = 0; i < line.stations.length - 1; i++) {
-    const [aId, aDir] = line.stations[i];
+    const [aId, aDir, aFare, aTime, aDist] = line.stations[i];
     const [bId] = line.stations[i + 1];
     const sa = stationMap.get(aId);
     const sb = stationMap.get(bId);

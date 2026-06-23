@@ -16,12 +16,18 @@ export interface RouteSegment {
   lineNameEn: string
   isFerry: boolean
   nodes: NodeInfo[]
+  fare: number
+  time: number
+  distance: number
 }
 
 export interface RouteResult {
   segments: RouteSegment[]
   pathNodeIds: string[]
   totalWeight: number
+  totalFare: number
+  totalTime: number
+  totalDistance: number
 }
 
 export interface StationSuggestion {
@@ -31,15 +37,28 @@ export interface StationSuggestion {
   lines: { id: string; name: string; nameEn: string }[]
 }
 
+interface EdgeMetrics {
+  fare: number
+  time: number
+  distance: number
+}
+
 const graph = new Map<string, Map<string, number>>()
+const edgeMetrics = new Map<string, Map<string, EdgeMetrics>>()
 const stationNodeMap = new Map<string, string[]>()
 const nodeInfoMap = new Map<string, NodeInfo>()
 
-function addEdge(a: string, b: string, w: number) {
+function addEdge(a: string, b: string, w: number, m?: EdgeMetrics) {
   if (!graph.has(a)) graph.set(a, new Map())
   if (!graph.has(b)) graph.set(b, new Map())
   graph.get(a)!.set(b, w)
   graph.get(b)!.set(a, w)
+  if (m) {
+    if (!edgeMetrics.has(a)) edgeMetrics.set(a, new Map())
+    if (!edgeMetrics.has(b)) edgeMetrics.set(b, new Map())
+    edgeMetrics.get(a)!.set(b, m)
+    edgeMetrics.get(b)!.set(a, m)
+  }
 }
 
 const seenNodes = new Set<string>()
@@ -73,12 +92,12 @@ for (const line of lines) {
   }
 
   for (let i = 0; i < line.stations.length - 1; i++) {
-    const [aId] = line.stations[i]
+    const [aId, , aFare, aTime, aDist] = line.stations[i]
     const [bId] = line.stations[i + 1]
     const aSt = stationMap.get(aId)
     const bSt = stationMap.get(bId)
     if (!aSt || !bSt) continue
-    addEdge(`${aId}-${line.id}`, `${bId}-${line.id}`, edgeWeight)
+    addEdge(`${aId}-${line.id}`, `${bId}-${line.id}`, edgeWeight, { fare: aFare, time: aTime, distance: aDist })
   }
 }
 
@@ -195,33 +214,54 @@ export function useRouting() {
     }
 
     let totalWeight = 0
+    let totalFare = 0
+    let totalTime = 0
+    let totalDistance = 0
     for (let i = 0; i < pathNodes.length - 1; i++) {
       const w = graph.get(pathNodes[i])?.get(pathNodes[i + 1])
       if (w !== undefined) totalWeight += w
+      const m = edgeMetrics.get(pathNodes[i])?.get(pathNodes[i + 1])
+      if (m) {
+        totalFare += m.fare
+        totalTime += m.time
+        totalDistance += m.distance
+      }
     }
 
     const segments: RouteSegment[] = []
-    let currentSeg: { lineId: string; nodes: NodeInfo[] } | null = null
+    let currentSeg: RouteSegment | null = null
 
-    for (const nodeId of pathNodes) {
+    for (let pi = 0; pi < pathNodes.length; pi++) {
+      const nodeId = pathNodes[pi]
       const info = nodeInfoMap.get(nodeId)
       if (!info) continue
 
       if (!currentSeg || currentSeg.lineId !== info.lineId) {
-        currentSeg = { lineId: info.lineId, nodes: [info] }
-        segments.push({
+        currentSeg = {
           lineId: info.lineId,
           lineName: info.lineName,
           lineNameEn: info.lineNameEn,
           isFerry: info.lineId.startsWith('ferry-'),
-          nodes: currentSeg.nodes,
-        })
+          nodes: [info],
+          fare: 0,
+          time: 0,
+          distance: 0,
+        }
+        segments.push(currentSeg)
       } else {
         currentSeg.nodes.push(info)
+        if (pi > 0) {
+          const m = edgeMetrics.get(pathNodes[pi - 1])?.get(pathNodes[pi])
+          if (m) {
+            currentSeg.fare += m.fare
+            currentSeg.time += m.time
+            currentSeg.distance += m.distance
+          }
+        }
       }
     }
 
-    return { segments, pathNodeIds: pathNodes, totalWeight }
+    return { segments, pathNodeIds: pathNodes, totalWeight, totalFare, totalTime, totalDistance }
   }
 
   function formatRoute(result: RouteResult): string {
@@ -264,6 +304,7 @@ export function useRouting() {
 
     textLines.push(`到达 ${endNode.stationName}`)
     textLines.push(`（总权重: ${result.totalWeight.toFixed(1)}）`)
+    textLines.push(`总票价: ${result.totalFare} 摩拉 | 总时间: ${result.totalTime} 分钟 | 总距离: ${result.totalDistance} 千米`)
 
     return textLines.join('\n')
   }

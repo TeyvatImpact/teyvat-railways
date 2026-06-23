@@ -17,7 +17,10 @@
       <div class="text-xs text-gray-500">
         <span v-if="result.segments.length === 1">直达</span>
         <span v-else>{{ result.segments.length }} 段换乘</span>
-        <span> · 总权重 {{ result.totalWeight.toFixed(1) }}</span>
+        <span> · 权重 {{ result.totalWeight.toFixed(1) }}</span>
+        <span class="ml-2">票价 {{ result.totalFare }} 摩拉</span>
+        <span class="ml-2">时间 {{ result.totalTime }} min</span>
+        <span class="ml-2">距离 {{ result.totalDistance }} km</span>
       </div>
     </div>
     <button
@@ -81,6 +84,7 @@
               </span>
               <br />
               <span class="text-xs text-gray-400 truncate">· 往 {{ block.direction }} 方向</span>
+              <span class="text-xs text-gray-400 ml-2">({{ block.fare }}摩拉 {{ block.time }}min {{ block.distance }}km)</span>
             </div>
             <div v-if="block.intermediates.length > 0" class="space-y-1">
               <div v-for="n in block.intermediates" :key="n.stationName" class="leading-tight">
@@ -126,6 +130,9 @@ interface ProcessBlock {
   direction: string;
   intermediates: { stationName: string; stationNameEn: string }[];
   lineColor: string;
+  fare: number;
+  time: number;
+  distance: number;
 }
 
 type Block = StationBlock | ProcessBlock;
@@ -190,6 +197,9 @@ const blocks = computed<Block[]>(() => {
           stationNameEn: n.stationNameEn,
         })),
         lineColor: color,
+        fare: seg.fare,
+        time: seg.time,
+        distance: seg.distance,
       });
     }
   }

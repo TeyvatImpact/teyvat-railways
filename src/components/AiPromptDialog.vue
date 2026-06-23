@@ -92,7 +92,7 @@ interface FileLine {
   name: string;
   nameEn: string;
   lineType?: string;
-  stations: [string, boolean][];
+  stations: [string, boolean, number, number, number][];
 }
 
 interface RegionFile {

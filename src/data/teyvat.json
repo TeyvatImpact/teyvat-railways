@@ -1,7 +1,19 @@
 {
-  "config": { "x": 0, "y": 0, "name": "Teyvat", "fontFamily": "Noto Sans SC" },
+  "config": {
+    "x": 0,
+    "y": 0,
+    "name": "Teyvat",
+    "fontFamily": "Noto Sans SC"
+  },
   "stations": [
-    { "id": "LYH", "nameCn": "璃月港", "nameEn": "Liyue Harbor", "x": 0, "y": 0, "labelDir": "R" },
+    {
+      "id": "LYH",
+      "nameCn": "璃月港",
+      "nameEn": "Liyue Harbor",
+      "x": 0,
+      "y": 0,
+      "labelDir": "R"
+    },
     {
       "id": "LYS",
       "nameCn": "璃月港南",
@@ -26,7 +38,14 @@
       "y": -3,
       "labelDir": "L"
     },
-    { "id": "NTM", "nameCn": "南天门", "nameEn": "Nantianmen", "x": -4, "y": -4, "labelDir": "L" },
+    {
+      "id": "NTM",
+      "nameCn": "南天门",
+      "nameEn": "Nantianmen",
+      "x": -4,
+      "y": -4,
+      "labelDir": "L"
+    },
     {
       "id": "MIL",
       "nameCn": "珉林",
@@ -51,7 +70,14 @@
       "y": -8,
       "labelDir": "LB"
     },
-    { "id": "JDM", "nameCn": "宝玦口", "nameEn": "Jademouth", "x": -6, "y": -10, "labelDir": "R" },
+    {
+      "id": "JDM",
+      "nameCn": "宝玦口",
+      "nameEn": "Jademouth",
+      "x": -6,
+      "y": -10,
+      "labelDir": "R"
+    },
     {
       "id": "YLW",
       "nameCn": "遗珑埠",
@@ -92,7 +118,14 @@
       "y": -10,
       "labelDir": "RT"
     },
-    { "id": "DHM", "nameCn": "荻花洲", "nameEn": "Dihua Marsh", "x": 1, "y": -8, "labelDir": "LB" },
+    {
+      "id": "DHM",
+      "nameCn": "荻花洲",
+      "nameEn": "Dihua Marsh",
+      "x": 1,
+      "y": -8,
+      "labelDir": "LB"
+    },
     {
       "id": "WSI",
       "nameCn": "望舒客栈",
@@ -117,8 +150,21 @@
       "y": -13,
       "labelDir": "RT"
     },
-    { "id": "MSG", "nameCn": "蒙德城门", "nameEn": "Mondstadt City Gate", "x": 8, "y": -12 },
-    { "id": "SPV", "nameCn": "清泉镇", "nameEn": "Springvale", "x": 7, "y": -11, "labelDir": "LT" },
+    {
+      "id": "MSG",
+      "nameCn": "蒙德城门",
+      "nameEn": "Mondstadt City Gate",
+      "x": 8,
+      "y": -12
+    },
+    {
+      "id": "SPV",
+      "nameCn": "清泉镇",
+      "nameEn": "Springvale",
+      "x": 7,
+      "y": -11,
+      "labelDir": "LT"
+    },
     {
       "id": "DWW",
       "nameCn": "晨曦酒庄",
@@ -127,7 +173,14 @@
       "y": -10,
       "labelDir": "RB"
     },
-    { "id": "STG", "nameCn": "石门", "nameEn": "Stone Gate", "x": 2, "y": -9, "labelDir": "LT" },
+    {
+      "id": "STG",
+      "nameCn": "石门",
+      "nameEn": "Stone Gate",
+      "x": 2,
+      "y": -9,
+      "labelDir": "LT"
+    },
     {
       "id": "GLP",
       "nameCn": "归离原",
@@ -136,9 +189,29 @@
       "y": -4,
       "labelDir": "RB"
     },
-    { "id": "LYN", "nameCn": "璃月港北", "nameEn": "Liyue Harbor North", "x": 1, "y": -1 },
-    { "id": "LSA", "nameCn": "璃沙郊", "nameEn": "Lisha", "x": -1, "y": 1, "labelDir": "B" },
-    { "id": "CHM", "nameCn": "层岩巨渊", "nameEn": "The Chasm", "x": -4, "y": 1, "labelDir": "RB" },
+    {
+      "id": "LYN",
+      "nameCn": "璃月港北",
+      "nameEn": "Liyue Harbor North",
+      "x": 1,
+      "y": -1
+    },
+    {
+      "id": "LSA",
+      "nameCn": "璃沙郊",
+      "nameEn": "Lisha",
+      "x": -1,
+      "y": 1,
+      "labelDir": "B"
+    },
+    {
+      "id": "CHM",
+      "nameCn": "层岩巨渊",
+      "nameEn": "The Chasm",
+      "x": -4,
+      "y": 1,
+      "labelDir": "RB"
+    },
     {
       "id": "CBC",
       "nameCn": "丹砂崖",
@@ -219,7 +292,13 @@
       "y": -3,
       "labelDir": "L"
     },
-    { "id": "VKO", "nameCn": "甘露花海", "nameEn": "Vourukasha Oasis", "x": -22, "y": -4 },
+    {
+      "id": "VKO",
+      "nameCn": "甘露花海",
+      "nameEn": "Vourukasha Oasis",
+      "x": -22,
+      "y": -4
+    },
     {
       "id": "STL",
       "nameCn": "风龙废墟",
@@ -228,7 +307,14 @@
       "y": -14,
       "labelDir": "LT"
     },
-    { "id": "WLD", "nameCn": "奔狼岭", "nameEn": "Wolvendom", "x": 4, "y": -12, "labelDir": "LB" },
+    {
+      "id": "WLD",
+      "nameCn": "奔狼岭",
+      "nameEn": "Wolvendom",
+      "x": 4,
+      "y": -12,
+      "labelDir": "LB"
+    },
     {
       "id": "MYV",
       "nameCn": "明蕴镇",
@@ -245,7 +331,13 @@
       "y": -4,
       "labelDir": "T"
     },
-    { "id": "LPV", "nameCn": "采樵谷", "nameEn": "Lumberpick Valley", "x": -4, "y": -1 },
+    {
+      "id": "LPV",
+      "nameCn": "采樵谷",
+      "nameEn": "Lumberpick Valley",
+      "x": -4,
+      "y": -1
+    },
     {
       "id": "TGG",
       "nameCn": "天工峡",
@@ -270,7 +362,13 @@
       "y": 5,
       "labelDir": "RB"
     },
-    { "id": "SFL", "nameCn": "星落湖", "nameEn": "Starfell Lake", "x": 10, "y": -14 },
+    {
+      "id": "SFL",
+      "nameCn": "星落湖",
+      "nameEn": "Starfell Lake",
+      "x": 10,
+      "y": -14
+    },
     {
       "id": "WSW",
       "nameCn": "低语森林",
@@ -279,7 +377,13 @@
       "y": -13,
       "labelDir": "RB"
     },
-    { "id": "WDR", "nameCn": "风起地", "nameEn": "Windrise", "x": 9, "y": -11 },
+    {
+      "id": "WDR",
+      "nameCn": "风起地",
+      "nameEn": "Windrise",
+      "x": 9,
+      "y": -11
+    },
     {
       "id": "DSC",
       "nameCn": "龙脊雪山营地",
@@ -328,7 +432,14 @@
       "y": 3,
       "labelDir": "L"
     },
-    { "id": "CHH", "nameCn": "香醉坡", "nameEn": "Gandha Hill", "x": -8, "y": -2, "labelDir": "B" },
+    {
+      "id": "CHH",
+      "nameCn": "香醉坡",
+      "nameEn": "Gandha Hill",
+      "x": -8,
+      "y": -2,
+      "labelDir": "B"
+    },
     {
       "id": "APW",
       "nameCn": "水天丛林",
@@ -448,9 +559,30 @@
       "y": -11,
       "labelDir": "RB"
     },
-    { "id": "POI", "nameCn": "白淞镇", "nameEn": "Poisson", "x": -18, "y": -11, "labelDir": "T" },
-    { "id": "ENS", "nameCn": "厄里那斯", "nameEn": "Elynas", "x": -21, "y": -12, "labelDir": "L" },
-    { "id": "MCT", "nameCn": "茉洁", "nameEn": "Marcotte", "x": -16, "y": -16, "labelDir": "B" },
+    {
+      "id": "POI",
+      "nameCn": "白淞镇",
+      "nameEn": "Poisson",
+      "x": -18,
+      "y": -11,
+      "labelDir": "T"
+    },
+    {
+      "id": "ENS",
+      "nameCn": "厄里那斯",
+      "nameEn": "Elynas",
+      "x": -21,
+      "y": -12,
+      "labelDir": "L"
+    },
+    {
+      "id": "MCT",
+      "nameCn": "茉洁",
+      "nameEn": "Marcotte",
+      "x": -16,
+      "y": -16,
+      "labelDir": "B"
+    },
     {
       "id": "OPE",
       "nameCn": "欧庇克莱歌剧院",
@@ -467,7 +599,13 @@
       "y": -14,
       "labelDir": "RT"
     },
-    { "id": "RRH", "nameCn": "海露港", "nameEn": "Romaritime Harbor", "x": -18, "y": -8 },
+    {
+      "id": "RRH",
+      "nameCn": "海露港",
+      "nameEn": "Romaritime Harbor",
+      "x": -18,
+      "y": -8
+    },
     {
       "id": "MES",
       "nameCn": "芒索斯山东麓",
@@ -524,7 +662,13 @@
       "y": 7,
       "labelDir": "T"
     },
-    { "id": "ONT", "nameCn": "奥奇卡纳塔", "nameEn": "Ochkanatlan", "x": -38, "y": -2 },
+    {
+      "id": "ONT",
+      "nameCn": "奥奇卡纳塔",
+      "nameEn": "Ochkanatlan",
+      "x": -38,
+      "y": -2
+    },
     {
       "id": "FFC",
       "nameCn": "「花羽会」",
@@ -581,7 +725,13 @@
       "y": 7,
       "labelDir": "RB"
     },
-    { "id": "TPR", "nameCn": "隆崛坡", "nameEn": "Tepeacac Rise", "x": -28, "y": 5 },
+    {
+      "id": "TPR",
+      "nameCn": "隆崛坡",
+      "nameEn": "Tepeacac Rise",
+      "x": -28,
+      "y": 5
+    },
     {
       "id": "SOC",
       "nameCn": "「悬木人」",
@@ -606,7 +756,13 @@
       "y": 4,
       "labelDir": "T"
     },
-    { "id": "EBP", "nameCn": "悠悠港", "nameEn": "Easybreeze Port", "x": -44, "y": 0 },
+    {
+      "id": "EBP",
+      "nameCn": "悠悠港",
+      "nameEn": "Easybreeze Port",
+      "x": -44,
+      "y": 0
+    },
     {
       "id": "EBM",
       "nameCn": "悠悠集市",
@@ -623,10 +779,37 @@
       "y": -3,
       "labelDir": "T"
     },
-    { "id": "WVB", "nameCn": "浪浪湾", "nameEn": "Wavey Bay", "x": -49, "y": -3, "labelDir": "LB" },
-    { "id": "TLI", "nameCn": "提提岛", "nameEn": "Tele Isle", "x": -51, "y": -5, "labelDir": "LB" },
-    { "id": "NSP", "nameCn": "那夏港", "nameEn": "Nasha Port", "x": -36, "y": -6, "labelDir": "L" },
-    { "id": "NST", "nameCn": "那夏镇", "nameEn": "Nasha Town", "x": -36, "y": -7 },
+    {
+      "id": "WVB",
+      "nameCn": "浪浪湾",
+      "nameEn": "Wavey Bay",
+      "x": -49,
+      "y": -3,
+      "labelDir": "LB"
+    },
+    {
+      "id": "TLI",
+      "nameCn": "提提岛",
+      "nameEn": "Tele Isle",
+      "x": -51,
+      "y": -5,
+      "labelDir": "LB"
+    },
+    {
+      "id": "NSP",
+      "nameCn": "那夏港",
+      "nameEn": "Nasha Port",
+      "x": -36,
+      "y": -6,
+      "labelDir": "L"
+    },
+    {
+      "id": "NST",
+      "nameCn": "那夏镇",
+      "nameEn": "Nasha Town",
+      "x": -36,
+      "y": -7
+    },
     {
       "id": "CKC",
       "nameCn": "叮铃哐啷蛋卷工坊",
@@ -643,10 +826,34 @@
       "y": -9,
       "labelDir": "L"
     },
-    { "id": "BMB", "nameCn": "苔骨荒原", "nameEn": "Barrowmoss Barrens", "x": -35, "y": -9 },
-    { "id": "BAL", "nameCn": "蓝珀湖", "nameEn": "Blue Amber Lake", "x": -34, "y": -10 },
-    { "id": "NTP", "nameCn": "空寂走廊", "nameEn": "Nothing Passage", "x": -34, "y": -12 },
-    { "id": "PHI", "nameCn": "帕哈岛", "nameEn": "Paha Isle", "x": -34, "y": -14 },
+    {
+      "id": "BMB",
+      "nameCn": "苔骨荒原",
+      "nameEn": "Barrowmoss Barrens",
+      "x": -35,
+      "y": -9
+    },
+    {
+      "id": "BAL",
+      "nameCn": "蓝珀湖",
+      "nameEn": "Blue Amber Lake",
+      "x": -34,
+      "y": -10
+    },
+    {
+      "id": "NTP",
+      "nameCn": "空寂走廊",
+      "nameEn": "Nothing Passage",
+      "x": -34,
+      "y": -12
+    },
+    {
+      "id": "PHI",
+      "nameCn": "帕哈岛",
+      "nameEn": "Paha Isle",
+      "x": -34,
+      "y": -14
+    },
     {
       "id": "KEE",
       "nameCn": "月矩力试验设计局·东",
@@ -663,11 +870,41 @@
       "y": -14,
       "labelDir": "LT"
     },
-    { "id": "FNC", "nameCn": "终夜长茔", "nameEn": "Final Night Cemetery", "x": -34, "y": -15 },
-    { "id": "VOP", "nameCn": "虚海望港", "nameEn": "Voidsea Outlook Port", "x": -34, "y": -16 },
-    { "id": "PRM", "nameCn": "皮拉米达城", "nameEn": "Piramida", "x": -34, "y": -19 },
-    { "id": "DSM", "nameCn": "噩影泽地", "nameEn": "Dreadshade Mire", "x": -34, "y": -21 },
-    { "id": "FNK", "nameCn": "西风戍垒", "nameEn": "Favonius Keep", "x": -35, "y": -23 },
+    {
+      "id": "FNC",
+      "nameCn": "终夜长茔",
+      "nameEn": "Final Night Cemetery",
+      "x": -34,
+      "y": -15
+    },
+    {
+      "id": "VOP",
+      "nameCn": "虚海望港",
+      "nameEn": "Voidsea Outlook Port",
+      "x": -34,
+      "y": -16
+    },
+    {
+      "id": "PRM",
+      "nameCn": "皮拉米达城",
+      "nameEn": "Piramida",
+      "x": -34,
+      "y": -19
+    },
+    {
+      "id": "DSM",
+      "nameCn": "噩影泽地",
+      "nameEn": "Dreadshade Mire",
+      "x": -34,
+      "y": -21
+    },
+    {
+      "id": "FNK",
+      "nameCn": "西风戍垒",
+      "nameEn": "Favonius Keep",
+      "x": -35,
+      "y": -23
+    },
     {
       "id": "CWC",
       "nameCn": "望崖营壁",
@@ -684,7 +921,13 @@
       "y": -26,
       "labelDir": "L"
     },
-    { "id": "AVT", "nameCn": "安瓦蒂尼尔湖", "nameEn": "Armvartnir", "x": -34, "y": -25 },
+    {
+      "id": "AVT",
+      "nameCn": "安瓦蒂尼尔湖",
+      "nameEn": "Armvartnir",
+      "x": -34,
+      "y": -25
+    },
     {
       "id": "STR",
       "nameCn": "特辖地研究所",
@@ -699,37 +942,196 @@
       "name": "原初线",
       "nameEn": "Original Line",
       "lineLabels": [
-        ["SAA", "LB"],
-        ["WSI", "RB"],
-        ["CBC", "B"],
-        ["ARV", "T"],
-        ["VKO", "LT"]
+        [
+          "SAA",
+          "LB"
+        ],
+        [
+          "WSI",
+          "RB"
+        ],
+        [
+          "CBC",
+          "B"
+        ],
+        [
+          "ARV",
+          "T"
+        ],
+        [
+          "VKO",
+          "LT"
+        ]
       ],
       "stations": [
-        ["SAA", false],
-        ["MSC", false],
-        ["MSG", false],
-        ["SPV", true],
-        ["DWW", false],
-        ["STG", false],
-        ["DHM", false],
-        ["WSI", false],
-        ["GLP", false],
-        ["LYN", false],
-        ["LYH", false],
-        ["LSA", false],
-        ["CHM", false],
-        ["CBC", false],
-        ["GHV", true],
-        ["SMC", false],
-        ["PDD", false],
-        ["CVR", true],
-        ["ARV", false],
-        ["MKD", false],
-        ["DOM", false],
-        ["WSV", false],
-        ["TMM", true],
-        ["VKO", false]
+        [
+          "SAA",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MSC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MSG",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SPV",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "DWW",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "STG",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DHM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "WSI",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "GLP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "LYN",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "LYH",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "LSA",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CHM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CBC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "GHV",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "SMC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "PDD",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CVR",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "ARV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MKD",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DOM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "WSV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "TMM",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "VKO",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -737,25 +1139,115 @@
       "name": "风岩草线",
       "nameEn": "Anemo-Geo-Dendro Line",
       "lineLabels": [
-        ["STL", "LB"],
-        ["CJS", "B"],
-        ["LPV", "L"],
-        ["DTM", "LT"]
+        [
+          "STL",
+          "LB"
+        ],
+        [
+          "CJS",
+          "B"
+        ],
+        [
+          "LPV",
+          "L"
+        ],
+        [
+          "DTM",
+          "LT"
+        ]
       ],
       "stations": [
-        ["STL", true],
-        ["WLD", false],
-        ["DWW", true],
-        ["WRV", false],
-        ["MYV", true],
-        ["GLP", false],
-        ["CJS", false],
-        ["TQV", true],
-        ["LPV", false],
-        ["CHM", false],
-        ["TGG", false],
-        ["DTM", false],
-        ["POM", false]
+        [
+          "STL",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "WLD",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DWW",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "WRV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MYV",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "GLP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CJS",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "TQV",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "LPV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CHM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "TGG",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DTM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "POM",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -763,17 +1255,65 @@
       "name": "蒙德局·自由线",
       "nameEn": "Mondstadt Freedom Line",
       "lineLabels": [
-        ["SFL", "LT"],
-        ["WRV", "RT"]
+        [
+          "SFL",
+          "LT"
+        ],
+        [
+          "WRV",
+          "RT"
+        ]
       ],
       "stations": [
-        ["SFL", false],
-        ["WSW", false],
-        ["MSG", false],
-        ["WDR", false],
-        ["DSC", false],
-        ["SCP", false],
-        ["WRV", false]
+        [
+          "SFL",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "WSW",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MSG",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "WDR",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DSC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SCP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "WRV",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -781,21 +1321,90 @@
       "name": "璃月局·璃沉线",
       "nameEn": "Liyue Liyue-Chenyu Line",
       "lineLabels": [
-        ["LYS", "B"],
-        ["MIL", "R"],
-        ["YLW", "RT"]
+        [
+          "LYS",
+          "B"
+        ],
+        [
+          "MIL",
+          "R"
+        ],
+        [
+          "YLW",
+          "RT"
+        ]
       ],
       "stations": [
-        ["LYS", false],
-        ["LYH", false],
-        ["DYR", false],
-        ["TQV", false],
-        ["NTM", false],
-        ["MIL", false],
-        ["MXL", false],
-        ["CZW", true],
-        ["JDM", false],
-        ["YLW", false]
+        [
+          "LYS",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "LYH",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DYR",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "TQV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NTM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MIL",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MXL",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CZW",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "JDM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "YLW",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -803,18 +1412,69 @@
       "name": "璃月局·沉玉谷线",
       "nameEn": "Liyue Chenyu Valley Line",
       "lineLabels": [
-        ["CWT", "B"],
-        ["QCV", "LB"],
-        ["WSI", "RT"]
+        [
+          "CWT",
+          "B"
+        ],
+        [
+          "QCV",
+          "LB"
+        ],
+        [
+          "WSI",
+          "RT"
+        ]
       ],
       "stations": [
-        ["CWT", false],
-        ["MMY", false],
-        ["YLW", false],
-        ["QYV", true],
-        ["QCV", false],
-        ["DHM", false],
-        ["WSI", false]
+        [
+          "CWT",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MMY",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "YLW",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "QYV",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "QCV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DHM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "WSI",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -822,15 +1482,51 @@
       "name": "须弥局·须弥南北线",
       "nameEn": "Sumeru South-North Line",
       "lineLabels": [
-        ["BDH", "RT"],
-        ["POM", "LT"]
+        [
+          "BDH",
+          "RT"
+        ],
+        [
+          "POM",
+          "LT"
+        ]
       ],
       "stations": [
-        ["BDH", false],
-        ["CTC", false],
-        ["SMC", false],
-        ["VMV", false],
-        ["POM", false]
+        [
+          "BDH",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CTC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SMC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "VMV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "POM",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -838,22 +1534,100 @@
       "name": "须弥局·须弥环线",
       "nameEn": "Sumeru Loop Line",
       "lineLabels": [
-        ["ROD", "RT"],
-        ["VNA", "RB"]
+        [
+          "ROD",
+          "RT"
+        ],
+        [
+          "VNA",
+          "RB"
+        ]
       ],
       "stations": [
-        ["CTC", false],
-        ["CHH", false],
-        ["GHV", false],
-        ["DTM", false],
-        ["POM", false],
-        ["APW", false],
-        ["ROD", false],
-        ["CVR", false],
-        ["YNM", false],
-        ["FOA", false],
-        ["VNA", false],
-        ["CTC", false]
+        [
+          "CTC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CHH",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "GHV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DTM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "POM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "APW",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "ROD",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CVR",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "YNM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FOA",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "VNA",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CTC",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -861,24 +1635,111 @@
       "name": "枫丹局·巡轨船·卡雷斯线",
       "nameEn": "Fontaine Aquabus Callas Line",
       "lineLabels": [
-        ["COF", "R"],
-        ["CLR", "T"],
-        ["MAE", "RB"]
+        [
+          "COF",
+          "R"
+        ],
+        [
+          "CLR",
+          "T"
+        ],
+        [
+          "MAE",
+          "RB"
+        ]
       ],
       "stations": [
-        ["COF", false],
-        ["PLM", false],
-        ["FRI", false],
-        ["CLR", false],
-        ["LCU", false],
-        ["WWL", false],
-        ["FFP", false],
-        ["FCR", true],
-        ["MAE", false],
-        ["MAT", false],
-        ["POI", false],
-        ["ENS", false],
-        ["COF", false]
+        [
+          "COF",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "PLM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FRI",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CLR",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "LCU",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "WWL",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FFP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FCR",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "MAE",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MAT",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "POI",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "ENS",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "COF",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -886,15 +1747,51 @@
       "name": "枫丹局·巡轨船·娜维娅线",
       "nameEn": "Fontaine Aquabus Navia Line",
       "lineLabels": [
-        ["MCT", "T"],
-        ["LDH", "B"]
+        [
+          "MCT",
+          "T"
+        ],
+        [
+          "LDH",
+          "B"
+        ]
       ],
       "stations": [
-        ["COF", true],
-        ["MCT", false],
-        ["OPE", false],
-        ["FFP", false],
-        ["LDH", false]
+        [
+          "COF",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "MCT",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "OPE",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FFP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "LDH",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -902,28 +1799,99 @@
       "name": "枫丹局·巡轨船·克莱门汀线",
       "nameEn": "Fontaine Aquabus Clementine Line",
       "lineLabels": [
-        ["RRH", "L"],
-        ["MES", "L"]
+        [
+          "RRH",
+          "L"
+        ],
+        [
+          "MES",
+          "L"
+        ]
       ],
       "stations": [
-        ["RRH", false],
-        ["MAT", false],
-        ["COF", false],
-        ["PLM", true],
-        ["MES", false]
+        [
+          "RRH",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MAT",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "COF",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "PLM",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "MES",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
       "id": "N0",
       "name": "纳塔局·连接线",
       "nameEn": "Natlan Connection Line",
-      "lineLabels": [["COE", "RB"]],
+      "lineLabels": [
+        [
+          "COE",
+          "RB"
+        ]
+      ],
       "stations": [
-        ["DOM", false],
-        ["COE", false],
-        ["SFV", false],
-        ["CWF", false],
-        ["SSF", false]
+        [
+          "DOM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "COE",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SFV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CWF",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SSF",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -931,16 +1899,58 @@
       "name": "纳塔局·赫布里穆线",
       "nameEn": "Natlan Haborym Line",
       "lineLabels": [
-        ["SFV", "B"],
-        ["FSF", "LB"]
+        [
+          "SFV",
+          "B"
+        ],
+        [
+          "FSF",
+          "LB"
+        ]
       ],
       "stations": [
-        ["COE", false],
-        ["SFV", false],
-        ["CWF", false],
-        ["NWW", false],
-        ["COP", false],
-        ["FSF", false]
+        [
+          "COE",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SFV",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CWF",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NWW",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "COP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FSF",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -948,22 +1958,97 @@
       "name": "纳塔局·杜麦尼线",
       "nameEn": "Natlan Tumaini Line",
       "lineLabels": [
-        ["ONT", "L"],
-        ["POS", "LB"],
-        ["TPR", "LT"]
+        [
+          "ONT",
+          "L"
+        ],
+        [
+          "POS",
+          "LB"
+        ],
+        [
+          "TPR",
+          "LT"
+        ]
       ],
       "stations": [
-        ["ONT", false],
-        ["FFC", false],
-        ["HZH", false],
-        ["CWF", false],
-        ["SSF", false],
-        ["POS", false],
-        ["AYW", true],
-        ["TPP", false],
-        ["AST", true],
-        ["TPR", false],
-        ["COE", false]
+        [
+          "ONT",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FFC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "HZH",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CWF",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SSF",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "POS",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "AYW",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "TPP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "AST",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "TPR",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "COE",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -971,16 +2056,58 @@
       "name": "纳塔局·卡皮塔诺线",
       "nameEn": "Natlan Il Capitano Line",
       "lineLabels": [
-        ["SOC", "RT"],
-        ["TPB", "LB"]
+        [
+          "SOC",
+          "RT"
+        ],
+        [
+          "TPB",
+          "LB"
+        ]
       ],
       "stations": [
-        ["TPP", false],
-        ["SOC", true],
-        ["SSF", false],
-        ["NWW", false],
-        ["MNW", false],
-        ["TPB", false]
+        [
+          "TPP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "SOC",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "SSF",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NWW",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "MNW",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "TPB",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -988,27 +2115,92 @@
       "name": "纳塔局·悠悠度假村线",
       "nameEn": "Natlan Easybreeze Holiday Resort Line",
       "lineLabels": [
-        ["EBP", "L"],
-        ["TLI", "T"]
+        [
+          "EBP",
+          "L"
+        ],
+        [
+          "TLI",
+          "T"
+        ]
       ],
       "stations": [
-        ["EBP", false],
-        ["EBM", true],
-        ["CFC", false],
-        ["WVB", false],
-        ["TLI", false]
+        [
+          "EBP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "EBM",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "CFC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "WVB",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "TLI",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
       "id": "K1",
       "name": "挪德卡莱局·希汐岛线",
       "nameEn": "Nod-Krai Hiisi Island Line",
-      "lineLabels": [["NST", "L"]],
+      "lineLabels": [
+        [
+          "NST",
+          "L"
+        ]
+      ],
       "stations": [
-        ["NSP", false],
-        ["NST", true],
-        ["CKC", false],
-        ["FME", false]
+        [
+          "NSP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NST",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "CKC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FME",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -1016,32 +2208,127 @@
       "name": "挪德卡莱局·帕哈岛线",
       "nameEn": "Nod-Krai Paha Isle Line",
       "lineLabels": [
-        ["NSP", "R"],
-        ["FNC", "L"]
+        [
+          "NSP",
+          "R"
+        ],
+        [
+          "FNC",
+          "L"
+        ]
       ],
       "stations": [
-        ["NSP", false],
-        ["NST", false],
-        ["BMB", false],
-        ["BAL", false],
-        ["NTP", false],
-        ["PHI", false],
-        ["FNC", false]
+        [
+          "NSP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NST",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "BMB",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "BAL",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NTP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "PHI",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FNC",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
       "id": "K2-B",
       "name": "挪德卡莱局·帕哈岛支线",
       "nameEn": "Nod-Krai Paha Isle Branch Line",
-      "lineLabels": [["KEE", "T"]],
+      "lineLabels": [
+        [
+          "KEE",
+          "T"
+        ]
+      ],
       "stations": [
-        ["NSP", false],
-        ["NST", false],
-        ["BMB", false],
-        ["BAL", false],
-        ["NTP", false],
-        ["KEE", false],
-        ["KEW", false]
+        [
+          "NSP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NST",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "BMB",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "BAL",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NTP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "KEE",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "KEW",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -1049,30 +2336,113 @@
       "name": "挪德卡莱局·虚海望线",
       "nameEn": "Nod-Krai Voidsea Outlook Line",
       "lineLabels": [
-        ["VOP", "L"],
-        ["STR", "L"]
+        [
+          "VOP",
+          "L"
+        ],
+        [
+          "STR",
+          "L"
+        ]
       ],
       "stations": [
-        ["VOP", false],
-        ["PRM", false],
-        ["DSM", false],
-        ["FNK", false],
-        ["AVT", true],
-        ["STR", false]
+        [
+          "VOP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "PRM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DSM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FNK",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "AVT",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "STR",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
       "id": "K3-B",
       "name": "挪德卡莱局·虚海望支线",
-      "lineLabels": [["FNK", "LB"]],
+      "lineLabels": [
+        [
+          "FNK",
+          "LB"
+        ]
+      ],
       "nameEn": "Nod-Krai Voidsea Outlook Branch Line",
       "stations": [
-        ["VOP", false],
-        ["PRM", false],
-        ["DSM", false],
-        ["FNK", true],
-        ["CWC", false],
-        ["KMC", false]
+        [
+          "VOP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "PRM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "DSM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FNK",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "CWC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "KMC",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     }
   ]

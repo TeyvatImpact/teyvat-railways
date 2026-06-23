@@ -1,5 +1,10 @@
 {
-  "config": { "x": 15, "y": -7, "name": "Liyue", "fontFamily": "Noto Sans SC" },
+  "config": {
+    "x": 15,
+    "y": -7,
+    "name": "Liyue",
+    "fontFamily": "Noto Sans SC"
+  },
   "stations": [
     {
       "id": "LYG",
@@ -9,8 +14,22 @@
       "y": 0,
       "labelDir": "L"
     },
-    { "id": "HET", "nameCn": "荷塘", "nameEn": "Lotus Pond", "x": 2, "y": 2, "labelDir": "RT" },
-    { "id": "FYP", "nameCn": "绯云坡", "nameEn": "Feiyun Slope", "x": 2, "y": 4, "labelDir": "T" },
+    {
+      "id": "HET",
+      "nameCn": "荷塘",
+      "nameEn": "Lotus Pond",
+      "x": 2,
+      "y": 2,
+      "labelDir": "RT"
+    },
+    {
+      "id": "FYP",
+      "nameCn": "绯云坡",
+      "nameEn": "Feiyun Slope",
+      "x": 2,
+      "y": 4,
+      "labelDir": "T"
+    },
     {
       "id": "LYN",
       "nameCn": "璃月港南站",
@@ -27,8 +46,22 @@
       "y": 7,
       "labelDir": "LB"
     },
-    { "id": "CHY", "nameCn": "吃虎岩", "nameEn": "Chihu Rock", "x": 4, "y": 8, "labelDir": "B" },
-    { "id": "HYG", "nameCn": "货运港", "nameEn": "Cargo Port", "x": 6, "y": 8, "labelDir": "B" },
+    {
+      "id": "CHY",
+      "nameCn": "吃虎岩",
+      "nameEn": "Chihu Rock",
+      "x": 4,
+      "y": 8,
+      "labelDir": "B"
+    },
+    {
+      "id": "HYG",
+      "nameCn": "货运港",
+      "nameEn": "Cargo Port",
+      "x": 6,
+      "y": 8,
+      "labelDir": "B"
+    },
     {
       "id": "HYC",
       "nameCn": "黑岩厂",
@@ -45,9 +78,28 @@
       "y": 7,
       "labelDir": "RT"
     },
-    { "id": "KYN", "nameCn": "客运港南", "nameEn": "Passenger Port South", "x": 4, "y": 6 },
-    { "id": "KYB", "nameCn": "客运港北", "nameEn": "Passenger Port North", "x": 4, "y": 4 },
-    { "id": "BCM", "nameCn": "北城门", "nameEn": "North Gate", "x": 4, "y": 2, "labelDir": "RB" },
+    {
+      "id": "KYN",
+      "nameCn": "客运港南",
+      "nameEn": "Passenger Port South",
+      "x": 4,
+      "y": 6
+    },
+    {
+      "id": "KYB",
+      "nameCn": "客运港北",
+      "nameEn": "Passenger Port North",
+      "x": 4,
+      "y": 4
+    },
+    {
+      "id": "BCM",
+      "nameCn": "北城门",
+      "nameEn": "North Gate",
+      "x": 4,
+      "y": 2,
+      "labelDir": "RB"
+    },
     {
       "id": "YLQ",
       "nameCn": "云来新区",
@@ -64,7 +116,14 @@
       "y": -2,
       "labelDir": "T"
     },
-    { "id": "HJW", "nameCn": "黄金屋", "nameEn": "Golden House", "x": 2, "y": 8, "labelDir": "B" },
+    {
+      "id": "HJW",
+      "nameCn": "黄金屋",
+      "nameEn": "Golden House",
+      "x": 2,
+      "y": 8,
+      "labelDir": "B"
+    },
     {
       "id": "YJT",
       "nameCn": "玉京台",
@@ -81,8 +140,22 @@
       "y": 4,
       "labelDir": "LT"
     },
-    { "id": "YLY", "nameCn": "云来崖", "nameEn": "Yunlai Cliff", "x": 6, "y": -2, "labelDir": "T" },
-    { "id": "LHC", "nameCn": "渌华池", "nameEn": "Luhua Pool", "x": 2, "y": -3, "labelDir": "RT" },
+    {
+      "id": "YLY",
+      "nameCn": "云来崖",
+      "nameEn": "Yunlai Cliff",
+      "x": 6,
+      "y": -2,
+      "labelDir": "T"
+    },
+    {
+      "id": "LHC",
+      "nameCn": "渌华池",
+      "nameEn": "Luhua Pool",
+      "x": 2,
+      "y": -3,
+      "labelDir": "RT"
+    },
     {
       "id": "GYX",
       "nameCn": "孤云阁西",
@@ -106,17 +179,65 @@
       "name": "璃月港地铁·1号线",
       "nameEn": "Lyue Harbor Line 1",
       "lineLabels": [
-        ["LYG", "RT"],
-        ["HYG", "T"]
+        [
+          "LYG",
+          "RT"
+        ],
+        [
+          "HYG",
+          "T"
+        ]
       ],
       "stations": [
-        ["LYG", false],
-        ["HET", false],
-        ["FYP", false],
-        ["LYN", false],
-        ["PSC", false],
-        ["CHY", false],
-        ["HYG", false]
+        [
+          "LYG",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "HET",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "FYP",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "LYN",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "PSC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "CHY",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "HYG",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -124,18 +245,72 @@
       "name": "璃月港地铁·2号线",
       "nameEn": "Lyue Harbor Line 2",
       "lineLabels": [
-        ["HYC", "LT"],
-        ["LYB", "LB"]
+        [
+          "HYC",
+          "LT"
+        ],
+        [
+          "LYB",
+          "LB"
+        ]
       ],
       "stations": [
-        ["HYC", false],
-        ["NCM", false],
-        ["PSC", false],
-        ["KYN", false],
-        ["KYB", false],
-        ["BCM", false],
-        ["YLQ", false],
-        ["LYB", false]
+        [
+          "HYC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NCM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "PSC",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "KYN",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "KYB",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "BCM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "YLQ",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "LYB",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -143,17 +318,65 @@
       "name": "璃月港地铁·3号线",
       "nameEn": "Lyue Harbor Line 3",
       "lineLabels": [
-        ["YHT", "LB"],
-        ["YLY", "B"]
+        [
+          "YHT",
+          "LB"
+        ],
+        [
+          "YLY",
+          "B"
+        ]
       ],
       "stations": [
-        ["HJW", false],
-        ["NCM", false],
-        ["YJT", false],
-        ["YHT", false],
-        ["HET", false],
-        ["BCM", true],
-        ["YLY", false]
+        [
+          "HJW",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "NCM",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "YJT",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "YHT",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "HET",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "BCM",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "YLY",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     },
     {
@@ -161,15 +384,51 @@
       "name": "璃月港地铁·S1号线",
       "nameEn": "Lyue Harbor Line S1",
       "lineLabels": [
-        ["LHC", "LT"],
-        ["GYG", "B"]
+        [
+          "LHC",
+          "LT"
+        ],
+        [
+          "GYG",
+          "B"
+        ]
       ],
       "stations": [
-        ["LHC", true],
-        ["LYB", false],
-        ["YLY", false],
-        ["GYX", false],
-        ["GYG", false]
+        [
+          "LHC",
+          true,
+          500,
+          10,
+          10
+        ],
+        [
+          "LYB",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "YLY",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "GYX",
+          false,
+          500,
+          10,
+          10
+        ],
+        [
+          "GYG",
+          false,
+          500,
+          10,
+          10
+        ]
       ]
     }
   ]
