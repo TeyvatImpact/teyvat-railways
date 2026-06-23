@@ -1,6 +1,5 @@
 <template>
-  <div
-    class="bg-(--color-body) border-l-(--color-outline) p-4 w-80 flex flex-col overflow-hidden gap-2">
+  <div class="bg-(--color-body) p-4 w-80 flex flex-col overflow-hidden gap-2">
     <h2 class="mb-4">路径规划</h2>
     <template v-if="!selectedRoute">
       <var-input placeholder="起点站" disabled v-model="startInput" variant="outlined" />
