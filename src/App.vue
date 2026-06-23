@@ -1,20 +1,18 @@
 <template>
-  <var-style-provider :style-vars="styleVars">
-    <TitleBar
-      @open="showDialog = true"
-      @open-ai="showAiDialog = true"
-      @toggle-theme="toggleTheme"
-      :theme="theme" />
-    <div class="app-body">
-      <div class="map-area">
-        <RailwayMap :route-result="routeResult" @station-click="onStationClick" />
-      </div>
-      <RoutePanel ref="panel" @result-change="onResultChange" />
+  <TitleBar
+    @open="showDialog = true"
+    @open-ai="showAiDialog = true"
+    @toggle-theme="toggleTheme"
+    :theme="theme" />
+  <div class="app-body">
+    <div class="map-area">
+      <RailwayMap :route-result="routeResult" @station-click="onStationClick" />
     </div>
-    <InfoDialog :visible="showDialog" @close="onClose" />
-    <AiPromptDialog :visible="showAiDialog" @close="showAiDialog = false" />
-    <AdminPanel />
-  </var-style-provider>
+    <RoutePanel ref="panel" @result-change="onResultChange" />
+  </div>
+  <InfoDialog :visible="showDialog" @close="onClose" />
+  <AiPromptDialog :visible="showAiDialog" @close="showAiDialog = false" />
+  <AdminPanel />
 </template>
 
 <script setup lang="ts">
@@ -29,7 +27,7 @@ import AdminPanel from './components/AdminPanel.vue';
 import type { RouteResult } from './composables/useRouting';
 
 const STORAGE_KEY = 'teyvat-railways-visited';
-const { theme, styleVars, toggle: toggleTheme } = useTheme();
+const { theme, toggle: toggleTheme } = useTheme();
 const showDialog = ref(false);
 const showAiDialog = ref(false);
 const routeResult = ref<RouteResult | null>(null);
