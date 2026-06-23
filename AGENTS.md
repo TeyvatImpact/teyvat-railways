@@ -11,7 +11,9 @@ pnpm preview    # vite preview of built dist/
 
 Typecheck: `npx vue-tsc --noEmit` (no npm script exists for it).
 
-No lint, no test, no formatter scripts configured. `oxfmt` is configured in `.oxfmtrc.json` but not in dependencies — install globally to use.
+Format: `pnpm format` (runs `oxfmt`). Run before every commit.
+
+No lint or test scripts configured.
 
 ## Architecture
 
@@ -39,7 +41,9 @@ src/main.ts → src/style.css         (Tailwind CSS v4 via @tailwindcss/vite)
 | **Routing** | **`composables/useRouting.ts`** | **Graph builder (node = prefix-stationId-lineId), Dijkstra multi-source/multi-target, fuzzy station search** |
 | Routing | `components/RouteTimeline.vue` | Detailed route timeline view with stations, line colors, and fare/time/distance stats |
 | Data | `scripts/migrate-segment-data.cjs` | One-time migration script that adds default fare/time/distance to all station tuples in JSON files |
-| Config | `config/render.config.ts` | All render constants (fonts, palette, spacing, zoom threshold, special line colors) |
+| Dev | `components/AdminPanel.vue` | Floating data editor (dev-only) — edit station names and segment costs via web UI |
+| Dev | `vite.config.ts` | Admin API middleware (`GET/PUT /__admin/data/*`) for reading/writing JSON files in dev mode |
+| Config | `config/render.config.ts` | All render constants (fonts, palette, spacing, special line colors) |
 
 ### Component tree (current)
 
@@ -82,13 +86,14 @@ Two special line files:
 {
   "config": { "x": number, "y": number, "name": string, "fontFamily": string },
   "stations": [
-    { "id": string, "nameCn": string, "nameEn": string, "x": number, "y": number, "labelDir"?: string }
+    { "id": string, "nameCn": string, "nameZh"?: string, "nameEn": string, "x": number, "y": number, "labelDir"?: string }
     // labelDir: one of "L","R","T","B","LT","LB","RT","RB"
   ],
   "lines": [
     {
       "id": string,            // short id like "A","B","L1","S1","NK"...
       "name": string,
+      "nameZh"?: string,
       "nameEn": string,
       "lineLabels"?: [ [stationId, position], ... ],  // position = label placement dir
       "stations": [ [stationId, diagonalFirst, fare, time, distance], ... ]  // fare=摩拉, time=分钟, distance=千米
@@ -151,7 +156,8 @@ Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat
 
 - **Coordinates**: data units × `BLOCK_SIZE` (50px). SVG viewport sized to data bounds with configurable `margin`.
 - **Label fonts**: Inazuma stations use `"Noto Serif JP", serif` from Google Fonts; others use `"Noto Sans SC"`.
-- **Label sizes**: Large (`fsCN: 24`, `fsEN: 16`) and small (`12`, `8`). Small shown for all stations when zoom ≥ 0.5; below threshold only transfer stations get large labels.
+- **Label sizes**: Fixed small size (`fsCNSmall: 12`, `fsENSmall: 8`). No zoom-dependent switching.
+- **nameZh (Inazuma)**: Inazuma stations/lines carry an extra `nameZh` field (Chinese translation). When present, labels render three lines: JP name → CN name (zhX) → EN name. CN text uses `"Noto Serif SC"` at EN font size.
 - **Line palette**: Cycles through 20 colors in `render.config.ts`.
 - **Parallel tracks**: Shared segments are offset by `LINE_WIDTH` per line, centered.
 - **Viewport persistence**: Pan/zoom saved to localStorage key `teyvat-railways-map-state`.
@@ -180,6 +186,11 @@ chore: add migration script for segment fare/time/distance data
 
 Scopes are optional but encouraged when relevant (e.g. `feat(routing)`, `fix(map)`).
 
+## Before committing
+
+1. **Format**: Run `pnpm format` (oxfmt) — this MUST be done before every commit.
+2. **AGENTS.md**: When making logical changes (new features, schema updates, refactors), update this file to reflect the new state.
+
 ## Gotchas
 
 - `dist/` is committed to git — rebuilding overwrites it on build.
@@ -189,6 +200,7 @@ Scopes are optional but encouraged when relevant (e.g. `feat(routing)`, `fix(map
 - Ferry/same-station JSON files don't have their own stations — lines reference prefixed station IDs (e.g. `Teyvat-LYS`) directly. These lines are not run through the standard prefix step.
 - `intro.md` is imported via `?raw` in `InfoDialog.vue` and rendered with `markdown-exit`. The modal has `github-markdown-css` with transparent background override.
 - First visit detection uses localStorage key `teyvat-railways-visited`.
+- AdminPanel (🛠 button, dev-mode only) exposes a GUI for editing station names and segment costs; changes write back via `PUT /__admin/data/*` and Vite HMR auto-reloads the app.
 - RoutePanel exposes `onStationClick(stationId)` via `defineExpose` — App.vue calls it when RailwayMap emits `station-click`.
 - RoutePanel now shows a multi-route option list (fare/time/distance) after calculation; clicking one opens the RouteTimeline detail view, clicking × returns to the list.
 - `useRouting.ts` builds the graph eagerly at module import time (synchronous, runs once).
