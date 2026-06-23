@@ -16,12 +16,16 @@ function loadTheme(): 'light' | 'dark' {
 
 const theme = ref<'light' | 'dark'>(loadTheme());
 
-watch(theme, (val) => {
-  try {
-    localStorage.setItem(STORAGE_KEY, val);
-    StyleProvider(theme.value === 'dark' ? md3Dark : md3Light);
-  } catch {}
-});
+watch(
+  theme,
+  (val) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, val);
+      StyleProvider(theme.value === 'dark' ? md3Dark : md3Light);
+    } catch {}
+  },
+  { immediate: true },
+);
 
 export function useTheme() {
   function toggle() {
