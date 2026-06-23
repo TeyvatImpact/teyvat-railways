@@ -55,6 +55,8 @@ App.vue
 
 All data is JSON stored in `src/data/`. No CSV files.
 
+**IMPORTANT**: When working with these files, do NOT always read them in full — they can be large (e.g. `teyvat.json` is ~1100 lines). Read only the first ~30-40 lines to understand structure, or use `grep` to find specific stations/lines by ID or name. The schemas below describe the structure precisely — rely on them instead of full file reads.
+
 Three region files, each with structure `{ config, stations, lines }`:
 
 | File | Config prefix | Config font |
@@ -72,11 +74,54 @@ Two special line files:
 | `ferry.json` | `"ferry"` | Thin dark blue dashed line |
 | `same.json` | `"same-station"` | Thin semi-transparent black solid line |
 
-Station format: `{ id, nameCn, nameEn, x, y, labelDir? }`.  
-Line format: `{ id, name, nameEn, stations: [[stationId, diagonalFirst], ...] }`.
+### Region file schema (`teyvat.json`, `inazuma.json`, `liyue.json`)
 
-`diagonalFirst` controls path routing for non-axis-aligned segments (orthogonal→diagonal or diagonal→orthogonal). IDs get prefixed with `<Config name>-` at runtime.  
-Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat-LYS"`) so they can reference stations across different region files. They are not re-prefixed at runtime.
+```jsonc
+{
+  "config": { "x": number, "y": number, "name": string, "fontFamily": string },
+  "stations": [
+    { "id": string, "nameCn": string, "nameEn": string, "x": number, "y": number, "labelDir"?: string }
+    // labelDir: one of "L","R","T","B","LT","LB","RT","RB"
+  ],
+  "lines": [
+    {
+      "id": string,            // short id like "A","B","L1","S1","NK"...
+      "name": string,
+      "nameEn": string,
+      "lineLabels"?: [ [stationId, position], ... ],  // position = label placement dir
+      "stations": [ [stationId, diagonalFirst], ... ]  // diagonalFirst = boolean
+    }
+  ]
+}
+```
+
+### Special line files
+
+**`ferry.json`** — `{ lines: [{ id, name, nameEn, "lineType": "ferry", stations: [[prefixedId, false], ...] }] }`  
+**`same.json`** — `{ lines: [{ id, name, nameEn, "lineType": "same-station", stations: [[prefixedId, false], ...] }] }`
+
+Ferry and same-station lines use **already-prefixed** station IDs (e.g. `"Teyvat-LYS"`) to reference stations across region files. They are not re-prefixed at runtime.
+
+### Annotation file (`mark.json`)
+
+```jsonc
+{
+  "paths": [
+    { "d": string, "stroke"?: string }   // SVG path data (data-space coords)
+  ],
+  "texts": [
+    { "content": string, "x": number, "y": number, "fontSize"?: number, "fontFamily"?: string }
+  ]
+}
+```
+
+### Station/line field details
+
+- **`id`** (station): Short uppercase code, e.g. `"LYH"`, `"RTP"`. Gets runtime prefix → `"Teyvat-LYH"`.
+- **`labelDir`**: Optional, one of `L`/`R`/`T`/`B`/`LT`/`LB`/`RT`/`RB`. Controls label offset direction from station point.
+- **`diagonalFirst`**: Controls path routing for non-axis-aligned segments (`true` = diagonal→orthogonal, `false` = orthogonal→diagonal).
+- **`lineLabels`**: Optional array of `[stationId, position]` — instructs renderer where to place the line's name label relative to that station.
+- **`config.x`/`config.y`**: Origin offset applied to all station coordinates in that region at runtime.
 
 ## Routing (`useRouting.ts`)
 
