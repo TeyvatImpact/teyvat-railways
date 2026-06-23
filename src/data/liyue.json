@@ -76,7 +76,7 @@
       "nameEn": "South Gate",
       "x": 1,
       "y": 7,
-      "labelDir": "RT"
+      "labelDir": "L"
     },
     {
       "id": "KYN",
@@ -138,7 +138,7 @@
       "nameEn": "Yuehai Pavilion",
       "x": 0,
       "y": 4,
-      "labelDir": "LT"
+      "labelDir": "LB"
     },
     {
       "id": "YLY",
@@ -218,8 +218,8 @@
       "name": "璃月港地铁·3号线",
       "nameEn": "Lyue Harbor Line 3",
       "lineLabels": [
-        ["YHT", "LB"],
-        ["YLY", "B"]
+        ["YHT", "LT"],
+        ["BCM", "RT"]
       ],
       "stations": [
         ["HJW", false],

@@ -76,7 +76,7 @@
       "nameEn": "Araumi",
       "x": 4,
       "y": -2,
-      "labelDir": "RB"
+      "labelDir": "RT"
     },
     {
       "id": "YGN",
@@ -219,16 +219,16 @@
       "nameEn": "Sangonomiya",
       "x": -13,
       "y": 6,
-      "labelDir": "B"
+      "labelDir": "T"
     },
     {
       "id": "MUS",
-      "nameCn": "曚雲神社",
-      "nameZh": "曚云神社",
-      "nameEn": "Mouun Shrine",
+      "nameCn": "曚雲神社/曚雲港",
+      "nameZh": "曚云神社/曚云港",
+      "nameEn": "Mouun Shrine / Mouun Port",
       "x": -14,
       "y": 6,
-      "labelDir": "T"
+      "labelDir": "LT"
     },
     {
       "id": "SKP",
@@ -291,7 +291,7 @@
       "nameEn": "Mt. Kanna",
       "x": -3,
       "y": 13,
-      "labelDir": "LB"
+      "labelDir": "B"
     },
     {
       "id": "ATP",
@@ -300,7 +300,7 @@
       "nameEn": "Autake Plains",
       "x": -5,
       "y": 13,
-      "labelDir": "T"
+      "labelDir": "B"
     }
   ],
   "lines": [
@@ -329,7 +329,7 @@
       "name": "IR 東稲妻·影向山環状線",
       "nameZh": "IR 东稻妻·影向山环状线",
       "nameEn": "IR East Mt. Yougou Loop Line",
-      "lineLabels": [["AUM", "T"]],
+      "lineLabels": [["AUM", "LT"]],
       "stations": [
         ["BKP", false],
         ["KDV", false],
@@ -347,7 +347,7 @@
       "nameZh": "IR 东稻妻·鸣海线",
       "nameEn": "IR East Inazuma-Watatsumi Line",
       "lineLabels": [
-        ["AKI", "LT"],
+        ["KJE", "T"],
         ["NCB", "B"]
       ],
       "stations": [
@@ -410,13 +410,12 @@
       "name": "IR 鶴観·一番線",
       "nameZh": "IR 鹤观·一号线",
       "nameEn": "IR Tsurumi Line 1",
-      "lineLabels": [["SKP", "LB"]],
+      "lineLabels": [["ATP", "LT"]],
       "stations": [
-        ["SKP", false],
-        ["ONB", false],
-        ["CRS", false],
+        ["TMP", false],
         ["MCS", false],
-        ["WKS", false]
+        ["MKN", false],
+        ["ATP", false]
       ],
       "costPreset": "inazuma"
     },
@@ -424,13 +423,14 @@
       "id": "TB",
       "name": "IR 鶴観·二番線",
       "nameZh": "IR 鹤观·二号线",
-      "nameEn": "IR Tsurumi Line 12",
-      "lineLabels": [["TMP", "RT"]],
+      "nameEn": "IR Tsurumi Line 2",
+      "lineLabels": [["SKP", "LT"]],
       "stations": [
-        ["TMP", false],
+        ["SKP", false],
+        ["ONB", false],
+        ["CRS", false],
         ["MCS", false],
-        ["MKN", false],
-        ["ATP", false]
+        ["WKS", false]
       ],
       "costPreset": "inazuma"
     },

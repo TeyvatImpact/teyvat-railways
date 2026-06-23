@@ -12,7 +12,7 @@
       "nameEn": "Liyue Harbor",
       "x": 0,
       "y": 0,
-      "labelDir": "R"
+      "labelDir": "L"
     },
     {
       "id": "LYS",
@@ -92,7 +92,7 @@
       "nameEn": "Chiwang Terrace",
       "x": -8,
       "y": -8,
-      "labelDir": "RT"
+      "labelDir": "LT"
     },
     {
       "id": "MMY",
@@ -124,7 +124,7 @@
       "nameEn": "Dihua Marsh",
       "x": 1,
       "y": -8,
-      "labelDir": "LB"
+      "labelDir": "RB"
     },
     {
       "id": "WSI",
@@ -132,7 +132,7 @@
       "nameEn": "Wangshu Inn",
       "x": 1,
       "y": -6,
-      "labelDir": "L"
+      "labelDir": "R"
     },
     {
       "id": "SAA",
@@ -140,7 +140,7 @@
       "nameEn": "Statue of Anemo Archon",
       "x": 6,
       "y": -14,
-      "labelDir": "T"
+      "labelDir": "LB"
     },
     {
       "id": "MSC",
@@ -148,7 +148,7 @@
       "nameEn": "Mondstadt City",
       "x": 7,
       "y": -13,
-      "labelDir": "RT"
+      "labelDir": "LB"
     },
     {
       "id": "MSG",
@@ -171,7 +171,7 @@
       "nameEn": "Dawn Winery",
       "x": 4,
       "y": -10,
-      "labelDir": "RB"
+      "labelDir": "LT"
     },
     {
       "id": "STG",
@@ -179,7 +179,7 @@
       "nameEn": "Stone Gate",
       "x": 2,
       "y": -9,
-      "labelDir": "LT"
+      "labelDir": "RB"
     },
     {
       "id": "GLP",
@@ -194,7 +194,8 @@
       "nameCn": "璃月港北",
       "nameEn": "Liyue Harbor North",
       "x": 1,
-      "y": -1
+      "y": -1,
+      "labelDir": "LT"
     },
     {
       "id": "LSA",
@@ -282,7 +283,7 @@
       "nameEn": "Wounded Shin Valley",
       "x": -24,
       "y": 0,
-      "labelDir": "L"
+      "labelDir": "R"
     },
     {
       "id": "TMM",
@@ -290,7 +291,7 @@
       "nameEn": "Temir Mountains",
       "x": -24,
       "y": -3,
-      "labelDir": "L"
+      "labelDir": "R"
     },
     {
       "id": "VKO",
@@ -305,7 +306,7 @@
       "nameEn": "Stormterror's Lair",
       "x": 3,
       "y": -14,
-      "labelDir": "LT"
+      "labelDir": "L"
     },
     {
       "id": "WLD",
@@ -313,7 +314,7 @@
       "nameEn": "Wolvendom",
       "x": 4,
       "y": -12,
-      "labelDir": "LB"
+      "labelDir": "L"
     },
     {
       "id": "MYV",
@@ -329,7 +330,7 @@
       "nameEn": "Cuijue Slope",
       "x": -1,
       "y": -4,
-      "labelDir": "T"
+      "labelDir": "B"
     },
     {
       "id": "LPV",
@@ -352,7 +353,7 @@
       "nameEn": "Devantaka Mountain",
       "x": -8,
       "y": 3,
-      "labelDir": "RB"
+      "labelDir": "LT"
     },
     {
       "id": "POM",
@@ -360,14 +361,15 @@
       "nameEn": "Port Ormos",
       "x": -10,
       "y": 5,
-      "labelDir": "RB"
+      "labelDir": "B"
     },
     {
       "id": "SFL",
       "nameCn": "星落湖",
       "nameEn": "Starfell Lake",
       "x": 10,
-      "y": -14
+      "y": -14,
+      "labelDir": "RB"
     },
     {
       "id": "WSW",
@@ -430,7 +432,7 @@
       "nameEn": "Vimara Village",
       "x": -10,
       "y": 3,
-      "labelDir": "L"
+      "labelDir": "LB"
     },
     {
       "id": "CHH",
@@ -438,7 +440,7 @@
       "nameEn": "Gandha Hill",
       "x": -8,
       "y": -2,
-      "labelDir": "B"
+      "labelDir": "R"
     },
     {
       "id": "APW",
@@ -454,7 +456,7 @@
       "nameEn": "Ruins of Dahri",
       "x": -14,
       "y": 4,
-      "labelDir": "LB"
+      "labelDir": "RT"
     },
     {
       "id": "YNM",
@@ -502,7 +504,7 @@
       "nameEn": "New Fontaine Research Institute",
       "x": -18,
       "y": -19,
-      "labelDir": "LT"
+      "labelDir": "T"
     },
     {
       "id": "CLR",
@@ -510,7 +512,7 @@
       "nameEn": "Central Laboratory Ruins",
       "x": -16,
       "y": -19,
-      "labelDir": "B"
+      "labelDir": "RT"
     },
     {
       "id": "LCU",
@@ -549,7 +551,7 @@
       "nameEn": "Mont Automnequi East",
       "x": -15,
       "y": -11,
-      "labelDir": "T"
+      "labelDir": "RB"
     },
     {
       "id": "MAT",
@@ -565,7 +567,7 @@
       "nameEn": "Poisson",
       "x": -18,
       "y": -11,
-      "labelDir": "T"
+      "labelDir": "LB"
     },
     {
       "id": "ENS",
@@ -597,7 +599,7 @@
       "nameEn": "Lumidouce Harbor",
       "x": -9,
       "y": -14,
-      "labelDir": "RT"
+      "labelDir": "LB"
     },
     {
       "id": "RRH",
@@ -644,7 +646,7 @@
       "nameEn": "Night Warden Wars Memorial",
       "x": -35,
       "y": 5,
-      "labelDir": "T"
+      "labelDir": "L"
     },
     {
       "id": "COP",
@@ -660,7 +662,7 @@
       "nameEn": "Fallingstart Fields",
       "x": -40,
       "y": 7,
-      "labelDir": "T"
+      "labelDir": "LB"
     },
     {
       "id": "ONT",
@@ -683,7 +685,7 @@
       "nameEn": "Huitztli Hill",
       "x": -33,
       "y": 3,
-      "labelDir": "L"
+      "labelDir": "LB"
     },
     {
       "id": "SSF",
@@ -691,7 +693,7 @@
       "nameEn": "Stadium of the Sacred Flame",
       "x": -33,
       "y": 5,
-      "labelDir": "B"
+      "labelDir": "LB"
     },
     {
       "id": "POS",
@@ -761,7 +763,8 @@
       "nameCn": "悠悠港",
       "nameEn": "Easybreeze Port",
       "x": -44,
-      "y": 0
+      "y": 0,
+      "labelDir": "RT"
     },
     {
       "id": "EBM",
@@ -777,7 +780,7 @@
       "nameEn": "Colorfall Cliffs",
       "x": -47,
       "y": -3,
-      "labelDir": "T"
+      "labelDir": "RT"
     },
     {
       "id": "WVB",
@@ -785,7 +788,7 @@
       "nameEn": "Wavey Bay",
       "x": -49,
       "y": -3,
-      "labelDir": "LB"
+      "labelDir": "RT"
     },
     {
       "id": "TLI",
@@ -793,7 +796,7 @@
       "nameEn": "Tele Isle",
       "x": -51,
       "y": -5,
-      "labelDir": "LB"
+      "labelDir": "RT"
     },
     {
       "id": "NSP",
@@ -801,7 +804,7 @@
       "nameEn": "Nasha Port",
       "x": -36,
       "y": -6,
-      "labelDir": "L"
+      "labelDir": "R"
     },
     {
       "id": "NST",
@@ -816,7 +819,7 @@
       "nameEn": "Clink-Clank Krumkake Craftshop",
       "x": -38,
       "y": -8,
-      "labelDir": "T"
+      "labelDir": "B"
     },
     {
       "id": "FME",
@@ -824,7 +827,7 @@
       "nameEn": "Frostmoon Enclave",
       "x": -40,
       "y": -9,
-      "labelDir": "L"
+      "labelDir": "T"
     },
     {
       "id": "BMB",
@@ -860,7 +863,7 @@
       "nameEn": "Kuuvahki Experimental Design Bureau East",
       "x": -36,
       "y": -14,
-      "labelDir": "LB"
+      "labelDir": "B"
     },
     {
       "id": "KEW",
@@ -868,7 +871,7 @@
       "nameEn": "Kuuvahki Experimental Design Bureau West",
       "x": -38,
       "y": -14,
-      "labelDir": "LT"
+      "labelDir": "T"
     },
     {
       "id": "FNC",
@@ -903,7 +906,8 @@
       "nameCn": "西风戍垒",
       "nameEn": "Favonius Keep",
       "x": -35,
-      "y": -23
+      "y": -23,
+      "labelDir": "RT"
     },
     {
       "id": "CWC",
@@ -911,7 +915,7 @@
       "nameEn": "Cliffwatch Camp",
       "x": -36,
       "y": -25,
-      "labelDir": "L"
+      "labelDir": "R"
     },
     {
       "id": "KMC",
@@ -919,21 +923,23 @@
       "nameEn": "Kipumaki Cliff",
       "x": -36,
       "y": -26,
-      "labelDir": "L"
+      "labelDir": "R"
     },
     {
       "id": "AVT",
       "nameCn": "安瓦蒂尼尔湖",
       "nameEn": "Armvartnir",
       "x": -34,
-      "y": -25
+      "y": -25,
+      "labelDir": "RB"
     },
     {
       "id": "STR",
       "nameCn": "特辖地研究所",
       "nameEn": "Special Territory Research Institute",
       "x": -33,
-      "y": -27
+      "y": -27,
+      "labelDir": "R"
     }
   ],
   "lines": [
@@ -942,11 +948,11 @@
       "name": "跨局·原初线",
       "nameEn": "Original Line",
       "lineLabels": [
-        ["SAA", "LB"],
-        ["WSI", "RB"],
+        ["SAA", "RT"],
+        ["WSI", "LB"],
         ["CBC", "B"],
         ["ARV", "T"],
-        ["VKO", "LT"]
+        ["TMM", "L"]
       ],
       "stations": [
         ["SAA", false],
@@ -981,10 +987,10 @@
       "name": "跨局·风岩草线",
       "nameEn": "Anemo-Geo-Dendro Line",
       "lineLabels": [
-        ["STL", "LB"],
-        ["CJS", "B"],
+        ["STL", "RT"],
+        ["CJS", "T"],
         ["LPV", "L"],
-        ["DTM", "LT"]
+        ["DTM", "RB"]
       ],
       "stations": [
         ["STL", true],
@@ -1008,8 +1014,8 @@
       "name": "蒙德局·自由线",
       "nameEn": "Mondstadt Freedom Line",
       "lineLabels": [
-        ["SFL", "LT"],
-        ["WRV", "RT"]
+        ["SFL", "RT"],
+        ["DSC", "LT"]
       ],
       "stations": [
         ["SFL", false],
@@ -1027,7 +1033,7 @@
       "name": "璃月局·璃沉线",
       "nameEn": "Liyue Liyue-Chenyu Line",
       "lineLabels": [
-        ["LYS", "B"],
+        ["LYS", "LB"],
         ["MIL", "R"],
         ["YLW", "RT"]
       ],
@@ -1052,7 +1058,7 @@
       "lineLabels": [
         ["CWT", "B"],
         ["QCV", "LB"],
-        ["WSI", "RT"]
+        ["WSI", "LT"]
       ],
       "stations": [
         ["CWT", false],
@@ -1071,7 +1077,7 @@
       "nameEn": "Sumeru South-North Line",
       "lineLabels": [
         ["BDH", "RT"],
-        ["POM", "LT"]
+        ["VMV", "LT"]
       ],
       "stations": [
         ["BDH", false],
@@ -1087,7 +1093,7 @@
       "name": "须弥局·须弥环线",
       "nameEn": "Sumeru Loop Line",
       "lineLabels": [
-        ["ROD", "RT"],
+        ["APW", "T"],
         ["VNA", "RB"]
       ],
       "stations": [
@@ -1112,8 +1118,8 @@
       "nameEn": "Fontaine Aquabus Callas Line",
       "lineLabels": [
         ["COF", "R"],
-        ["CLR", "T"],
-        ["MAE", "RB"]
+        ["CLR", "B"],
+        ["FCR", "L"]
       ],
       "stations": [
         ["COF", false],
@@ -1138,7 +1144,7 @@
       "nameEn": "Fontaine Aquabus Navia Line",
       "lineLabels": [
         ["MCT", "T"],
-        ["LDH", "B"]
+        ["LDH", "RT"]
       ],
       "stations": [
         ["COF", true],
@@ -1186,7 +1192,7 @@
       "nameEn": "Natlan Haborym Line",
       "lineLabels": [
         ["SFV", "B"],
-        ["FSF", "LB"]
+        ["FSF", "LT"]
       ],
       "stations": [
         ["COE", false],
@@ -1228,13 +1234,13 @@
       "nameEn": "Natlan Il Capitano Line",
       "lineLabels": [
         ["SOC", "RT"],
-        ["TPB", "LB"]
+        ["TPB", "B"]
       ],
       "stations": [
         ["TPP", false],
         ["SOC", true],
         ["SSF", false],
-        ["NWW", false],
+        ["NWW", true],
         ["MNW", false],
         ["TPB", false]
       ],
@@ -1244,10 +1250,7 @@
       "id": "N4",
       "name": "纳塔局·悠悠度假村线",
       "nameEn": "Natlan Easybreeze Holiday Resort Line",
-      "lineLabels": [
-        ["EBP", "L"],
-        ["TLI", "T"]
-      ],
+      "lineLabels": [["EBM", "LB"]],
       "stations": [
         ["EBP", false],
         ["EBM", true],
@@ -1261,7 +1264,7 @@
       "id": "K1",
       "name": "挪德卡莱局·希汐岛线",
       "nameEn": "Nod-Krai Hiisi Island Line",
-      "lineLabels": [["NST", "L"]],
+      "lineLabels": [["NST", "LB"]],
       "stations": [
         ["NSP", false],
         ["NST", true],
@@ -1275,8 +1278,8 @@
       "name": "挪德卡莱局·帕哈岛线",
       "nameEn": "Nod-Krai Paha Isle Line",
       "lineLabels": [
-        ["NSP", "R"],
-        ["FNC", "L"]
+        ["NSP", "LB"],
+        ["FNC", "LT"]
       ],
       "stations": [
         ["NSP", false],
@@ -1293,7 +1296,7 @@
       "id": "K2-B",
       "name": "挪德卡莱局·帕哈岛支线",
       "nameEn": "Nod-Krai Paha Isle Branch Line",
-      "lineLabels": [["KEE", "T"]],
+      "lineLabels": [["KEW", "LB"]],
       "stations": [
         ["NSP", false],
         ["NST", false],
@@ -1310,7 +1313,7 @@
       "name": "挪德卡莱局·虚海望线",
       "nameEn": "Nod-Krai Voidsea Outlook Line",
       "lineLabels": [
-        ["VOP", "L"],
+        ["VOP", "LT"],
         ["STR", "L"]
       ],
       "stations": [
@@ -1326,7 +1329,7 @@
     {
       "id": "K3-B",
       "name": "挪德卡莱局·虚海望支线",
-      "lineLabels": [["FNK", "LB"]],
+      "lineLabels": [["KMC", "L"]],
       "nameEn": "Nod-Krai Voidsea Outlook Branch Line",
       "stations": [
         ["VOP", false],
