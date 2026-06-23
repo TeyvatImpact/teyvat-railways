@@ -97,7 +97,7 @@
     </template>
 
     <div v-else class="result">
-      <RouteTimeline :result="selectedRoute.result" @close="selectedRoute = null" />
+      <RouteTimeline :result="selectedRoute.result" @close="clearResults" />
     </div>
   </div>
 </template>
