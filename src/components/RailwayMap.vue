@@ -257,13 +257,13 @@ const initPanX = svgWidth / 2 - cx0
 const initPanY = svgHeight / 2 - cy0
 
 const {
-  container, svgEl, panX, panY, scale, showAll,
+  container, svgEl, panX, panY, scale,
   onMouseDown, onMouseMove, onMouseUp, onWheel,
 } = useMapInteraction(initPanX, initPanY, 1)
 
 const {
   visibleStations, labelBoxes, leaderLines, lineLabels, lineLeaderLines, gridX, gridY,
-} = useLabelPlacement(showAll)
+} = useLabelPlacement()
 
 function onSvgMouseMove(e: MouseEvent) {
   onMouseMove(e)

@@ -6,16 +6,10 @@ export const LABEL_BG = 'rgba(255,255,255,0.2)';
 /** 标签内边距（px），文字与标签框边缘之间的距离 */
 export const pad = 2;
 
-/** 中文字体大小（px），大标签模式下使用 */
-export const fsCN = 24;
-
-/** 英文字体大小（px），大标签模式下使用 */
-export const fsEN = 16;
-
-/** 中文字体大小（px），小标签模式（缩放较小时）使用 */
+/** 中文字体大小（px） */
 export const fsCNSmall = 12;
 
-/** 英文字体大小（px），小标签模式使用 */
+/** 英文字体大小（px） */
 export const fsENSmall = 8;
 
 /** 站点与标签之间的间距（px） */
@@ -64,8 +58,7 @@ export const BLOCK_SIZE = 50;
 /** 边界留白（数据坐标单位），用于计算 SVG 尺寸时的额外边距 */
 export const margin = 2;
 
-/** 缩放阈值，缩放级别 >= 此值时显示全部站点标签，否则仅显示换乘站 */
-export const ZOOM_THRESHOLD = 0.5;
+
 
 // ===== 标注配置 =====
 

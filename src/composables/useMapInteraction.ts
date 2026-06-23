@@ -1,5 +1,4 @@
-import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
-import { ZOOM_THRESHOLD } from '../config/render.config'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 const STORAGE_KEY = 'teyvat-railways-map-state'
 
@@ -25,8 +24,6 @@ export function useMapInteraction(initPanX = 0, initPanY = 0, initScale = 1) {
   const panX = ref(saved.panX)
   const panY = ref(saved.panY)
   const scale = ref(saved.scale)
-
-  const showAll = computed(() => scale.value >= ZOOM_THRESHOLD)
 
   watch([panX, panY, scale], () => {
     try {
@@ -167,7 +164,6 @@ export function useMapInteraction(initPanX = 0, initPanY = 0, initScale = 1) {
     panX,
     panY,
     scale,
-    showAll,
     onMouseDown,
     onMouseMove,
     onMouseUp,

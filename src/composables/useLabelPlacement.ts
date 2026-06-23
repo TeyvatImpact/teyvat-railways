@@ -1,7 +1,7 @@
-import { ref, computed, type Ref } from 'vue'
+import { ref, computed } from 'vue'
 import { prepareWithSegments, measureNaturalWidth } from '@chenglou/pretext'
 import type { PreparedTextWithSegments } from '@chenglou/pretext'
-import { pad, fsCN, fsEN, fsCNSmall, fsENSmall, gap, textGap, stationR, gridStep } from '../config/render.config'
+import { pad, fsCNSmall, fsENSmall, gap, textGap, stationR, gridStep } from '../config/render.config'
 import {
   svgWidth, svgHeight, stations as allStations,
   transferStationIds as allTransferIds,
@@ -175,7 +175,7 @@ const gridY = computed(() => {
   return a
 })
 
-export function useLabelPlacement(showAll: Ref<boolean>) {
+export function useLabelPlacement() {
   const revision = ref(0)
 
   if (typeof document !== 'undefined' && document.fonts) {
@@ -185,11 +185,7 @@ export function useLabelPlacement(showAll: Ref<boolean>) {
     })
   }
 
-  const largeBoxes = computed(() => {
-    void revision.value
-    return computeAllBoxes(fsCN, fsEN)
-  })
-  const smallBoxes = computed(() => {
+  const allBoxes = computed(() => {
     void revision.value
     return computeAllBoxes(fsCNSmall, fsENSmall)
   })
@@ -198,20 +194,13 @@ export function useLabelPlacement(showAll: Ref<boolean>) {
     return computeLineLabels()
   })
 
-  const boxMapLarge = computed(() => new Map(largeBoxes.value.map(b => [b.id, b])))
-  const boxMapSmall = computed(() => new Map(smallBoxes.value.map(b => [b.id, b])))
+  const boxMap = computed(() => new Map(allBoxes.value.map(b => [b.id, b])))
 
   const visibleStations = allStations
 
   const labelBoxes = computed(() => {
-    const large = boxMapLarge.value
-    const small = boxMapSmall.value
-    return allStations.map(s => {
-      if (showAll.value || !allTransferIds.has(s.id)) {
-        return small.get(s.id)
-      }
-      return large.get(s.id)
-    }).filter((b): b is Box => !!b)
+    const map = boxMap.value
+    return allStations.map(s => map.get(s.id)).filter((b): b is Box => !!b)
   })
 
   const leaderLines = computed(() =>
