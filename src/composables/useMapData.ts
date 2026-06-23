@@ -75,6 +75,10 @@ export interface RenderSegment {
   y2: number;
   width: number;
   dasharray?: string;
+  fare: number;
+  time: number;
+  distance: number;
+  showLabel: boolean;
 }
 
 export interface MarkerPath {
@@ -300,6 +304,10 @@ interface RawSegment {
   y2: number;
   width?: number;
   dasharray?: string;
+  fare: number;
+  time: number;
+  distance: number;
+  showLabel: boolean;
 }
 
 const rawSegments: RawSegment[] = [];
@@ -339,6 +347,10 @@ for (const line of parsedLines) {
         y2: by,
         width: lw,
         dasharray: dash,
+        fare: aFare,
+        time: aTime,
+        distance: aDist,
+        showLabel: true,
       });
     } else {
       const diagFirst = aDir;
@@ -368,6 +380,10 @@ for (const line of parsedLines) {
         y1: ay,
         x2: cx,
         y2: cy,
+        fare: aFare,
+        time: aTime,
+        distance: aDist,
+        showLabel: true,
       });
       rawSegments.push({
         id: pathId(cx, cy, bx, by),
@@ -376,6 +392,10 @@ for (const line of parsedLines) {
         y1: cy,
         x2: bx,
         y2: by,
+        fare: aFare,
+        time: aTime,
+        distance: aDist,
+        showLabel: false,
       });
     }
   }
@@ -417,6 +437,10 @@ for (const [, segments] of segmentGroups) {
       ...coords,
       width: seg.width ?? LINE_WIDTH,
       dasharray: seg.dasharray,
+      fare: seg.fare,
+      time: seg.time,
+      distance: seg.distance,
+      showLabel: seg.showLabel && i === 0,
     });
   }
 }

@@ -37,6 +37,16 @@
           stroke-linecap="round"
         />
 
+        <g
+          v-for="lb in segLabels"
+          :key="lb.key"
+          :transform="`translate(${lb.x}, ${lb.y})${lb.angle ? ` rotate(${lb.angle})` : ''}`"
+          fill="#999" :font-size="lb.fontSize" text-anchor="middle" dominant-baseline="central" opacity="0.45"
+          font-family="sans-serif"
+        >
+          <text x="0" y="0">{{ lb.text }}</text>
+        </g>
+
         <line
           v-for="ll in leaderLines"
           :key="ll.id"
@@ -248,6 +258,51 @@ function lineLabelOpacity(id: string): number {
   const m = id.match(/^line-label-(.+?)-/)
   return m && routeLineIds.value.has(m[1]) ? 1 : DIM_OPACITY
 }
+
+const segLabels = computed(() => {
+  const result: { key: string; x: number; y: number; angle: number; text: string; fontSize: number }[] = []
+  for (const seg of renderSegments) {
+    if (!seg.showLabel) continue
+    const dx = seg.x2 - seg.x1
+    const dy = seg.y2 - seg.y1
+    const len = Math.hypot(dx, dy)
+    if (!len) continue
+    const midX = (seg.x1 + seg.x2) / 2
+    const midY = (seg.y1 + seg.y2) / 2
+    const text = `${seg.fare}mora ${seg.time}' ${seg.distance}km`
+    const fontSize = 4
+    const isVertical = Math.abs(dx) < Math.abs(dy)
+    if (isVertical) {
+      result.push({
+        key: seg.lineId + '-' + seg.id,
+        x: midX - 5,
+        y: midY,
+        angle: -90,
+        text,
+        fontSize,
+      })
+    } else {
+      let angleDeg = Math.atan2(dy, dx) * 180 / Math.PI
+      if (angleDeg > 90 || angleDeg < -90) {
+        angleDeg += 180
+        if (angleDeg > 180) angleDeg -= 360
+      }
+      const angleRad = angleDeg * Math.PI / 180
+      const perpX = Math.sin(angleRad)
+      const perpY = -Math.cos(angleRad)
+      const off = 6
+      result.push({
+        key: seg.lineId + '-' + seg.id,
+        x: midX + perpX * off,
+        y: midY + perpY * off,
+        angle: angleDeg,
+        text,
+        fontSize,
+      })
+    }
+  }
+  return result
+})
 
 const mouseCoord = ref<string | null>(null)
 
