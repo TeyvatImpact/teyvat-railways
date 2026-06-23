@@ -83,7 +83,7 @@ export const gridStep = 50;
 // ===== 特殊线路配置 =====
 
 /** 轮渡线路颜色 */
-export const FERRY_COLOR = '#0d47a13f';
+export const FERRY_COLOR = '#0d47a17f';
 
 /** 轮渡线路高亮色（无透明通道版本） */
 export const FERRY_COLOR_HIGHLIGHT = '#0d47a1';
@@ -95,7 +95,7 @@ export const FERRY_LINE_WIDTH = 2;
 export const FERRY_DASH = '8,5';
 
 /** 同站点连接线颜色 */
-export const SAME_COLOR = '#0000003f';
+export const SAME_COLOR = '#7777';
 
 /** 同站点连接线描边宽度（px） */
 export const SAME_LINE_WIDTH = 2;

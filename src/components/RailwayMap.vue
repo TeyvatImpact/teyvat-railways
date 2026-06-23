@@ -91,8 +91,8 @@
             :cx="station.cx"
             :cy="station.cy"
             :r="transferStationIds.has(station.id) ? 7 : 5"
-            fill="#1f77b4"
-            stroke="var(--color-body, #fff)"
+            fill="var(--color-body)"
+            stroke="var(--color-text)"
             stroke-width="2"
             style="cursor: pointer"
             @click.stop="onStationClick(station.id)" />
