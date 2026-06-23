@@ -26,20 +26,24 @@ export interface StationData {
   id: string;
   prefix: string;
   name: string;
+  nameZh?: string;
   nameEn: string;
   x: number;
   y: number;
   labelDir?: string;
   fontFamily: string;
+  fontFamilyZh?: string;
 }
 
 export interface LineData {
   id: string;
   name: string;
+  nameZh?: string;
   nameEn: string;
   lineLabels?: [string, string][];
   stations: [string, boolean, number, number, number][];
   fontFamily?: string;
+  fontFamilyZh?: string;
   lineType?: 'ferry' | 'same-station';
 }
 
@@ -51,11 +55,13 @@ export interface Station extends StationData {
 export interface Line {
   id: string;
   name: string;
+  nameZh?: string;
   nameEn: string;
   color: string;
   lineLabels?: [string, string][];
   stations: [string, boolean, number, number, number][];
   fontFamily?: string;
+  fontFamilyZh?: string;
   lineType?: 'ferry' | 'same-station';
 }
 
@@ -110,31 +116,34 @@ function parseStationsJson(data: RegionFile): {
   const { config, stations: entries } = data;
   const prefix = config.name;
   const fontFamily = config.fontFamily || 'sans-serif';
+  const fontFamilyZh = 'Noto Serif SC';
   const stations = entries.map((e) => ({
     id: prefix + '-' + e.id,
     prefix,
     name: e.nameCn,
+    nameZh: (e as any).nameZh || undefined,
     nameEn: e.nameEn,
     x: e.x + config.x,
     y: e.y + config.y,
     labelDir: e.labelDir,
     fontFamily,
+    fontFamilyZh: (e as any).nameZh ? fontFamilyZh : undefined,
   }));
   return { stations, prefix, fontFamily };
 }
 
-const parsedR = parseStationsJson(dataR as RegionFile);
-const parsedI = parseStationsJson(dataI as RegionFile);
-const parsedL = parseStationsJson(dataL as RegionFile);
+const parsedR = parseStationsJson(dataR as unknown as RegionFile);
+const parsedI = parseStationsJson(dataI as unknown as RegionFile);
+const parsedL = parseStationsJson(dataL as unknown as RegionFile);
 const parsedStations: StationData[] = [
   ...parsedR.stations,
   ...parsedI.stations,
   ...parsedL.stations,
 ];
 
-const parsedLinesR = dataR.lines as LineData[];
-const parsedLinesI = dataI.lines as LineData[];
-const parsedLinesL = dataL.lines as LineData[];
+const parsedLinesR = dataR.lines as unknown as LineData[];
+const parsedLinesI = dataI.lines as unknown as LineData[];
+const parsedLinesL = dataL.lines as unknown as LineData[];
 
 for (const line of parsedLinesR) {
   line.stations = line.stations.map(([id, dir, fare, time, dist]) => [parsedR.prefix + '-' + id, dir, fare, time, dist]);
@@ -147,6 +156,7 @@ for (const line of parsedLinesI) {
   if (line.lineLabels)
     line.lineLabels = line.lineLabels.map(([id, dir]) => [parsedI.prefix + '-' + id, dir]);
   line.fontFamily = parsedI.fontFamily;
+  if (line.nameZh) line.fontFamilyZh = 'Noto Serif SC';
 }
 for (const line of parsedLinesL) {
   line.stations = line.stations.map(([id, dir, fare, time, dist]) => [parsedL.prefix + '-' + id, dir, fare, time, dist]);

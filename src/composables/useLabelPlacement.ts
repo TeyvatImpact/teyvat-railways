@@ -9,6 +9,7 @@ import {
 } from './useMapData'
 
 export const FONT_EN = 'Barlow'
+export const FONT_ZH = 'Noto Serif SC'
 
 export interface Box {
   id: string
@@ -19,10 +20,13 @@ export interface Box {
   left: number
   top: number
   cnX: number
+  zhX: number
   enX: number
   name: string
+  nameZh: string
   nameEn: string
   fontFamily: string
+  fontFamilyZh: string
   fontFamilyEn: string
   fCN: number
   fEN: number
@@ -38,11 +42,14 @@ export interface LineLabelBox {
   left: number
   top: number
   cnX: number
+  zhX: number
   enX: number
   name: string
+  nameZh: string
   nameEn: string
   color: string
   fontFamily: string
+  fontFamilyZh: string
   fontFamilyEn: string
   fCN: number
   fEN: number
@@ -80,21 +87,30 @@ function getLabelPosition(cx: number, cy: number, w: number, h: number, dir: str
 function computeAllBoxes(fsCN_: number, fsEN_: number): Box[] {
   return allStations.map((s) => {
     const ff = s.fontFamily
+    const fZh = s.fontFamilyZh || FONT_ZH
+    const hasZh = !!s.nameZh
     const wCN = textWidth(s.name, fsCN_, true, ff)
+    const wZh = hasZh ? textWidth(s.nameZh!, fsEN_, true, fZh) : 0
     const wEN = textWidth(s.nameEn, fsEN_, true, FONT_EN)
-    const w = Math.max(wCN, wEN) + pad * 2
-    const h = fsCN_ * 1.2 + textGap + fsEN_ * 1.2
+    const w = Math.max(wCN, wZh, wEN) + pad * 2
+    const h = hasZh
+      ? fsCN_ * 1.2 + textGap + fsEN_ * 1.2 + textGap + fsEN_ * 1.2
+      : fsCN_ * 1.2 + textGap + fsEN_ * 1.2
     const dir = s.labelDir || 'R'
     const { left, top } = getLabelPosition(s.cx, s.cy, w, h, dir)
     const textAreaStart = left + pad
-    const textAreaWidth = Math.max(wCN, wEN)
+    const textAreaWidth = Math.max(wCN, wZh, wEN)
     return {
       id: s.id, w, h, cx: s.cx, cy: s.cy,
       left, top,
       cnX: textAreaStart + (textAreaWidth - wCN) / 2,
+      zhX: hasZh ? textAreaStart + (textAreaWidth - wZh) / 2 : textAreaStart,
       enX: textAreaStart + (textAreaWidth - wEN) / 2,
-      name: s.name, nameEn: s.nameEn,
+      name: s.name,
+      nameZh: s.nameZh || '',
+      nameEn: s.nameEn,
       fontFamily: ff,
+      fontFamilyZh: fZh,
       fontFamilyEn: FONT_EN,
       fCN: fsCN_, fEN: fsEN_,
     }
@@ -114,14 +130,33 @@ function computeLineLabels(): LineLabelBox[] {
       const st = stationMap.get(sid)
       if (!st) continue
       const ff = line.fontFamily || 'sans-serif'
+      const fZh = line.fontFamilyZh || FONT_ZH
+      const hasZh = !!line.nameZh
       const wCN = textWidth(line.name, fCN, true, ff)
+      const wZh = hasZh ? textWidth(line.nameZh!, fEN, true, fZh) : 0
       const wEN = textWidth(line.nameEn, fEN, true, FONT_EN)
-      const w = Math.max(wCN, wEN) + pad * 2 + 6
-      const h = fCN * 1.2 + textGap + fEN * 1.2
+      const w = Math.max(wCN, wZh, wEN) + pad * 2 + 6
+      const h = hasZh
+        ? fCN * 1.2 + textGap + fEN * 1.2 + textGap + fEN * 1.2
+        : fCN * 1.2 + textGap + fEN * 1.2
       const { left, top } = getLabelPosition(st.cx, st.cy, w, h, dir || 'R')
       const textAreaStart = left + pad + 6
-      const textAreaWidth = Math.max(wCN, wEN)
-      boxes.push({ id: `line-label-${line.id}-${sid}`, lineId: line.id, w, h, cx: st.cx, cy: st.cy, left, top, cnX: textAreaStart + (textAreaWidth - wCN) / 2, enX: textAreaStart + (textAreaWidth - wEN) / 2, name: line.name, nameEn: line.nameEn, color: line.color, fontFamily: ff, fontFamilyEn: FONT_EN, fCN, fEN })
+      const textAreaWidth = Math.max(wCN, wZh, wEN)
+      boxes.push({
+        id: `line-label-${line.id}-${sid}`, lineId: line.id, w, h, cx: st.cx, cy: st.cy,
+        left, top,
+        cnX: textAreaStart + (textAreaWidth - wCN) / 2,
+        zhX: hasZh ? textAreaStart + (textAreaWidth - wZh) / 2 : textAreaStart,
+        enX: textAreaStart + (textAreaWidth - wEN) / 2,
+        name: line.name,
+        nameZh: line.nameZh || '',
+        nameEn: line.nameEn,
+        color: line.color,
+        fontFamily: ff,
+        fontFamilyZh: fZh,
+        fontFamilyEn: FONT_EN,
+        fCN, fEN,
+      })
     }
   }
   return boxes

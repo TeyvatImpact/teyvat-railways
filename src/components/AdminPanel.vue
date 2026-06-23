@@ -35,7 +35,8 @@
                   <thead>
                     <tr>
                       <th class="col-id">ID</th>
-                      <th>Name (CN)</th>
+                      <th>Name (JP/CN)</th>
+                      <th>Name (ZH)</th>
                       <th>Name (EN)</th>
                     </tr>
                   </thead>
@@ -43,6 +44,7 @@
                     <tr v-for="st in currentStations" :key="st.id">
                       <td class="col-id">{{ st.id }}</td>
                       <td><input v-model="st.nameCn" class="edit-input" /></td>
+                      <td><input v-model="st.nameZh" class="edit-input" :placeholder="activeFile === 'inazuma' ? '中文译名' : ''" /></td>
                       <td><input v-model="st.nameEn" class="edit-input" /></td>
                     </tr>
                   </tbody>
@@ -53,7 +55,12 @@
               <div class="admin-section">
                 <h3>Line Segments</h3>
                 <div v-for="line in currentLines" :key="line.id" class="line-group">
-                  <h4>{{ line.name }} ({{ line.id }})</h4>
+                  <div class="line-header">
+                    <span class="line-id">{{ line.id }}</span>
+                    <input v-model="line.name" class="edit-input line-name" />
+                    <input v-model="line.nameZh" class="edit-input line-name" :placeholder="activeFile === 'inazuma' ? '中文名' : ''" />
+                    <input v-model="line.nameEn" class="edit-input line-name" />
+                  </div>
                   <table class="data-table">
                     <thead>
                       <tr>
@@ -384,6 +391,22 @@ async function save() {
   font-size: 13px;
   margin: 0 0 6px;
   color: #444;
+}
+.line-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.line-id {
+  font-family: monospace;
+  font-size: 12px;
+  color: #888;
+  min-width: 40px;
+}
+.line-name {
+  flex: 1;
+  min-width: 80px;
 }
 
 .admin-footer {

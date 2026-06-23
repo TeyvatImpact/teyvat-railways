@@ -75,6 +75,12 @@
               :font-family="lb.fontFamily"
             >{{ lb.name }}</text>
             <text
+              v-if="lb.nameZh"
+              :x="lb.zhX" :y="lb.top + lb.fCN * 1.2 + textGap + lb.fEN * 1.1"
+              fill="#555" font-weight="bold" :font-size="lb.fEN"
+              :font-family="lb.fontFamilyZh"
+            >{{ lb.nameZh }}</text>
+            <text
               :x="lb.enX" :y="lb.top + lb.h - pad"
               fill="#555" font-weight="bold" :font-size="lb.fEN"
               :font-family="lb.fontFamilyEn"
@@ -97,6 +103,12 @@
               fill="#333" font-weight="bold" :font-size="lb.fCN"
               :font-family="lb.fontFamily"
             >{{ lb.name }}</text>
+            <text
+              v-if="lb.nameZh"
+              :x="lb.zhX" :y="lb.top + lb.fCN * 1.2 + textGap + lb.fEN * 1.1"
+              fill="#555" font-weight="bold" :font-size="lb.fEN"
+              :font-family="lb.fontFamilyZh"
+            >{{ lb.nameZh }}</text>
             <text
               :x="lb.enX" :y="lb.top + lb.h - pad"
               fill="#555" font-weight="bold" :font-size="lb.fEN"
@@ -122,7 +134,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { BLOCK_SIZE, pad, LABEL_BG, FERRY_COLOR_HIGHLIGHT } from '../config/render.config'
+import { BLOCK_SIZE, pad, textGap, LABEL_BG, FERRY_COLOR_HIGHLIGHT } from '../config/render.config'
 import { svgWidth, svgHeight, stations, stationMap, transferStationIds, renderSegments, markerPaths, markerTexts, minX, minY } from '../composables/useMapData'
 import { useMapInteraction } from '../composables/useMapInteraction'
 import { useLabelPlacement } from '../composables/useLabelPlacement'
