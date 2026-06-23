@@ -29,9 +29,10 @@
             class="cursor-pointer">
             <div>
               <span>{{ opt.label }}</span>
-              <span>{{ opt.result.segments.length }} 段</span>
             </div>
             <div>
+              <span>换乘 {{ opt.result.segments.length }} 次</span>
+              <span>·</span>
               <span>{{ opt.result.totalFare }} 摩拉</span>
               <span>·</span>
               <span>{{ opt.result.totalTime }} 分钟</span>

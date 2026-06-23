@@ -17,8 +17,8 @@
           <span v-if="result.segments.length === 1">直达</span>
           <span v-else>{{ result.segments.length }} 段换乘</span>
           <span class="ml-2">票价 {{ result.totalFare }} 摩拉</span>
-          <span class="ml-2">时间 {{ result.totalTime }} min</span>
-          <span class="ml-2">距离 {{ result.totalDistance }} km</span>
+          <span class="ml-2">时间 {{ result.totalTime }} 分钟</span>
+          <span class="ml-2">距离 {{ result.totalDistance }} 千米</span>
         </div>
       </div>
     </div>
@@ -63,12 +63,13 @@
               <span class="font-semibold">
                 {{ block.lineName }}
                 <span v-if="block.isFerry" class="text-xs font-normal">(轮渡)</span>
-                <span v-else-if="block.isSameStation" class="text-xs font-normal">(同站换乘)</span>
               </span>
               <br />
-              <span class="text-xs truncate">{{ block.direction }} 方向</span>
+              <span v-if="!block.isSameStation" class="text-xs truncate"
+                >{{ block.direction }} 方向</span
+              >
               <span class="text-xs ml-2"
-                >({{ block.fare }}摩拉 {{ block.time }}min {{ block.distance }}km)</span
+                >({{ block.fare }} 摩拉 {{ block.time }} 分钟 {{ block.distance }} 千米)</span
               >
             </div>
             <div v-if="block.intermediates.length > 0" class="space-y-1">
