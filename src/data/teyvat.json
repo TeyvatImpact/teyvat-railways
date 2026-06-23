@@ -1337,6 +1337,17 @@
         ["KMC", false]
       ],
       "costPreset": "standard"
+    },
+    {
+      "id": "ferry-fnc-vop",
+      "name": "终夜长茔↔虚海望港 轮渡",
+      "nameEn": "Final Night Cemetery ↔ Voidsea Outlook Port Ferry",
+      "lineType": "ferry",
+      "costPreset": "ferry",
+      "stations": [
+        ["FNC", false],
+        ["VOP", false]
+      ]
     }
   ],
   "stationDistances": [
@@ -1739,6 +1750,11 @@
       "from": "FNC",
       "to": "PHI",
       "distance": 8
+    },
+    {
+      "from": "FNC",
+      "to": "VOP",
+      "distance": 10
     },
     {
       "from": "FOA",
