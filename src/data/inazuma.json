@@ -1,6 +1,6 @@
 {
   "config": {
-    "x": 15,
+    "x": 25,
     "y": 11,
     "name": "Inazuma",
     "fontFamily": "Noto Serif JP"
@@ -13,7 +13,7 @@
       "nameEn": "Ritou Port",
       "x": 0,
       "y": 0,
-      "labelDir": "LB"
+      "labelDir": "B"
     },
     {
       "id": "RTU",
@@ -22,7 +22,7 @@
       "nameEn": "Ritou",
       "x": 1,
       "y": 0,
-      "labelDir": "T"
+      "labelDir": "B"
     },
     {
       "id": "KDV",
@@ -310,8 +310,8 @@
       "nameZh": "IR 东稻妻·鸣神岛线",
       "nameEn": "IR East Narukami Line",
       "lineLabels": [
-        ["RTP", "LT"],
-        ["NIT", "LB"]
+        ["RTU", "T"],
+        ["NIT", "B"]
       ],
       "stations": [
         ["NIT", false],
