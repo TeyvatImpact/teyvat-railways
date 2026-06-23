@@ -24,7 +24,6 @@ export interface RouteSegment {
 export interface RouteResult {
   segments: RouteSegment[]
   pathNodeIds: string[]
-  totalWeight: number
   totalFare: number
   totalTime: number
   totalDistance: number
@@ -66,9 +65,6 @@ const seenNodes = new Set<string>()
 for (const line of lines) {
   if (line.lineType === 'same-station') continue
 
-  const isFerry = line.lineType === 'ferry'
-  const edgeWeight = isFerry ? 5 : 1
-
   for (const [sid] of line.stations) {
     const st = stationMap.get(sid)
     if (!st) continue
@@ -97,7 +93,7 @@ for (const line of lines) {
     const aSt = stationMap.get(aId)
     const bSt = stationMap.get(bId)
     if (!aSt || !bSt) continue
-    addEdge(`${aId}-${line.id}`, `${bId}-${line.id}`, edgeWeight, { fare: aFare, time: aTime, distance: aDist })
+    addEdge(`${aId}-${line.id}`, `${bId}-${line.id}`, aFare, { fare: aFare, time: aTime, distance: aDist })
   }
 }
 
@@ -105,7 +101,7 @@ for (const [, nodes] of stationNodeMap) {
   if (nodes.length < 2) continue
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
-      addEdge(nodes[i], nodes[j], 0.1)
+      addEdge(nodes[i], nodes[j], 0)
     }
   }
 }
@@ -118,7 +114,7 @@ for (const line of lines) {
   const nodesB = stationNodeMap.get(bId) || []
   for (const na of nodesA) {
     for (const nb of nodesB) {
-      addEdge(na, nb, 0.5)
+      addEdge(na, nb, 0)
     }
   }
 }
@@ -213,13 +209,10 @@ export function useRouting() {
       cur = prev.get(cur) ?? null
     }
 
-    let totalWeight = 0
     let totalFare = 0
     let totalTime = 0
     let totalDistance = 0
     for (let i = 0; i < pathNodes.length - 1; i++) {
-      const w = graph.get(pathNodes[i])?.get(pathNodes[i + 1])
-      if (w !== undefined) totalWeight += w
       const m = edgeMetrics.get(pathNodes[i])?.get(pathNodes[i + 1])
       if (m) {
         totalFare += m.fare
@@ -261,7 +254,7 @@ export function useRouting() {
       }
     }
 
-    return { segments, pathNodeIds: pathNodes, totalWeight, totalFare, totalTime, totalDistance }
+    return { segments, pathNodeIds: pathNodes, totalFare, totalTime, totalDistance }
   }
 
   function formatRoute(result: RouteResult): string {
@@ -294,7 +287,7 @@ export function useRouting() {
       const suffix = restStations ? `: ${restStations}` : ''
 
       if (seg.isFerry) {
-        textLines.push(`${prefix}乘坐轮渡「${seg.lineName}」(权重 5)${suffix}`)
+        textLines.push(`${prefix}乘坐轮渡「${seg.lineName}」${suffix}`)
       } else if (prevSeg.isFerry) {
         textLines.push(`→ 在 ${seg.nodes[0].stationName} 下车，换乘 ${seg.lineName}${suffix}`)
       } else {
@@ -303,7 +296,6 @@ export function useRouting() {
     }
 
     textLines.push(`到达 ${endNode.stationName}`)
-    textLines.push(`（总权重: ${result.totalWeight.toFixed(1)}）`)
     textLines.push(`总票价: ${result.totalFare} 摩拉 | 总时间: ${result.totalTime} 分钟 | 总距离: ${result.totalDistance} 千米`)
 
     return textLines.join('\n')

@@ -17,7 +17,6 @@
       <div class="text-xs text-gray-500">
         <span v-if="result.segments.length === 1">直达</span>
         <span v-else>{{ result.segments.length }} 段换乘</span>
-        <span> · 权重 {{ result.totalWeight.toFixed(1) }}</span>
         <span class="ml-2">票价 {{ result.totalFare }} 摩拉</span>
         <span class="ml-2">时间 {{ result.totalTime }} min</span>
         <span class="ml-2">距离 {{ result.totalDistance }} km</span>
