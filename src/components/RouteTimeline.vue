@@ -33,7 +33,7 @@
               :style="{ background: block.lineInColor }" />
             <div v-else class="flex-1" />
             <div
-              class="w-4 h-4 rounded-full shrink-0 z-10 bg-white"
+              class="w-4 h-4 rounded-full shrink-0 z-10 bg-(--color-body)"
               :style="{
                 border: `4px solid ${block.lineOutColor || block.lineInColor || '#999'}`,
               }" />
