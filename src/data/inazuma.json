@@ -433,6 +433,30 @@
         ["ATP", false]
       ],
       "costPreset": "inazuma"
+    },
+    {
+      "id": "ferry-hgv-wte",
+      "name": "緋木村↔海祇東 渡輪",
+      "nameZh": "绯木村↔海祇东 渡轮",
+      "nameEn": "Higii Village ↔ Watatsumi East Ferry",
+      "lineType": "ferry",
+      "costPreset": "ferry",
+      "stations": [
+        ["HGV", false],
+        ["WTE", false]
+      ]
+    },
+    {
+      "id": "ferry-izc-tmp",
+      "name": "稲妻城↔鶴観港 渡輪",
+      "nameZh": "稻妻城↔鹤观港 渡轮",
+      "nameEn": "Inazuma City ↔ Tsurumi Port Ferry",
+      "lineType": "ferry",
+      "costPreset": "ferry",
+      "stations": [
+        ["IZC", false],
+        ["TMP", false]
+      ]
     }
   ],
   "stationDistances": [
@@ -590,6 +614,16 @@
       "from": "RTP",
       "to": "RTU",
       "distance": 1
+    },
+    {
+      "from": "HGV",
+      "to": "WTE",
+      "distance": 10
+    },
+    {
+      "from": "IZC",
+      "to": "TMP",
+      "distance": 30
     }
   ]
 }

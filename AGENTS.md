@@ -189,9 +189,11 @@ fix: correct station label positioning at zoom boundaries
 refactor: extract Dijkstra weight function into helper
 docs: update AGENTS.md with new routing schema
 chore: add migration script for station distances
+data: add Inazuma ferry lines (Higii Village ↔ Watatsumi East, Inazuma City ↔ Tsurumi Port)
 ```
 
-Scopes are optional but encouraged when relevant (e.g. `feat(routing)`, `fix(map)`).
+Scopes are optional but encouraged when relevant (e.g. `feat(routing)`, `fix(map)`).  
+Use `data:` prefix for commits that only change JSON data (no code changes).
 
 ## Before committing
 
