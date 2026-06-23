@@ -914,6 +914,19 @@
       ]
     },
     {
+      "id": "N0",
+      "name": "纳塔局·连接线",
+      "nameEn": "Natlan Connection Line",
+      "lineLabels": [["COE", "RB"]],
+      "stations": [
+        ["DOM", false],
+        ["COE", false],
+        ["SFV", false],
+        ["CWF", false],
+        ["SSF", false]
+      ]
+    },
+    {
       "id": "N1",
       "name": "纳塔局·赫布里穆线",
       "nameEn": "Natlan Haborym Line",
@@ -922,7 +935,6 @@
         ["FSF", "LB"]
       ],
       "stations": [
-        ["DOM", false],
         ["COE", false],
         ["SFV", false],
         ["CWF", false],
