@@ -1,7 +1,6 @@
 <template>
   <div ref="container" class="map-container" @wheel.prevent="onWheel">
-    <LineLegend :mouse-coord="mouseCoord" />
-    <ZoomControls v-model:scale="scale" />
+    <MapControls :mouse-coord="mouseCoord" :scale="scale" @update:scale="scale = $event" />
     <svg
       ref="svgEl"
       :width="svgWidth"
@@ -203,8 +202,7 @@ import {
 } from '../composables/useMapData';
 import { useMapInteraction } from '../composables/useMapInteraction';
 import { useLabelPlacement } from '../composables/useLabelPlacement';
-import LineLegend from './LineLegend.vue';
-import ZoomControls from './ZoomControls.vue';
+import MapControls from './MapControls.vue';
 import type { RouteResult } from '../composables/useRouting';
 
 const props = defineProps<{

@@ -3,6 +3,7 @@
     @open="showDialog = true"
     @open-ai="showAiDialog = true"
     @toggle-theme="toggleTheme"
+    @toggle-admin="showAdmin = !showAdmin"
     :theme="theme" />
   <div class="app-body">
     <div class="map-area">
@@ -12,7 +13,7 @@
   </div>
   <InfoDialog :visible="showDialog" @close="onClose" />
   <AiPromptDialog :visible="showAiDialog" @close="showAiDialog = false" />
-  <AdminPanel />
+  <AdminPanel :visible="showAdmin" @close="showAdmin = false" />
 </template>
 
 <script setup lang="ts">
@@ -30,6 +31,7 @@ const STORAGE_KEY = 'teyvat-railways-visited';
 const { theme, toggle: toggleTheme } = useTheme();
 const showDialog = ref(false);
 const showAiDialog = ref(false);
+const showAdmin = ref(false);
 const routeResult = ref<RouteResult | null>(null);
 const panel = ref<InstanceType<typeof RoutePanel> | null>(null);
 

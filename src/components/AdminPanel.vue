@@ -1,15 +1,11 @@
 <template>
   <div v-if="isDev">
-    <button class="admin-toggle" :class="{ active: open }" @click="toggle" title="数据编辑器">
-      🛠
-    </button>
-
     <Teleport to="body">
-      <div v-if="open" class="admin-overlay" @click.self="open = false">
+      <div v-if="visible" class="admin-overlay" @click.self="$emit('close')">
         <div class="admin-panel">
           <div class="admin-header">
             <h2>Data Editor</h2>
-            <button class="close-btn" @click="open = false">✕</button>
+            <button class="close-btn" @click="$emit('close')">✕</button>
           </div>
 
           <div v-if="loading" class="admin-loading">Loading...</div>
@@ -131,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, computed, watch } from 'vue';
 
 const fileKeys = ['teyvat', 'inazuma', 'liyue', 'ferry', 'same'];
 const regionKeys = ['teyvat', 'inazuma', 'liyue'];
@@ -147,7 +143,8 @@ const presetOptions = [
 ];
 
 const isDev = import.meta.env.DEV;
-const open = ref(false);
+const props = defineProps<{ visible: boolean }>();
+const emit = defineEmits<{ close: [] }>();
 const loading = ref(true);
 const saving = ref(false);
 const savedMsg = ref('');
@@ -242,10 +239,12 @@ async function loadAll() {
   loading.value = false;
 }
 
-function toggle() {
-  open.value = !open.value;
-  if (open.value) loadAll();
-}
+watch(
+  () => props.visible,
+  (v) => {
+    if (v) loadAll();
+  },
+);
 
 async function save() {
   saving.value = true;
@@ -279,30 +278,6 @@ async function save() {
 </script>
 
 <style scoped>
-.admin-toggle {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 9999;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #1f77b4;
-  background: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: background 0.15s;
-}
-.admin-toggle:hover,
-.admin-toggle.active {
-  background: #1f77b4;
-  color: #fff;
-}
-
 .admin-overlay {
   position: fixed;
   inset: 0;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{ theme: 'light' | 'dark' }>();
-defineEmits<{ open: []; 'open-ai': []; 'toggle-theme': [] }>();
+defineEmits<{ open: []; 'open-ai': []; 'toggle-theme': []; 'toggle-admin': [] }>();
 </script>
 
 <template>
@@ -13,6 +13,7 @@ defineEmits<{ open: []; 'open-ai': []; 'toggle-theme': [] }>();
         </var-button>
         <var-button @click="$emit('open')">关于</var-button>
         <var-button @click="$emit('open-ai')">AI 提示词</var-button>
+        <var-button @click="$emit('toggle-admin')">🛠</var-button>
       </div>
     </template>
   </var-app-bar>
